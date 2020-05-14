@@ -1,0 +1,62 @@
+{
+  "name": "PWA Starter",
+  "display": "standalone",
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  "start_url": "/",
+=======
+<<<<<<< HEAD
+  "start_url": "https://blog.techbridge.cc/2018/10/13/pwa-in-action/",
+=======
+  "start_url": "/",
+>>>>>>> 8ed29e7e22b2e18724da0fb58387e2a82cfdb627
+>>>>>>> 986d3b7... First Login.html
+=======
+  "start_url": "/",
+>>>>>>> 6055fa663264d736f0addbeabf31bdfdb8f3e810
+=======
+  "start_url": "/",
+>>>>>>> 704dc698a1a39b011b218cea5265e6d6d81a334d
+  "short_name": "starter",
+  "theme_color": "#686bd2",
+  "description": "This is a PWA Starter app",
+  "orientation": "any",
+  "background_color": "#686bd2",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "assets/icons/icon_512.png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "assets/icons/icon_192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/icons/icon_48.png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "assets/icons/icon_24.png",
+      "sizes": "24x24"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screenshots/screen.png"
+    },
+    {
+      "src": "assets/screenshots/screen.png"
+    },
+    {
+      "src": "assets/screenshots/screen.png"
+    }
+  ],
+  "features": [
+    "Cross Platform",
+    "fast",
+    "simple"
+  ]
+}
