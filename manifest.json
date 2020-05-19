@@ -2,9 +2,12 @@
   "name": "PWA Starter",
   "display": "standalone",
 <<<<<<< HEAD
+<<<<<<< HEAD
   "start_url": "/",
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 23978145fa26c23da8ab8d014585acfd61ca9620
   "start_url": "https://blog.techbridge.cc/2018/10/13/pwa-in-action/",
 =======
 <<<<<<< HEAD
@@ -25,6 +28,9 @@
   "start_url": "/",
 >>>>>>> 704dc698a1a39b011b218cea5265e6d6d81a334d
 >>>>>>> e910648f52aecd1c548e8c5b6d533acf536907d0
+<<<<<<< HEAD
+>>>>>>> 23978145fa26c23da8ab8d014585acfd61ca9620
+=======
 >>>>>>> 23978145fa26c23da8ab8d014585acfd61ca9620
   "short_name": "starter",
   "theme_color": "#686bd2",

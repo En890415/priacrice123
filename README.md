@@ -3,9 +3,12 @@
 
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 23978145fa26c23da8ab8d014585acfd61ca9620
 <<<<<<< HEAD
 testtesttest
 =======
@@ -15,6 +18,9 @@ testtesttest
 testtesttest
 >>>>>>> 6055fa663264d736f0addbeabf31bdfdb8f3e810
 >>>>>>> e910648f52aecd1c548e8c5b6d533acf536907d0
+<<<<<<< HEAD
+>>>>>>> 23978145fa26c23da8ab8d014585acfd61ca9620
+=======
 >>>>>>> 23978145fa26c23da8ab8d014585acfd61ca9620
 Welcome to the [lit-element](https://lit-element.polymer-project.org/) edition of the [PWABuilder](https://www.pwabuilder.com/) pwa-starter! Looking to build a new [Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) and not sure where to get started? This is what you are looking for! The pwa-starter includes everything you need to start building a production ready PWA and follows all best practices. You get:
 
@@ -128,8 +134,11 @@ pwa-starter
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 23978145fa26c23da8ab8d014585acfd61ca9620
 <<<<<<< HEAD
 # priacrice123
 =======
@@ -142,4 +151,7 @@ pwa-starter
 # priacrice123
 >>>>>>> 6055fa663264d736f0addbeabf31bdfdb8f3e810
 >>>>>>> e910648f52aecd1c548e8c5b6d533acf536907d0
+<<<<<<< HEAD
+>>>>>>> 23978145fa26c23da8ab8d014585acfd61ca9620
+=======
 >>>>>>> 23978145fa26c23da8ab8d014585acfd61ca9620
