@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+   
+   header("Location: SA_Register.html");
+?>
 <head>
   <meta charset="utf-8">
   <title>PWA Starter</title>
@@ -46,13 +49,13 @@
     </head>
 <body>
   <!-- Our app-index web component. This component is defined in src/pages/app-index.ts-->
-
+<ul id=menu>
+<li><a href="#L384">Section 1</a>
+<li><a href="#details">Section 2</a>
+<li><a href="#FAQ">Section 3</a>
+</ul>
   <app-index></app-index>
 </body>
-
-
-  
-  <p>test</p>
   <script>
   // 支援serviceWorker才存入sw.js檔
   if('serviceWorker' in navigator) {
@@ -80,9 +83,6 @@
     });
   }
 </script>
- 
-
-    <p> hi! This's PWA Demomomo. </p>
     <script>
         if ('serviceWorker' in navigator) {
           console.log("Will service worker register?");
