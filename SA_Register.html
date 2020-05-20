@@ -5,7 +5,7 @@
        
         <meta charset="UTF-8">
         <title>登入畫面 </title>
-        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="priacrice123/css/bootstrap.css" rel="stylesheet">
 
         <!-- This meta viewport ensures the webpage's dimensions change according to the device it's on. This is called Responsive Web Design.-->
       <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
@@ -18,10 +18,10 @@
       <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
   <!-- Imports an icon to represent the document. -->
-  <link rel="icon" href="asset/icons/icon_24.png" type="image/x-icon">
+  <link rel="icon" href="priacrice123/asset/icons/icon_24.png" type="image/x-icon">
 
   <!-- Imports the manifest to represent the web application. A web app must have a manifest to be a PWA. -->
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="priacrice123/manifest.json">
 
   <!-- A stylesheet to design the pages. -->
   <link href="src/global.css" rel="stylesheet">
@@ -36,15 +36,13 @@
                     max-width:960px;">
            <div class="row justify-content-center">
                <div class="cal-4">
-                    <form method="post" action="SA_Login.html" class="form-signin" style="width: 400px">
+                    <form method="post" action="https://en890415.github.io/priacrice123/SA_Login.html" class="form-signin" style="width: 400px">
                        <h1 class="h3 mb-3 font-weight-normal" style="padding-left:90px">請輸入基本資訊以註冊</h1><br>
-                        <input type="text" name="person_id" placeholder="身分證字號" 
-                        value="<?php echo $person_id ?>" required autofocus class="form-control">
-                        <br>
-                        <input type="text" name="account" placeholder="帳號" 
-                        value="<?php echo $account ?>" required class="form-control">
+                        <input type="text" name="account" placeholder="電子郵件" 
+                        value="" id="email" required class="form-control">
                         <br>    
-                        <input type="password" name="password" placeholder="密碼" required class="form-control">
+                        <input type="password" name="password" placeholder="密碼" 
+                        id="pwd" required class="form-control">
                         <br>
                         <?php 
                             echo $error;
@@ -52,9 +50,10 @@
                         <div class="mb-3">
                         <label><a href="XXXX">使用XX註冊(尚未實裝)</a></label>
                         <br>
-                        <label><a href="SA_Login.html">已有帳號?</a></label>
+                        <label><a href="priacrice123/SA_Login.html">已有帳號?</a></label>
                         </div>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">註冊且跳轉至登入畫面</button>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">註冊且跳轉至登入畫面</button>
+                        <h3 id="message"></h3>
 
                     </form>
                </div>
@@ -68,3 +67,44 @@
     
     
 </html>
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+<script>
+// 初始化
+const config = {
+  apiKey: "AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk",
+  authDomain: "sa-no3.firebaseapp.com",
+  databaseURL: "https://sa-no3.firebaseio.com"
+};
+firebase.initializeApp(config);
+const database = firebase.database();
+
+// 綁定註冊按鈕的點擊事件
+submit.addEventListener('click', () => {
+  // 點擊註冊按鈕時，紀錄使用者輸入的帳號密碼
+  let user = {
+    email: email.value,
+    pwd: pwd.value
+  };
+
+  // 透過 auth().createUserWithEmailAndPassword 建立使用者
+  firebase.auth().createUserWithEmailAndPassword(user.email, user.pwd)
+    .then(u => {
+      // 取得註冊當下的時間
+      let date = new Date();
+      let now = date.getTime();
+
+      // 記錄相關資訊到 firebase realtime database
+      database.ref(u.uid).set({
+        signup: now,
+        email: user.email
+      }).then(() => {
+        // 儲存成功後顯示訊息
+        message.innerHTML = 'User created successfully';
+      });
+    }).catch(err => {
+      // 註冊失敗時顯示錯誤訊息
+      message.innerHTML = err.message;
+    });
+});
+</script>
+
