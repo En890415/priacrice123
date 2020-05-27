@@ -1,6 +1,6 @@
 const filesToCache = [
 	'/',
-    '/lyria.jpg',
+    './lyria.jpg',
 ];
 const cacheName = 'static-v21';
 
@@ -62,10 +62,10 @@ self.addEventListener('fetch', event => {
   console.log('url.pathname:',url.pathname);
   console.log('url.origin:',url.origin);
   console.log('location.origin:',location.origin);
-  if (url.origin == location.origin && url.pathname == '/lyria.jpg') {
+  if (url.origin == location.origin && url.pathname == './lyria.jpg') {
     console.log('url條件達成',url.origin);
     console.log('location條件達成',location.origin);
-    event.respondWith(caches.match('/lyria2.png'));
+    event.respondWith(caches.match('./lyria2.png'));
   }
 });
 
