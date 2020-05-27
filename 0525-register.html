@@ -2,24 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Sign up</title>
+    <link rel="stylesheet" href="css/0525-register.css">
 </head>
 <body>
-<h2>註冊新帳號</h2>
-帳號：<input id="email">
-密碼：<input id="pwd" type="password">
-<button id="submit">註冊</button>
-<h3 id="message"></h3>
-</body>
+   <div class="container">
 
+    <form id="signup">
+
+        <div class="header">
+        
+            <h3>Sign Up</h3>
+            
+            
+        </div>
+        
+        <div class="sep"></div>
+
+        <div class="inputs">
+        
+            <input type="email" placeholder="e-mail" id="email" autofocus />
+        
+            <input type="password" placeholder="Password" id="pwd"/>
+            
+            <div class="checkboxy">
+                <input name="cecky" id="checky" value="1" type="checkbox" /><label class="terms">I accept the terms of use</label>
+            </div>
+            
+            <a id="submit" href="#">SIGN UP FOR INVITE NOW</a>
+        
+        </div>
+
+    </form>
+
+</div>
+    <h3 id="message" align = "center"></h3>
+</body>
 </html>
 <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
 <script>
 // 初始化
 const config = {
-  apiKey: "AIzaSyACgE7lWIBGRhynKK5joSPXi4LkyfmtzXA",
-  authDomain: "test0514-cead6.firebaseapp.com",
-  databaseURL: "https://test0514-cead6.firebaseio.com"
+  apiKey: "AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk",
+  authDomain: "sa-no3.firebaseapp.com",
+  databaseURL: "https://sa-no3.firebaseio.com"
 };
 firebase.initializeApp(config);
 const database = firebase.database();
