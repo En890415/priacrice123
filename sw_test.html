@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PWA Demo</title>
+    <title>PWA SW Demo</title>
     
     <!-- Imports the manifest to represent the web application. A web app must have a manifest to be a PWA. -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="./manifest.json">
     
 </head>
 <body>
-    <p> \{^_^}/ hi! This's PWA Demo. </p>
+    <p> \{^_^}/ hi! This's PWA and SW Demo. </p>
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js')
@@ -23,19 +23,19 @@
         }, 3500);
     </script>
     <script>
-       // const list = document.getElementById('list');
+        const list = document.getElementById('list');
         // 接著發送 request
-      //  fetch('http://localhost:3000/')
+        fetch('http://localhost:3000/')
         
-      //  .then(res => {
-     //       return res.json();
-      //  })
+        .then(res => {
+           return res.json();
+        })
         
-      //  .then(json => {
-      //      list.innerHTML = json
-      //                      .map(item => `<li>${item.name}</li>`)
-      //                      .join('');
-      //  })
+         .then(json => {
+            list.innerHTML = json
+                            .map(item => `<li>${item.name}</li>`)
+                            .join('');
+        })
     </script>
 </body>
 </html>
