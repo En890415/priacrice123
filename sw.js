@@ -1,5 +1,4 @@
 const filesToCache = [
-	'/',
     './lyria.jpg',
 ];
 const cacheName = 'static-v21';
