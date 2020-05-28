@@ -2,7 +2,7 @@
   "name": "VendingMachineApp",
   "display": "standalone",
 
-  "start_url": "./priacrice123",
+  "start_url": "./",
   "short_name": "VM",
   "lang": "zh-Hant-TW",
   "theme_color": "rgb(206, 57, 194)",
