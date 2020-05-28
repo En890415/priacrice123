@@ -39,21 +39,6 @@ self.addEventListener('fetch', event => {
     console.log('event.request:', event.request);
 	console.log('[ServiceWorker] Fetch', event.request.url);
     
-    event.respondWith(
-        caches.match(event.request).then(function (response) {
-			return response || fetch(event.request).then(res =>
-				// 存 caches 之前，要先打開 caches.open(dataCacheName)
-				caches.open(cacheName)
-				.then(function(cache) {
-					// cache.put(key, value)
-					// 下一次 caches.match 會對應到 event.request
-					cache.put(event.request, res.clone());
-                    console.log('已將新的fetch儲存在cache');
-					return res;
-				})
-			);
-		})
-  );
     
     
    const url = new URL(event.request.url);
