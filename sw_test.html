@@ -10,6 +10,7 @@
 </head>
 <body>
     <p> \{^_^}/ hi! This's PWA and SW Demo. </p>
+    <button onClick="window.location.reload();">重新整理來載入第二張圖片</button>
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js', {scope: 'https://en890415.github.io/priacrice123/'})
