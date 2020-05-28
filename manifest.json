@@ -2,7 +2,7 @@
   "name": "VendingMachineApp",
   "display": "standalone",
 
-  "start_url": "https://en890415.github.io/priacrice123/sw_test.html",
+  "start_url": "./priacrice123",
   "short_name": "VM",
   "lang": "zh-Hant-TW",
   "theme_color": "rgb(206, 57, 194)",
