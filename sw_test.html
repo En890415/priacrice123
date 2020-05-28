@@ -16,6 +16,7 @@
             .then(reg => console.log('完成 SW 設定!', reg))
             .catch(err => console.log('Error!', err));
         }
+        console.log('ServiceWorker 目前的scope為:',  registration.scope);
         setTimeout(() => {
             const img1 = new Image();
             img1.src = './lyria.jpg';
