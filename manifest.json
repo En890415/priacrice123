@@ -2,7 +2,7 @@
   "name": "VendingMachineApp",
   "display": "standalone",
 
-  "start_url": "./",
+  "start_url": "./sw_test.html",
   "short_name": "VM",
   "lang": "zh-Hant-TW",
   "theme_color": "rgb(206, 57, 194)",
