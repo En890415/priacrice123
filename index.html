@@ -47,40 +47,12 @@
 <body>
   <!-- Our app-index web component. This component is defined in src/pages/app-index.ts-->
 <ul id=menu>
-<li><a href="#L384">Section 1</a>
-<li><a href="#details">Section 2</a>
-<li><a href="#FAQ">Section 3</a>
-<li><a href="#CCTAS">Section 4</a>
+<li><a href="./sw_test.html">PWA跟SW測試頁面</a>
+<li><a href="./0525-register.html">註冊介面</a>
 </ul>
   <app-index></app-index>
 </body>
-  <script>
-  // 支援serviceWorker才存入sw.js檔
-  if('serviceWorker' in navigator) {
-    
-    // window load後才執行，以免增加頁面讀取的時間
-    window.addEventListener('load', function() {
-      
-      // 建立sw.js
-      navigator.serviceWorker.register('/pwatest/sw.js')
-        .then(function(reg) {
-          console.log(reg.scope); // 看這支sw.js執行的範圍
-        })
-        // 註冊失敗
-        .catch(function(err) {
-          console.log('error: ', err);
-        });
-     
-      // 附上刪除sw.js的寫法
-      navigator.serviceWorker.getRegistrations().then(function(reg) {
-        for(var reg of reg) {
-          reg.unregister()
-        }
-      });
-      
-    });
-  }
-</script>
+  
   <!-- Our app-index web component. This component is defined in src/pages/app-index.ts-->
 
   <app-index></app-index>
