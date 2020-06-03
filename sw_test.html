@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PWA SW Demo</title>
+    
+    <!-- Imports the manifest to represent the web application. A web app must have a manifest to be a PWA. -->
+    <link rel="manifest" href="manifest.json">
+    
+</head>
+<body>
+    <p> \{^_^}/ hi! This's PWA and SW Demo. </p>
+    <button onClick="window.location.reload();">重新整理來載入第二張圖片</button>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js', {scope: 'https://en890415.github.io/priacrice123/'})
+            .then(reg => console.log('完成 SW 設定!', reg))
+            .catch(err => console.log('Error!', err));
+        }
+        setTimeout(() => {
+            const img1 = new Image();
+            img1.src = './lyria.jpg';
+            document.body.appendChild(img1);
+        }, 3500);
+    </script>
+    <script>
+        const list = document.getElementById('list');
+        // 接著發送 request
+        fetch('http://localhost:3000/')
+        
+        .then(res => {
+           return res.json();
+        })
+        
+  //       .then(json => {
+  //          list.innerHTML = json
+   //                         .map(item => `<li>${item.name}</li>`)
+   //                         .join('');
+   //     })
+    </script>
+</body>
+</html>
