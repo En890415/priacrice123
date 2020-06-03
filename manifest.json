@@ -2,8 +2,8 @@
   "name": "VendingMachineApp",
   "display": "standalone",
 
-  "start_url": "./sw_test.html",
-  "short_name": "VM",
+  "start_url": "./Login_v11/Login.html",
+  "short_name": "VM_Login",
   "lang": "zh-Hant-TW",
   "theme_color": "rgb(206, 57, 194)",
   "description": "這是一個好用又免費的應用程式，主要可以拿來拯救宇宙。",
