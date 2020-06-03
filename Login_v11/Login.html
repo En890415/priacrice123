@@ -65,10 +65,10 @@
 
 
 
-                    <a class="btn-google m-l-r-auto">
+                    <button class="btn-google m-l-r-auto" onclick="gooleSignIn()" type="button">
                         <img src="images/icons/icon-google.png" alt="GOOGLE">
                         Google
-                    </a>
+                    </button>
 
                     <div class="text-center w-full p-t-115">
                         <span class="txt1">
@@ -123,7 +123,6 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-
     </script>
 
     <script>
@@ -142,7 +141,6 @@
 
             }
         });
-
     </script>
 
     <script>
@@ -160,16 +158,34 @@
                 // ...
             });
         }
-
     </script>
 
     <script>
         function logout() {
             firebase.auth().signOut();
         }
-
+    </script>
+    <script>
+        function gooleSignIn() {
+            var provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider).then(function(result) {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                var token = result.credential.accessToken;
+                // The signed-in user info.
+                var user = result.user;
+                // ...
+            }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                window.alert(errorMessage);
+                // ...
+            });
+        }
     </script>
 
-</body>
-
-</html>
+</body></html>
