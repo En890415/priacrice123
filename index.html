@@ -1,69 +1,50 @@
-<!DOCTYPE html>
 <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+      <link href="https://en890415.github.io/priacrice123/css/sb-admin-2.min.css" rel="stylesheet">
+</head>
+     <body>
+      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+       <!-- Sidebar - Brand -->
+       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-text mx-3">SA專案入口</div>
+      </a>
 
-<head>
-  <meta charset="utf-8">
-  <title>PWA Starter</title>
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="sw_test.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>PWA跟SW</span></a>
+      </li>
 
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      <!-- Nav Item - Tables -->
+      <li class="nav-item active">
+        <a class="nav-link" href="0525_register.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>註冊介面</span></a>
+      </li>
+      
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="#">
+          <i class="fas fa-fw fa-table"></i>
+          <span>其他介面</span></a>
+      </li>
+            
 
-  <base href="/">
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
 
-  <!-- This meta viewport ensures the webpage's dimensions change according to the device it's on. This is called Responsive Web Design.-->
-  <meta name="viewport"
-    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-
-
-  <base href="/">
-
-  <!-- This meta viewport ensures the webpage's dimensions change according to the device it's on. This is called Responsive Web Design.-->
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-
-  <base href="/index.html">
-
-  <!-- This meta viewport ensures the webpage's dimensions change according to the device it's on. This is called Responsive Web Design.-->
-  <meta name="viewport"
-    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-
-
-  <meta name="description" content="This is a PWA Starter app">
-  <meta name="theme-color" content="#686bd2">
-
-  <!-- These meta tags are Apple-specific, and set the web application to run in full-screen mode with a black status bar. Learn more at https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="PWA Starter">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-  <!-- Imports an icon to represent the document. -->
-  <link rel="icon" href="asset/icons/icon_24.png" type="image/x-icon">
-
-  <!-- Imports the manifest to represent the web application. A web app must have a manifest to be a PWA. -->
-  <link rel="manifest" href="manifest.json">
-
-  <!-- A stylesheet to design the pages. -->
-  <link href="src/global.css" rel="stylesheet">
-
-  <script type="module" src="build/script/pages/app-index.js"></script>
-    </head>
-<body>
-  <!-- Our app-index web component. This component is defined in src/pages/app-index.ts-->
-<ul id=menu>
-<li><a href="priacrice123/sw_test.html">PWA跟SW測試頁面</a>
-<li><a href="priacrice123/0525-register.html">註冊介面</a>
-<li><a href="priacrice123/0525-register.html">登入介面</a>
-<li><a href="priacrice123/0525-register.html">首頁</a>
-<li><a href="priacrice123/0525-register.html">搜尋販賣機(Google Map)</a>
-<li><a href="priacrice123/0525-register.html">管理販賣機</a>
-<li><a href="priacrice123/0525-register.html">信用卡綁定</a>
-<li><a href="priacrice123/0525-register.html">購物車</a>
-</ul>
-  <app-index></app-index>
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+         </ul>
 </body>
-  
-  <!-- Our app-index web component. This component is defined in src/pages/app-index.ts-->
-
-  <app-index></app-index>
-
-
-
 </html>
-
