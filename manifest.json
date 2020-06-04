@@ -5,10 +5,10 @@
   "start_url": "./Login_v11/Login.html",
   "short_name": "VM_Login",
   "lang": "zh-Hant-TW",
-  "theme_color": "rgb(206, 57, 194)",
+  "theme_color": "-webkit-linear-gradient(bottom, #0250c5, #d43f8d)",
   "description": "這是一個好用又免費的應用程式，主要可以拿來拯救宇宙。",
   "orientation": "any",
-  "background_color": "rgb(123, 201, 81)",
+  "background_color": "-webkit-linear-gradient(bottom, #0250c5, #d43f8d)",
   "prefer_related_applications": false,
   "related_applications": [],
   "icons": [
