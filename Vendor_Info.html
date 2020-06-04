@@ -5,8 +5,7 @@
     <title>商品資訊</title>
 </head>
 <body>
-<table border="1" width="100" id="table1">
-</table>
+
 </body>
 </html>
 <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
@@ -15,6 +14,7 @@
 <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
  <script >
   // Your web app's Firebase configuration
+ 
   const firebaseConfig = {
     apiKey: "AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk",
     authDomain: "sa-no3.firebaseapp.com",
@@ -29,17 +29,46 @@
   firebase.initializeApp(firebaseConfig);
     
   var db = firebase.firestore();
-    var ref = db.collection("商品");
+     var ref = db.collection("商品").doc("冷飲")
+        .onSnapshot(function(doc) {
+            classify=doc.id;
+            data=doc.data();
+        document.write(doc.id+"<br>");
+          for (let [key, value] of Object.entries(data)) {
+                document.write(key+value+"<br>");
+      }
+      });
+     /*------------
+var storage = firebase.storage();
+var storageRef = storage.ref();
+var ref2 = storageRef.child('商品');
+/*------------
+firebase.auth().signInAnonymously().then(function() {
 
-ref.onSnapshot(querySnapshot => {
-  querySnapshot.forEach(doc => {
-      var classify = doc.id;
-      var data = JSON.stringify(doc.data());
-      document.write(classify+"<br>");
+  ref2.getDownloadURL().then(function(url)                             {
+    document.querySelector('img').src = url;
+  }).catch(function(error) {
+    console.error(error);
+  });
+});   
      
-          document.write(data+"<br>"); 
+----------*/
+  
+ref.onSnapshot(querySnapshot => {
+  querySnapshot.foreach(doc => {
+      var classify = doc.id;
+      //var data = JSON.stringify(doc.data());
+      var data = doc.data();
       
-    
+      document.write(classify+"<br>");
+      document.write("<-------------------------<br>")
+      for (let [key, value] of Object.entries(data)) {
+         
+        document.write(key+"<br>");
+      }
+     
+     
+      document.write("-------------------------><br>")
   });
 });
 
