@@ -5,6 +5,7 @@
     <title>商品資訊</title>
 </head>
 <body>
+    <img height="125" width="125"/>
 
 </body>
 </html>
@@ -27,51 +28,45 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+   
+    var storage = firebase.storage().ref();
+     var reff2 = storage.child('冷飲');
+     var ref2 = reff2.child("可爾必思.jpg");
+    ref2.getMetadata().then(function() {
+     ref2.getDownloadURL().then(function(url){    
+        document.querySelector('img').src = url;  
+     })
     
+ }).catch(function(error) {
+    // Uh-oh, an error occurred!
+  });
+     
+    
+/*------------------------------------------------------*/
+     /*-------
   var db = firebase.firestore();
      var ref = db.collection("商品").doc("冷飲")
-        .onSnapshot(function(doc) {
-            classify=doc.id;
+        .onSnapshot(doc => {
             data=doc.data();
         document.write(doc.id+"<br>");
           for (let [key, value] of Object.entries(data)) {
-                document.write(key+value+"<br>");
+                document.write(key+"<br>"+value+"<br><br>");
       }
       });
-     /*------------
-var storage = firebase.storage();
-var storageRef = storage.ref();
-var ref2 = storageRef.child('商品');
-/*------------
-firebase.auth().signInAnonymously().then(function() {
-
-  ref2.getDownloadURL().then(function(url)                             {
-    document.querySelector('img').src = url;
-  }).catch(function(error) {
-    console.error(error);
-  });
-});   
-     
-----------*/
-  
-ref.onSnapshot(querySnapshot => {
-  querySnapshot.foreach(doc => {
-      var classify = doc.id;
-      //var data = JSON.stringify(doc.data());
-      var data = doc.data();
-      
-      document.write(classify+"<br>");
-      document.write("<-------------------------<br>")
-      for (let [key, value] of Object.entries(data)) {
-         
-        document.write(key+"<br>");
-      }
-     
-     
-      document.write("-------------------------><br>")
+ /*--------
+  var db = firebase.firestore(); 
+var ref3 = db.collection("商品")
+     .onSnapshot(querySnapshot => {
+        querySnapshot.foreach(doc => {
+            var classify = doc.id;
+            var data = doc.data();
+            document.write(classify+data+"<br>");
+            for (let [key, value] of Object.entries(data)) {
+                document.write(key+value+"<br>");
+            }
   });
 });
-
+--------------*/
 </script>
 
 
