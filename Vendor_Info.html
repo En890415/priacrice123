@@ -5,8 +5,26 @@
     <title>商品資訊</title>
 </head>
 <body>
-    <img height="125" width="125"/>
 
+<div class="container">
+    <table id="ttable" border="1" cellpadding="20" style="border-collapse:collapse;">
+    <thead>
+          
+           
+            <th>商品名稱</th>
+            <th>價格</th>
+            <th>內容物</th>
+            <th>熱量</th>
+            <th>容量</th>
+            <th>製造商</th>
+            <th>製造日期</th>
+            <th>保存期限</th>
+            <th>檔名</th>
+          
+            
+    </thead>
+    </table>
+</div>
 </body>
 </html>
 <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
@@ -14,7 +32,7 @@
 <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
  <script >
-  // Your web app's Firebase configuration
+  //連結至FB
  
   const firebaseConfig = {
     apiKey: "AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk",
@@ -26,38 +44,81 @@
     appId: "1:1015427284395:web:008dc524a161da95bfe6ee",
     measurementId: "G-MDP1SN9YWK"
   };
-  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-   
-    var storage = firebase.storage().ref();
-     var reff2 = storage.child('冷飲');
-     var ref2 = reff2.child("可爾必思.jpg");
-    ref2.getMetadata().then(function() {
-     ref2.getDownloadURL().then(function(url){    
-        document.querySelector('img').src = url;  
-     })
-    
- }).catch(function(error) {
-    // Uh-oh, an error occurred!
-  });
-     
-    
-/*------------------------------------------------------*/
-     /*-------
+ 
+     //firebase的database+storage
   var db = firebase.firestore();
-     var ref = db.collection("商品").doc("冷飲")
-        .onSnapshot(doc => {
-            data=doc.data();
-        document.write(doc.id+"<br>");
-          for (let [key, value] of Object.entries(data)) {
-                document.write(key+"<br>"+value+"<br><br>");
-      }
-      });
- /*--------
+     var ref = db.collection("商品");
+        ref.onSnapshot(querySnapshot =>{
+            querySnapshot.forEach(doc =>{
+                renderAccount(doc);
+                /*--------
+                data=doc.data();
+                var storageRef = firebase.storage().ref();
+                var reff2 = storageRef.child("商品");
+              var ref2= reff2.child(data["檔名"]);
+                console.log(data["檔名"]);
+                ref2.getMetadata().then(function() {
+                    ref2.getDownloadURL().then(function(url){    
+                    document.querySelector('img').src = url;  
+                })
+            }).catch(function(error) {});
+      --------------*/
+        })
+    })
+     const TtableList = document.querySelector('#ttable') ;
+            function renderAccount(doc){
+                let tr = document.createElement('tr');
+                let td_Name = document.createElement('td');
+                let td_Price = document.createElement('td');
+                let td_Content = document.createElement('td');
+                let td_Calories = document.createElement('td');
+                let td_Capacity = document.createElement('td');
+                let td_Manufacturer = document.createElement('td');
+                let td_ManufactureDate = document.createElement('td');
+                let td_ExpireDate = document.createElement('td');
+                let td_Image = document.createElement('td');
+
+                tr.setAttribute('data-id', doc.id);
+                td_Name.textContent = doc.id;
+                td_Price.textContent = doc.data()["價格"];
+                td_Content.textContent = doc.data()["內容物"];
+                td_Calories.textContent = doc.data()["熱量"];
+                td_Capacity.textContent = doc.data()["容量"];
+                td_Manufacturer.textContent = doc.data()["製造商"];
+                td_ManufactureDate.textContent = timeConverter(doc.data()["製造日期"]);
+                td_ExpireDate.textContent = timeConverter(doc.data()["保存期限"]);
+                td_Image.textContent = doc.data()["檔名"];
+                
+                tr.appendChild(td_Name);
+                tr.appendChild(td_Price);
+                tr.appendChild(td_Content);
+                tr.appendChild(td_Calories);
+                tr.appendChild(td_Capacity);
+                tr.appendChild(td_Manufacturer);
+                tr.appendChild(td_ManufactureDate);
+                tr.appendChild(td_ExpireDate);
+                tr.appendChild(td_Image);
+
+                TtableList.appendChild(tr);
+
+            }
+    function timeConverter(UNIX_timestamp){
+  var a = new Date(UNIX_timestamp * 1000);
+  
+  var year = a.getYear()-69;
+  var month =a.getMonth()+1;
+  var date = a.getDate();
+  var time = year+"/"+month+"/"+date;
+  return time;
+}
+
+    
+/*------------
   var db = firebase.firestore(); 
 var ref3 = db.collection("商品")
      .onSnapshot(querySnapshot => {
-        querySnapshot.foreach(doc => {
+        querySnapshot.forEach(doc => {
             var classify = doc.id;
             var data = doc.data();
             document.write(classify+data+"<br>");
