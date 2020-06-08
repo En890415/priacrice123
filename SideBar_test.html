@@ -62,7 +62,7 @@
       <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="Login_v11/Login.html">
+        <a class="nav-link" href="Login_v11/Login.html" onclick="logout()">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>登出</span></a>
       </li>
@@ -77,5 +77,26 @@
       </div>
             
          </ul>
+       <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk",
+            authDomain: "sa-no3.firebaseapp.com",
+            databaseURL: "https://sa-no3.firebaseio.com",
+            projectId: "sa-no3",
+            storageBucket: "sa-no3.appspot.com",
+            messagingSenderId: "1015427284395",
+            appId: "1:1015427284395:web:008dc524a161da95bfe6ee",
+            measurementId: "G-MDP1SN9YWK"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script>
+      function logout(){
+        firebase.auth().signOut();
+      }
+    </script>
 </body>
 </html>
