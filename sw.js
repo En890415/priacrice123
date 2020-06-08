@@ -44,9 +44,9 @@ self.addEventListener('fetch', event => {
    const url = new URL(event.request.url);
   // serve the horse SVG from the cache if the request is
   // same-origin and the path is '/dog.svg'
-  console.log('url.pathname:',url.pathname);
-  console.log('url.origin:',url.origin);
-  console.log('location.origin:',location.origin);
+  //console.log('url.pathname:',url.pathname);
+  //console.log('url.origin:',url.origin);
+  //console.log('location.origin:',location.origin);
   if (url.origin == location.origin && url.pathname == '/priacrice123/lyria.jpg') {
     console.log('url條件達成',url.origin);
     console.log('location條件達成',location.origin);
