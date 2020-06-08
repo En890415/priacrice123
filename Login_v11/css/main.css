@@ -406,9 +406,7 @@ iframe {
   font-size: 16px;
   line-height: 1.5;
   color: #fff;
-  text-transform: uppercase;
-    
-  width: 50%;
+  margin: auto;
   height: 100px;
 }
 .login100-form-btn {
