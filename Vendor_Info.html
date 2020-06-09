@@ -7,8 +7,8 @@
 <body>
 
 <div class="container">
-    <table id="ttable" border="1" cellpadding="20" style="border-collapse:collapse;">
-    <thead>
+    <table id="ttable" border="1" cellpadding="15" style="border-collapse:collapse;">
+    <thead >
           
            
             <th>商品名稱</th>
@@ -98,7 +98,9 @@
                 tr.appendChild(td_Manufacturer);
                 tr.appendChild(td_ManufactureDate);
                 tr.appendChild(td_ExpireDate);
-                tr.appendChild(td_Image);
+                var img = document.createElement("img");
+                img.src = td_Image.innerHTML;
+                tr.appendChild(img);
 
                 TtableList.appendChild(tr);
 
