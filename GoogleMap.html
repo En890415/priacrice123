@@ -222,15 +222,13 @@
 
 
   <script>
-  var map,infoWindow;
-  function initMap(){
-    map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 25.0334487, lng: 121.4312869},
-    zoom: 15,
-});
-infoWindow = new google.maps.InfoWindow;
-
-
+  var map;
+        function initMap(){
+        map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 25.0334487, lng: 121.4312869},
+        zoom: 15,
+    });
+    /*
 //Try HTML5 geolocation.
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(function(position) {
@@ -250,89 +248,41 @@ if (navigator.geolocation) {
   // Browser doesn't support Geolocation
   handleLocationError(false, infoWindow, map.getCenter());
 }
+*/
+  var db = firebase.firestore();
+for(var i = 1;i<=6;i++){
+  var docRef = db.collection('VM').doc("VMData"+i);
 
-  var marker1 = new google.maps.Marker({
-    position: {lat: 25.036952, lng: 121.435601},
-    icon:"http://maps.google.com/mapfiles/ms/icons/red-dot.png",
-    map: map
-});
-
-  var message1 = new google.maps.InfoWindow( {  
-            content : "<h4 align = 'center'>販賣機1</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><button onclick=\"check()\">查看商品資訊</button>",  
-            size : new google.maps.Size(100, 100)  
-        });  
-        google.maps.event.addListener(marker1, 'click', function() {  
-            message1.open(map, marker1);  
-        }); 
-  var marker2 = new google.maps.Marker({
-    position: {lat: 25.0334452, lng: 121.4312867},
-    icon:"http://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
-    map: map
-});
-
-  var message2 = new google.maps.InfoWindow( {  
-            content : "<h4 align = 'center'>販賣機2</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><button onclick=\"check()\">查看商品資訊</button>",  
-            size : new google.maps.Size(100, 100)  
-        });  
-        google.maps.event.addListener(marker2, 'click', function() {  
-            message2.open(map, marker2);  
-        }); 
-  var marker3 = new google.maps.Marker({
-    position: {lat: 25.034333, lng: 121.43319},
-    icon:"http://maps.google.com/mapfiles/ms/icons/green-dot.png",
-    map: map
-});
-
-  var message3 = new google.maps.InfoWindow( {  
-            content : "<h4 align = 'center'>販賣機3</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><button onclick=\"check()\">查看商品資訊</button>",  
-            size : new google.maps.Size(100, 100)  
-        });  
-        google.maps.event.addListener(marker3, 'click', function() {  
-            message3.open(map, marker3);  
-        }); 
-  var marker4 = new google.maps.Marker({
-    position: {lat: 25.037984, lng: 121.434633},
-    icon:"http://maps.google.com/mapfiles/ms/icons/red-dot.png",
-    map: map
-});
-
-  var message4 = new google.maps.InfoWindow( {  
-            content : "<h4 align = 'center'>販賣機4</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><button onclick=\"check()\">查看商品資訊</button>",  
-            size : new google.maps.Size(100, 100)  
-        });  
-        google.maps.event.addListener(marker4, 'click', function() {  
-            message4.open(map, marker4);  
-        });   
-
-
-  var marker5 = new google.maps.Marker({
-    position: {lat: 25.029719, lng: 121.438025},
-    icon:"http://maps.google.com/mapfiles/ms/icons/green-dot.png",
-    map: map
-});
-
-  var message5 = new google.maps.InfoWindow( {  
-            content : "<h4 align = 'center'>販賣機5</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><button onclick=\"check()\">查看商品資訊</button>",  
-            size : new google.maps.Size(100, 100)  
-        });  
-        google.maps.event.addListener(marker5, 'click', function() {  
-            message5.open(map, marker5);  
-        });  
-  var marker6 = new google.maps.Marker({
-    position: {lat: 25.030443, lng: 121.424802},
-    icon:"http://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
-    map: map
-});
-  var message6 = new google.maps.InfoWindow( {  
-            content : "<h4 align = 'center'>販賣機6</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><button onclick=\"check()\">查看商品資訊</button>",  
-            size : new google.maps.Size(100, 100)  
-        });  
-        google.maps.event.addListener(marker6, 'click', function() {  
-            message6.open(map, marker6);  
-        }); 
-
-   
+docRef.get().then(function(doc) {
+    if (doc.exists) {
+        console.log("Document data:", doc.data());
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
     }
+    marker = new google.maps.Marker({
+                      position: {
+                        lat: doc.data().latitude,
+                        lng: doc.data().longitude
+                      },
+                      icon:"http://maps.google.com/mapfiles/ms/icons/"+doc.data().status+"-dot.png",
+                      map: map
+            });
+
+    infowindow = new google.maps.InfoWindow();
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+			return function() {
+				infowindow.setContent(doc.data().id+"<h4 align = 'center'>販賣機</h4><img title='販賣機' height='100px' width='100px'  src='icon/vending-machine.png'/><a href='#'>查看商品資訊</a>");
+				
+				infowindow.open(map, marker);
+			}
+		}) (marker, i));
+    
+}).catch(function(error) {
+    console.log("Error getting document:", error);
+});}
+
+        }
   
 
 
@@ -349,7 +299,6 @@ function detectBrowser() {
     mapdiv.style.height = '800px';
   }
 }
-
 */
 
 </script>
@@ -365,7 +314,3 @@ function detectBrowser() {
 </body>
 
 </html>
-
-
-
-
