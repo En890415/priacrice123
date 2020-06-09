@@ -258,7 +258,7 @@ if (navigator.geolocation) {
 });
 
   var message1 = new google.maps.InfoWindow( {  
-            content : "<h4 align = 'center'>販賣機1</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><a href='#'>查看商品資訊</a>",  
+            content : "<h4 align = 'center'>販賣機1</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><button onclick=\"check()\">查看商品資訊</button>",  
             size : new google.maps.Size(100, 100)  
         });  
         google.maps.event.addListener(marker1, 'click', function() {  
@@ -271,7 +271,7 @@ if (navigator.geolocation) {
 });
 
   var message2 = new google.maps.InfoWindow( {  
-            content : "<h4 align = 'center'>販賣機2</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><a href='#'>查看商品資訊</a>",  
+            content : "<h4 align = 'center'>販賣機2</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><button onclick=\"check()\">查看商品資訊</button>",  
             size : new google.maps.Size(100, 100)  
         });  
         google.maps.event.addListener(marker2, 'click', function() {  
@@ -284,7 +284,7 @@ if (navigator.geolocation) {
 });
 
   var message3 = new google.maps.InfoWindow( {  
-            content : "<h4 align = 'center'>販賣機3</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><a href='#'>查看商品資訊</a>",  
+            content : "<h4 align = 'center'>販賣機3</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><button onclick=\"check()\">查看商品資訊</button>",  
             size : new google.maps.Size(100, 100)  
         });  
         google.maps.event.addListener(marker3, 'click', function() {  
@@ -297,7 +297,7 @@ if (navigator.geolocation) {
 });
 
   var message4 = new google.maps.InfoWindow( {  
-            content : "<h4 align = 'center'>販賣機4</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><a href='#'>查看商品資訊</a>",  
+            content : "<h4 align = 'center'>販賣機4</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><button onclick=\"check()\">查看商品資訊</button>",  
             size : new google.maps.Size(100, 100)  
         });  
         google.maps.event.addListener(marker4, 'click', function() {  
@@ -312,7 +312,7 @@ if (navigator.geolocation) {
 });
 
   var message5 = new google.maps.InfoWindow( {  
-            content : "<h4 align = 'center'>販賣機5</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><a href='#'>查看商品資訊</a>",  
+            content : "<h4 align = 'center'>販賣機5</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><button onclick=\"check()\">查看商品資訊</button>",  
             size : new google.maps.Size(100, 100)  
         });  
         google.maps.event.addListener(marker5, 'click', function() {  
@@ -324,7 +324,7 @@ if (navigator.geolocation) {
     map: map
 });
   var message6 = new google.maps.InfoWindow( {  
-            content : "<h4 align = 'center'>販賣機6</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><a href='#'>查看商品資訊</a>",  
+            content : "<h4 align = 'center'>販賣機6</h4><img title='販賣機' height='100px' width='100px'  src='https://i.iconeps.com/icon/256/20181227/26930/1343975.png'/><button onclick=\"check()\">查看商品資訊</button>",  
             size : new google.maps.Size(100, 100)  
         });  
         google.maps.event.addListener(marker6, 'click', function() {  
@@ -353,6 +353,12 @@ function detectBrowser() {
 */
 
 </script>
+<script>
+            function check() {
+                window.open("Vendor_Info.html");
+            }
+
+        </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk&callback=initMap" async defer></script>
 
 
