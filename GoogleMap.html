@@ -133,6 +133,7 @@
                 if (user != null) {
 		    document.getElementById("loggedin_div").style.display = "inline-block";
 		    document.getElementById("loggedin_map").style.position = "relative";
+		    document.getElementById("Person_data").style.display = "show";
                     email = user.email;
                     document.getElementById("user_para").innerHTML = email;
                       // name = user.displayName;
@@ -147,6 +148,7 @@
 		  document.getElementById("user_para").innerHTML = "尚未登入";
                   document.getElementById("loggedin_div").style.display = "none";
 		  document.getElementById("loggedin_map").style.position = "fixed";
+		  document.getElementById("Person_data").style.display = "none";
             }
         });
     </script>
@@ -158,11 +160,11 @@
 
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="#" id="Person_data">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   資料
+		<div class="dropdown-divider"></div>
                 </a>
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" onclick="logout()" href="https://en890415.github.io/priacrice123/Login_v11/Login.html" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                  退出登錄
