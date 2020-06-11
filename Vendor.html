@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>業者/販賣機</title>
+</head>
+<body>
+    <div class="container" align="center" >
+    <table id="ttable" border="10" width="400" height="400"
+     cellpadding="5" style="border-collapse:collapse;">
+    <thead >
+        
+            <th>販賣機編號</th>
+            <th>縣市</th>
+            <th>狀態</th>    
+    </thead>
+    </table>
+</div>
+</body>
+</html>
+<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
+ <script>
+      const firebaseConfig = {
+    apiKey: "AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk",
+    authDomain: "sa-no3.firebaseapp.com",
+    databaseURL: "https://sa-no3.firebaseio.com",
+    projectId: "sa-no3",
+    storageBucket: "sa-no3.appspot.com",
+    messagingSenderId: "1015427284395",
+    appId: "1:1015427284395:web:008dc524a161da95bfe6ee",
+    measurementId: "G-MDP1SN9YWK"
+  };
+  firebase.initializeApp(firebaseConfig);
+      var db = firebase.firestore();
+     var ref = db.collection("VM");
+        ref.onSnapshot(querySnapshot =>{
+            querySnapshot.forEach(doc =>{
+                renderAccount(doc);
+                
+                })
+    })
+const TtableList = document.querySelector('#ttable') ;
+            function renderAccount(doc){
+                let tr = document.createElement('tr');
+                tr.style.textAlign="center";
+                let td_Id = document.createElement('td');
+                let td_Adress = document.createElement('td');
+                let td_Status = document.createElement('td');
+                
+                tr.setAttribute('data-id', doc.id);
+                td_Id.textContent = doc.id;
+                td_Adress.textContent = doc.data()["address"];
+                td_Status.textContent = doc.data()["status"];
+                td_Status.style.background = td_Status.innerHTML;
+                
+                tr.appendChild(td_Id);
+                tr.appendChild(td_Adress);
+                tr.appendChild(td_Status);
+                
+              
+                TtableList.appendChild(tr);
+            }
+</script>
