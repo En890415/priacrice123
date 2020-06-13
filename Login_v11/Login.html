@@ -91,10 +91,22 @@
             <div id="loggedin_div" class="loggedin-form-btn">
                 <ul style="align:center">
                     <li>
-                    <h3>Welcom User</h3>
+                        <h3>Welcom User</h3>
                     </li>
                     <li>
-                    <p id="user_para" style="color: #291b4a"></p>
+                        <p id="user_para" style="color: #291b4a"></p>
+                    </li>
+                    <li>
+                        <input style="display:none;border:1px #281d40 solid;" type="text" placeholder="請輸入電話號碼" id="phone" required>
+                    </li>
+
+                    <button onclick="getCaptcha()" class="button1">取得驗證碼</button>
+
+                    <li>
+                        <input style="display:none;border:1px #281d40 solid;" type="text" placeholder="請輸入驗證碼" id="captcha" required>
+                    </li>
+                    <li>
+                        <button onclick="logout()">logout</button>
                     </li>
                 </ul>
             </div>
@@ -146,7 +158,23 @@
                 if (user != null) {
                     var email_id = user.email;
                     document.getElementById("user_para").innerHTML = email_id;
-                    setTimeout(location.href="https://en890415.github.io/priacrice123/GoogleMap.html", 2000);
+                    var what = document.getElementsByName("radio");
+                    var Str = "";
+                    for (var i = 0; i < what.length; i++) {
+                        if (what[i].checked) {
+                            if (Str == "") {
+                                Str = what[i].value;
+                            } else {
+                                Str = what[i].value;
+                            }
+
+                        }
+                    }
+                    if (Str == "provider") {
+                        document.getElementById("phone").style.display = "block";
+                    } else {
+                        setTimeout(location.href = "https://en890415.github.io/priacrice123/GoogleMap.html", 2000);
+                    };
                 }
             } else {
                 document.getElementById("loggedin_div").style.display = "none";
