@@ -25,11 +25,12 @@
     <table id="ttable" class="order-table" border="10" width="100%" height="400"
      cellpadding="5" style="border-collapse:collapse;">
     <thead >
-        
             <th>販賣機編號</th>
             <th>縣市</th>
             <th>狀態</th>    
     </thead>
+      <tbody id="ttbody">
+        </tbody>  
     </table>
 </div>
     </div>        
@@ -59,7 +60,7 @@
                 
                 })
     })
-const TtableList = document.querySelector('#ttable') ;
+const TtableList = document.querySelector('#ttbody') ;
             function renderAccount(doc){
                 let tr = document.createElement('tr');
                 tr.style.textAlign="center";
