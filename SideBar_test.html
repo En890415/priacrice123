@@ -27,7 +27,7 @@
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
+      <li class="nav-item" id="GoogleMapHref">
         <a class="nav-link" href="https://en890415.github.io/priacrice123/GoogleMap.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>搜尋販賣機</span></a>
@@ -45,7 +45,7 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
       <!-- Nav Item - Tables -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fas fa-fw fa-table"></i>
           <span>管理信用卡</span></a>
@@ -58,15 +58,6 @@
         <a class="nav-link" href="#">
           <i class="fas fa-fw fa-table"></i>
           <span>查看購買紀錄</span></a>
-      </li>
-                      
-       <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>聯絡我們</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
@@ -118,5 +109,13 @@
         firebase.auth().signOut();
       }
     </script>
+       <script>
+           if (location.href == "https://en890415.github.io/priacrice123/GoogleMap.html") {
+                document.getElementById("GoogleMapHref").className = "nav-item active";
+            } else {
+                
+            }
+           
+      </script>       
 </body>
 </html>
