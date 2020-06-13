@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js表单正则表达式验证</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
+</head>
+<body>
+    <form action="" autocomplete="off">
+        <input type="text" name="" id="mail" placeholder="郵箱"><img src="" alt=""><br>
+        <p>請輸入您註冊時的正確郵箱</p><br>
+        <input type="text" name="" id="card" placeholder="xxxx-xxxx-xxxx-xxxx"><img src="" alt=""><br>
+        <p>請以'-'為分隔填寫16位信用卡號</p><br>
+        <div class="verify">
+            <div id="verify_box">
+                <div id="verify_xbox">
+                    <div id="btn2">
+                        <img class="img" src="img/lllllll.png"/>
+                    </div>
+                </div>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;按住滑塊，拖動到最右邊
+            </div>
+           
+        </div>
+        <h6>請滑動上方滑塊驗證</h6>
+    </form>
+    <div class="btn1">確認添加資料</div>
+    <div id="mask">信用卡綁定成功<a href="#">返回首頁</a></div>
+    <script type="text/javascript" src="js/slide.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
