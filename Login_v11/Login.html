@@ -130,6 +130,8 @@
 
 
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
+
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
@@ -144,6 +146,7 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+	firebase.auth().useDeviceLanguage();    
     </script>
 
     <script>
