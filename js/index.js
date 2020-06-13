@@ -22,9 +22,9 @@ var inputs=document.querySelectorAll('input');
 var form=document.querySelector('form');
 var me;
 var ph;
-mail.onblur=function(){//昵称正则表达式判断
+mail.onblur=function(){//郵箱判斷
     var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-    function z(re,e){//封装函数判断传入的数据
+    function z(re,e){//封裝函數判斷傳入的數據
         if(e.value!=''){
             if(re.test(e.value)){
                 e.className="r";
@@ -45,9 +45,9 @@ mail.onblur=function(){//昵称正则表达式判断
     }
     z(reg,this);
 }
-card.onblur=function(){//手机号判断
+card.onblur=function(){//卡號判斷
     var reg = /^([0-9]{4})+\-([0-9]{4})+\-([0-9]{4})+\-([0-9]{4})$/;
-    function z(re,e){//封装函数判断传入的数据
+    function z(re,e){//封裝函數判斷傳入的數據
         if(e.value!=''){
             if(re.test(e.value)){
                 e.className="r";
@@ -68,7 +68,7 @@ card.onblur=function(){//手机号判断
     }
     z(reg,this);
 }
-btn1.onclick=function(){//提交数据
+btn1.onclick=function(){//提交數據
     const data = {
         id :mail.value
     }
@@ -106,14 +106,3 @@ btn1.onclick=function(){//提交数据
     }
     
 }
-/*console.log("Save"+card.value+" to Firestore");
-        
-                        docRef.collection(data.id).add({
-                            CardNumber: card.value
-                            })
-                        .then(function(){
-                            console.log("Data saved!");
-                        }).catch(function(error){
-                            console.log("Got an error: ", error);
-                        });
-                        */
