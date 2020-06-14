@@ -102,12 +102,14 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
 </head>
 <body>
-    <div id="wrapper;" style="display: -webkit-flex;
-                                   display:flex;
-                                   -webkit-align-items: center;
-                                           align-items: center;
-                                   -webkit-justify-content: center;
-                                           justify-content: center;">
+    <div id="wrapper;" style="display:-webkit-flex;
+                              display:flex;
+                              -webkit-align-items: center;
+                                      align-items: center;
+                              -webkit-justify-content: center;
+                                      justify-content: center;
+                              opacity :1;
+                              ">
            <!----------->
            <div w3-include-html="SideBar_test.html" style="display:inline-block; vertical-align: top;"></div>
        <script src="https://www.w3schools.com/lib/w3.js"></script>
@@ -117,13 +119,13 @@
     
     <div style="display:inline-block; vertical-align: top; width:90%" align="center" >
         
-    <form action="" autocomplete="off">
-        <input type="text" name="" id="mail" placeholder="郵箱"><img src="" alt=""><br>
+    <form action="" autocomplete="off" style="width:70%;" >
+        <input type="text" name="" id="mail" placeholder="郵箱" style="width:90%;"><img src="" alt=""><br>
         <p>請輸入您註冊時的正確郵箱</p><br>
-        <input type="text" name="" id="card" placeholder="xxxx-xxxx-xxxx-xxxx"><img src="" alt=""><br>
+        <input type="text" name="" id="card" placeholder="xxxx-xxxx-xxxx-xxxx" style="width:90%;"><img src="" alt=""><br>
         <p>請以'-'為分隔填寫16位信用卡號</p><br>
-        <div class="verify">
-            <div id="verify_box">
+        <div class="verify" style="width:100%">
+            <div id="verify_box" style="width:100%">
                 <div id="verify_xbox">
                     <div id="btn2"">
                         <img style="margin-bottom:10px" class="img" src="img/lllllll.png"/>
