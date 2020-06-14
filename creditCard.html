@@ -120,10 +120,13 @@
     <div style="display:inline-block; vertical-align: top; width:90%" align="center" >
         
     <form action="" autocomplete="off" style="width:70%;" >
-        <input type="text" name="" id="mail" placeholder="郵箱" style="width:90%;"><img src="" alt=""><br>
-        <p>請輸入您註冊時的正確郵箱</p><br>
-        <input type="text" name="" id="card" placeholder="xxxx-xxxx-xxxx-xxxx" style="width:90%;"><img src="" alt=""><br>
-        <p>請以'-'為分隔填寫16位信用卡號</p><br>
+        
+        <input type="text" id="mail" placeholder="郵箱" style="width:90%;"><img src="" alt=""><br>
+        <span style="font-size:1.3em;">請輸入您註冊時的正確郵箱</span><br>
+        
+        <input type="text" id="text" placeholder="信用卡正面卡號" style="width:90%;"><img src="" alt=""><br>
+        <span style="font-size:1.3em;">請以'-'為分隔填寫16位信用卡號</span><br>
+        
         <div class="verify" style="width:100%">
             <div id="verify_box" style="width:100%">
                 <div id="verify_xbox">
@@ -170,6 +173,38 @@
             document.getElementById("fm").style.display = "none";
             document.getElementById("wrapper").style.opacity = "1";
         }
-    </script>       
+    </script>
+    <script>
+    window.onload=function()
+    {
+        var oT=document.getElementById(‘text‘);
+        oT.onkeydown=function(ev)
+        {   
+            var oW=oT.value;
+            var oEvent=ev||event;
+            if(oEvent.keyCode==8)
+            {
+                if(oW)
+                {
+                    for(var i=0;i<oW.length;i++)
+                    {
+                        var newStr=oW.replace(/\s$/g,‘‘);
+                    }
+                    oT.value=newStr
+                }
+            }else{
+                for(var i=0;i<oW.length;i++)
+                {
+                    var arr=oW.split(‘‘);
+                    if((i+1)%5==0)
+                    {
+                        arr.splice(i,0,‘ ‘);
+                    }
+                }
+                oT.value=arr.join(‘‘);
+            }
+        }
+    }
+    </script>
 </body>
 </html>
