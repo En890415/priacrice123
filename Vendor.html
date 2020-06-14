@@ -130,13 +130,8 @@
             formb.textContent = "修改";
             formb.setAttribute("type", "submit");
             formb.onclick = function(){
-
-                 const db = firebase.firestore();
-                 var ref = db.collection("VM").doc("VMData1").update({
-                     status:"white"
-                 }).then(()=>{
-                     console.log("update data successfully");
-                 });
+                 var s = document.getElementById("ss").value;
+                 window.alert(s);
             }
             span4.appendChild(formb);
             span4.setAttribute("style", "display:block;text-align:center");
