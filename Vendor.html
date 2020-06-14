@@ -134,7 +134,7 @@
                  var s = document.getElementById("ss");
                  const db = firebase.firestore();
                  var ref = db.collection("VM").doc("VMData1").update({
-                    status: s.value
+                    status: "red"
                  }).then(()=>{
                     console.log("update data successfully");
                  });
