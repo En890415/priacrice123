@@ -146,7 +146,7 @@
                 var sstatus = document.getElementById("ss").value;
                 const db = firebase.firestore();
                 var ref = db.collection("VM").doc("VMData1").update({
-                    status: ""+sstatus
+                    status: "blue"
                 }).then(()=>{
                     console.log("update data successfully");
                 });
