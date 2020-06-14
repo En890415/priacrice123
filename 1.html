@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="user_para" style="color: #291b4a"></p>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk",
+            authDomain: "sa-no3.firebaseapp.com",
+            databaseURL: "https://sa-no3.firebaseio.com",
+            projectId: "sa-no3",
+            storageBucket: "sa-no3.appspot.com",
+            messagingSenderId: "1015427284395",
+            appId: "1:1015427284395:web:008dc524a161da95bfe6ee",
+            measurementId: "G-MDP1SN9YWK"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+    </script>
+
+    <script>
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                var user = firebase.auth().currentUser;
+                if (user != null) {
+                    var email_id = user.email;
+                    document.getElementById("user_para").innerHTML = email_id;
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

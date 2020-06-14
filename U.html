@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        function show() {
+            document.getElementById("block").style.visibility = "visible";
+            document.getElementById("fm").style.visibility = "visible";
+        }
+
+        function back() {
+            document.getElementById("block").style.visibility = "hidden";
+            document.getElementById("fm").style.visibility = "hidden";
+        }
+
+    </script>
+    <style type="text/css">
+        #block {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: gray;
+            z-index: 998;
+            visibility: hidden;
+            display: flex;
+        }
+
+        #fm {
+            position: absolute;
+            top: 30%;
+            left: 40%;
+            width: 20%;
+            height: 20%;
+            background-color: white;
+            z-index: 999;
+            visibility: hidden;
+            display: flex;
+        }
+
+        #bu1 {
+            margin-top: 20%;
+            margin-left: 40%;
+        }
+
+        body {
+            margin: 0px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <input id="bu1" type="button" value="按這裡開啟遮蔽" onclick="show()">
+    <div id="block"></div>
+    <div id="fm">
+        <table width=200% height=100%>
+            <tr align=center>
+                <td><input type="button" value="按這裡關閉遮蔽" onclick="back()"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
