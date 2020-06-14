@@ -132,7 +132,6 @@
             let span_status = document.createElement("input");
             span_status.setAttribute("type", "text");
             span_status.setAttribute("placeholder", doc.data()["status"]);
-            span_status.setAttribute("id", "ss");
             span3.textContent = "狀態:";
             span3.setAttribute("style", "color:black;display:block;text-align:center");
             span3.setAttribute("id","s3");
@@ -143,10 +142,10 @@
             formb.textContent = "修改";
             formb.setAttribute("type", "submit");
             formb.onclick = function(){
-                var s = document.getElementById("ss").value;
+                
                 const db = firebase.firestore();
                 var ref = db.collection("VM").doc("VMData1").update({
-                    status: "blue"
+                    status:"yellow"
                 }).then(()=>{
                     console.log("update data successfully");
                 });
