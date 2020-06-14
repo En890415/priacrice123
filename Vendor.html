@@ -145,7 +145,15 @@
                 var s = document.getElementById("ss").value;
                 const db = firebase.firestore();
                 var ref = db.collection("VM").doc("VMData1").update({
-                    status:  s
+                    if(s=="red"){
+                        status: "red"
+                    }
+                    else if(s=="yellow"){
+                        status: "red"
+                    }
+                    else if(s=="green"){
+                        status: "green"
+                    }
                 }).then(()=>{
                     console.log("update data successfully");
                 });
