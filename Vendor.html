@@ -27,7 +27,8 @@
     <thead >
             <th style="text-align:center">販賣機編號</th>
             <th style="text-align:center">縣市</th>
-            <th style="text-align:center">狀態</th>    
+            <th style="text-align:center">狀態</th> 
+            <th style="text-align: center">管理販賣機</th>
     </thead>
       <tbody id="ttbody">
         </tbody>  
@@ -63,23 +64,31 @@
 const TtableList = document.querySelector('#ttbody') ;
             function renderAccount(doc){
                 let tr = document.createElement('tr');
-                tr.style.textAlign="center";
-                let td_Id = document.createElement('td');
-                let td_Adress = document.createElement('td');
-                let td_Status = document.createElement('td');
-                
-                tr.setAttribute('data-id', doc.id);
-                td_Id.textContent = doc.id;
-                td_Adress.textContent = doc.data()["address"];
-                td_Status.textContent = doc.data()["status"];
-                td_Status.style.background = td_Status.innerHTML;
-                
-                tr.appendChild(td_Id);
-                tr.appendChild(td_Adress);
-                tr.appendChild(td_Status);
-                
-              
-                TtableList.appendChild(tr);
+        tr.style.textAlign = "center";
+        let td_Id = document.createElement('td');
+        let td_Adress = document.createElement('td');
+        let td_Status = document.createElement('td');
+        let td_Manage = document.createElement('td');
+        let manage_Button = document.createElement('button');
+
+        tr.setAttribute('data-id', doc.id);
+        td_Id.textContent = doc.id;
+        td_Adress.textContent = doc.data()["address"];
+        td_Status.textContent = doc.data()["status"];
+        td_Status.style.background = td_Status.innerHTML;
+        manage_Button.textContent = "管理";
+        manage_Button.onclick=function(){
+            
+        }
+
+        tr.appendChild(td_Id);
+        tr.appendChild(td_Adress);
+        tr.appendChild(td_Status);
+        td_Manage.appendChild(manage_Button);
+        tr.appendChild(td_Manage);
+
+
+        TtableList.appendChild(tr);
             }
 </script>
 
