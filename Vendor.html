@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>業者/販賣機</title>
@@ -37,10 +38,10 @@
 
             <table id="ttable" class="order-table" border="10" width="100%" height="400" cellpadding="5" style="border-collapse:collapse;">
                 <thead>
-                    <th style="text-align:center">販賣機編號</th>
-                    <th style="text-align:center">縣市</th>
-                    <th style="text-align:center">狀態</th>
-                    <th style="text-align: center">管理販賣機</th>
+                    <th style="text-align:center;color:black">販賣機編號</th>
+                    <th style="text-align:center;color:black">縣市</th>
+                    <th style="text-align:center;color:black">狀態</th>
+                    <th style="text-align: center;color:black">管理販賣機</th>
                 </thead>
                 <tbody id="ttbody">
                 </tbody>
@@ -58,54 +59,102 @@
     </div>
 </body></html>
 <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
- <script>
-      const firebaseConfig = {
-    apiKey: "AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk",
-    authDomain: "sa-no3.firebaseapp.com",
-    databaseURL: "https://sa-no3.firebaseio.com",
-    projectId: "sa-no3",
-    storageBucket: "sa-no3.appspot.com",
-    messagingSenderId: "1015427284395",
-    appId: "1:1015427284395:web:008dc524a161da95bfe6ee",
-    measurementId: "G-MDP1SN9YWK"
-  };
-  firebase.initializeApp(firebaseConfig);
-      var db = firebase.firestore();
-     var ref = db.collection("VM");
-        ref.onSnapshot(querySnapshot =>{
-            querySnapshot.forEach(doc =>{
-                renderAccount(doc);
-                })
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk",
+        authDomain: "sa-no3.firebaseapp.com",
+        databaseURL: "https://sa-no3.firebaseio.com",
+        projectId: "sa-no3",
+        storageBucket: "sa-no3.appspot.com",
+        messagingSenderId: "1015427284395",
+        appId: "1:1015427284395:web:008dc524a161da95bfe6ee",
+        measurementId: "G-MDP1SN9YWK"
+    };
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+    var ref = db.collection("VM");
+    ref.onSnapshot(querySnapshot => {
+        querySnapshot.forEach(doc => {
+            renderAccount(doc);
+        })
     })
-const TtableList = document.querySelector('#ttbody') ;
-            function renderAccount(doc){
-                let tr = document.createElement('tr');
+    const TtableList = document.querySelector('#ttbody');
+
+    function renderAccount(doc) {
+        let tr = document.createElement('tr');
         tr.style.textAlign = "center";
         let td_Id = document.createElement('td');
         let td_Adress = document.createElement('td');
         let td_Status = document.createElement('td');
         let td_Manage = document.createElement('td');
         let manage_Button = document.createElement('button');
-                
-        
+
+
         td_Id.textContent = doc.id;
+        td_Id.setAttribute("style","color:black");
         td_Adress.textContent = doc.data()["address"];
+        td_Adress.setAttribute("style","color:black");
         td_Status.textContent = doc.data()["status"];
+        td_Status.setAttribute("style","color:black");
         td_Status.style.background = td_Status.innerHTML;
         manage_Button.textContent = "管理";
-        manage_Button.onclick=function(){
+        manage_Button.onclick = function() {
             const fform = document.querySelector("#form");
-            let span = document.createElement("span");
+            let span1 = document.createElement("span");
+            let span2 = document.createElement("span");
+            let span3 = document.createElement("span");
+            let span4 = document.createElement("span");
+            
+            
             let span_id = document.createElement("input");
-            span_id.setAttribute("type","text");
-            span_id.setAttribute("value",doc.id);
-            span.textContent = "販賣機編號:";
-            span.setAttribute("style","color:black");
-            span.appendChild(span_id);
-            fform.appendChild(span);
+            span_id.setAttribute("type", "text");
+            span_id.setAttribute("value", doc.id);
+            span_id.setAttribute("readonly",true);
+            span1.textContent = "販賣機編號:";
+            span1.setAttribute("style", "color:black;display:block;text-align:center");
+            span1.setAttribute("id","s1");
+            span1.appendChild(span_id);
+            fform.appendChild(span1);
+            
+            
+            let span_address = document.createElement("input");
+            span_address.setAttribute("type", "text");
+            span_address.setAttribute("value", doc.data()["address"]);
+            span_id.setAttribute("readonly",true);
+            span2.textContent = "縣市:";
+            span2.setAttribute("style", "color:black;display:block;text-align:center");
+            span2.setAttribute("id","s2");
+            span2.appendChild(span_address);
+            fform.appendChild(span2);
+            
+            
+            let span_status = document.createElement("input");
+            span_status.setAttribute("type", "text");
+            span_status.setAttribute("placeholder", doc.data()["status"]);
+            span3.textContent = "狀態:";
+            span3.setAttribute("style", "color:black;display:block;text-align:center");
+            span3.setAttribute("id","s3");
+            span3.appendChild(span_status);
+            fform.appendChild(span3);
+            
+            let formb = document.createElement("button");
+            formb.textContent = "修改";
+            formb.setAttribute("type", "submit");
+            formb.onclick = function(){
+                
+                const db = firebase.firestore();
+                var ref = db.collection("VM").doc("VMData1").update({
+                    status:"yellow"
+                }).then(()=>{
+                    console.log("update data successfully");
+                });
+            }
+            span4.appendChild(formb);
+            span4.setAttribute("style", "display:block;text-align:center");
+            span4.setAttribute("id","s4");
+            fform.appendChild(span4);
+            
             document.getElementById("wrapper;").style.opacity = "0.5";
             document.getElementById("fm").style.display = "block";
         }
@@ -118,73 +167,82 @@ const TtableList = document.querySelector('#ttbody') ;
 
 
         TtableList.appendChild(tr);
-            }
-     
-     
-     
+    }
+
 </script>
 
 <script>
     (function(document) {
-  'use strict';
+        'use strict';
 
-  // 建立 LightTableFilter
-  var LightTableFilter = (function(Arr) {
-      console.log("建立 LightTableFilter完成");
+        // 建立 LightTableFilter
+        var LightTableFilter = (function(Arr) {
+            console.log("建立 LightTableFilter完成");
 
-    var _input;
+            var _input;
 
-    // 資料輸入事件處理函數
-    function _onInputEvent(e) {
-      _input = e.target;
-      var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-      Arr.forEach.call(tables, function(table) {
-        Arr.forEach.call(table.tBodies, function(tbody) {
-          Arr.forEach.call(tbody.rows, _filter);
-        });
-      });
-    }
-
-    // 資料篩選函數，顯示包含關鍵字的列，其餘隱藏
-    function _filter(row) {
-      var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-      row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-      console.log("顯示關鍵字，其餘隱藏，完成");
-    }
-
-    return {
-      // 初始化函數
-      init: function() {
-        var inputs = document.getElementsByClassName('light-table-filter');
-        Arr.forEach.call(inputs, function(input) {
-          input.oninput = _onInputEvent;
-        });
-      }
-    };
-  })(Array.prototype);
-
-  // 網頁載入完成後，啟動 LightTableFilter
-  document.addEventListener('readystatechange', function() {
-    if (document.readyState === 'complete') {
-        console.log("啟動LightTableFilter完成");
-      LightTableFilter.init();
-    }
-  });
-
-})(document);
-    </script>
-    <script>
-         if (location.href == "https://en890415.github.io/priacrice123/Vendor.html") {
-                 console.log("確認網址判斷成功" + location.href);
-               document.getElementById("ManageBar").className = "nav-item active";
+            // 資料輸入事件處理函數
+            function _onInputEvent(e) {
+                _input = e.target;
+                var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+                Arr.forEach.call(tables, function(table) {
+                    Arr.forEach.call(table.tBodies, function(tbody) {
+                        Arr.forEach.call(tbody.rows, _filter);
+                    });
+                });
             }
-           
-      </script>  
-      <script>
-          function closed() {
-              
-              document.getElementById("wrapper;").style.opacity = "1";
-              document.getElementById("fm").style.display = "none";
-              
-          }
+
+            // 資料篩選函數，顯示包含關鍵字的列，其餘隱藏
+            function _filter(row) {
+                var text = row.textContent.toLowerCase(),
+                    val = _input.value.toLowerCase();
+                row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+                console.log("顯示關鍵字，其餘隱藏，完成");
+            }
+
+            return {
+                // 初始化函數
+                init: function() {
+                    var inputs = document.getElementsByClassName('light-table-filter');
+                    Arr.forEach.call(inputs, function(input) {
+                        input.oninput = _onInputEvent;
+                    });
+                }
+            };
+        })(Array.prototype);
+
+        // 網頁載入完成後，啟動 LightTableFilter
+        document.addEventListener('readystatechange', function() {
+            if (document.readyState === 'complete') {
+                console.log("啟動LightTableFilter完成");
+                LightTableFilter.init();
+            }
+        });
+
+    })(document);
+
+</script>
+<script>
+    if (location.href == "https://en890415.github.io/priacrice123/Vendor.html") {
+        console.log("確認網址判斷成功" + location.href);
+        document.getElementById("ManageBar").className = "nav-item active";
+    }
+
+</script>
+<script>
+    function closed() {
+        var del_s1 = document.getElementById("s1");
+        var del_s2 = document.getElementById("s2");
+        var del_s3 = document.getElementById("s3");
+        var del_s4 = document.getElementById("s4");
+        del_s1.parentNode.removeChild(del_s1);
+        del_s2.parentNode.removeChild(del_s2);
+        del_s3.parentNode.removeChild(del_s3);
+        del_s4.parentNode.removeChild(del_s4);
+
+        document.getElementById("wrapper;").style.opacity = "1";
+        document.getElementById("fm").style.display = "none";
+
+    }
+
 </script>
