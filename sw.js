@@ -54,36 +54,38 @@ self.addEventListener('fetch', event => {
   }
 });
 //-----------------------------------------------------------------------------
-// deferredPromt 用來儲存 beforeinstallprompt 事件
-var deferredPrompt;
+// 把 event 存起來
+var installPromptEvent;
 
-self.addEventListener('beforeinstallprompt', function(e) {
-  console.log('beforeinstallprompt Event fired');
+// 要顯示 prompt 的延遲
+var showTime = 5 * 1000;
+
+self.addEventListener('beforeinstallprompt', function (e) {
   e.preventDefault();
+  installPromptEvent = e;
+  var data = navigator.userAgent.match(/Chrom(e|ium)\\/([0-9]+)\\./);
+  var version = (data && data.length >= 2) ? parseInt(data[2], 10) : null;
+  if (version && installPromptEvent.prompt) {
 
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
+    // 延遲一段時間才顯示 prompt
+    setTimeout(function() {
+        // 如果 Chrome 版本是 67（含）以下，可以直接呼叫
+        if (version <= 67) {
+            installPromptEvent.prompt();
+            return;
+        }
 
-  return false;
-});
-self.addEventListener('click', function() {
-  if(deferredPrompt !== undefined) {
-    // The user has had a positive interaction with our app and Chrome
-    // has tried to prompt previously, so let's show the prompt.
-    deferredPrompt.prompt();
-
-    // 看看使用者針對這個 prompt 做了什麼回應
-    deferredPrompt.userChoice.then(function(choiceResult) {
-      console.log(choiceResult.outcome);
-
-      if(choiceResult.outcome == 'dismissed') {
-        console.log('使用者拒絕加入主畫面');
-      }
-      else {
-        console.log('使用者已加入到主畫面');
-      }
-      // We no longer need the prompt.  Clear it up.
-      deferredPrompt = null;
-    });
+        // 否則的話必須透過 user action 主動觸發
+        // 這邊幫 #root 加上 event listener，代表點擊螢幕任何一處都會顯示 prompt
+        document.querySelector('#root').addEventListener('click', addToHomeScreen);
+    }, showTime)
   }
 });
+
+function addToHomeScreen(e) {
+    if (installPromptEvent) {
+        installPromptEvent.prompt();
+        installPromptEvent = null;
+        document.querySelector('#root').removeEventListener('click', addToHomeScreen);
+    }
+}
