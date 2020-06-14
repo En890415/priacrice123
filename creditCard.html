@@ -2,13 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>card</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
 </head>
 <body>
+    <div id="wrapper;" style="display: -webkit-flex;
+                                   display:flex;
+                                   -webkit-align-items: center;
+                                           align-items: center;
+                                   -webkit-justify-content: center;
+                                           justify-content: center;">
+           <!----------->
+           <div w3-include-html="SideBar_test.html" style="display:inline-block; vertical-align: top;"></div>
+       <script src="https://www.w3schools.com/lib/w3.js"></script>
+        <script>
+            w3.includeHTML();
+        </script>
+    
+    
     <form action="" autocomplete="off">
         <input type="text" name="" id="mail" placeholder="郵箱"><img src="" alt=""><br>
         <p>請輸入您註冊時的正確郵箱</p><br>
@@ -29,7 +42,15 @@
     </form>
     <div class="btn1">確認添加資料</div>
     <div id="mask">信用卡綁定成功<a href="#">返回首頁</a></div>
+    </div>
     <script type="text/javascript" src="js/slide.js"></script>
     <script src="js/index.js"></script>
+    
+    <script>
+            if (location.href == "https://en890415.github.io/priacrice123/creditCard.html") {
+                 console.log("確認網址判斷成功" + location.href);
+               document.getElementById("ManageCard").className = "nav-item active";
+            }
+    </script>
 </body>
 </html>
