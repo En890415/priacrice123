@@ -128,7 +128,8 @@
     <button onclick="check()">確認添加資料</button>                                                                                     
         </div>
      <div id="fm" style="border: 2px solid black; display:none;">
-         <div id="mask">信用卡綁定成功<a href="https://en890415.github.io/priacrice123/GoogleMap.html">返回搜尋販賣機</a>
+         <div>信用卡綁定成功<br>
+        <a href="https://en890415.github.io/priacrice123/GoogleMap.html">返回搜尋販賣機</a>
         </div>
         <button onclick="closed()" style="float:right">關閉</button>
     </div>           
@@ -145,12 +146,9 @@
     </script>
     <script>
         function check() {
-            document.getElementById("wrapper").style.opacity = "0.5";
             document.getElementById("fm").style.display = "block";
         }
-
         function closed() {
-            document.getElementById("wrapper").style.opacity = "1";
             document.getElementById("fm").style.display = "none";
         }
     </script>       
