@@ -141,12 +141,12 @@
             
             let formb = document.createElement("button");
             formb.textContent = "修改";
-            formb.setAttribute("type", "submit");
+            formb.setAttribute("type", "button");
             formb.onclick = function(){
                 var sstatus = document.getElementById("ss").value;
                 const db = firebase.firestore();
                 var ref = db.collection("VM").doc("VMData1").update({
-                    status: "sstatus"
+                    status: ""+sstatus
                 }).then(()=>{
                     console.log("update data successfully");
                 });
