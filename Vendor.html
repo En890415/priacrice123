@@ -131,10 +131,10 @@
             formb.textContent = "修改";
             formb.setAttribute("type", "submit");
             formb.onclick = function(){
-                 var s = document.getElementById("ss").value;
+                 var s = document.getElementById("ss");
                  const db = firebase.firestore();
                  var ref = db.collection("VM").doc("VMData1").update({
-                    status: "green"
+                    status: s.value
                  }).then(()=>{
                     console.log("update data successfully");
                  });
