@@ -57,7 +57,7 @@ self.addEventListener('fetch', event => {
 // deferredPromt 用來儲存 beforeinstallprompt 事件
 var deferredPrompt;
 
-window.addEventListener('beforeinstallprompt', function(e) {
+self.addEventListener('beforeinstallprompt', function(e) {
   console.log('beforeinstallprompt Event fired');
   e.preventDefault();
 
