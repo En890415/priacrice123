@@ -54,3 +54,36 @@ self.addEventListener('fetch', event => {
   }
 });
 //-----------------------------------------------------------------------------
+// deferredPromt 用來儲存 beforeinstallprompt 事件
+var deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', function(e) {
+  console.log('beforeinstallprompt Event fired');
+  e.preventDefault();
+
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+
+  return false;
+});
+btnSave.addEventListener('click', function() {
+  if(deferredPrompt !== undefined) {
+    // The user has had a positive interaction with our app and Chrome
+    // has tried to prompt previously, so let's show the prompt.
+    deferredPrompt.prompt();
+
+    // 看看使用者針對這個 prompt 做了什麼回應
+    deferredPrompt.userChoice.then(function(choiceResult) {
+      console.log(choiceResult.outcome);
+
+      if(choiceResult.outcome == 'dismissed') {
+        console.log('使用者拒絕加入主畫面');
+      }
+      else {
+        console.log('使用者已加入到主畫面');
+      }
+      // We no longer need the prompt.  Clear it up.
+      deferredPrompt = null;
+    });
+  }
+});
