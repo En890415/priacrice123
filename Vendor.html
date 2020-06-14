@@ -120,6 +120,7 @@
             let span_status = document.createElement("input");
             span_status.setAttribute("type", "text");
             span_status.setAttribute("placeholder", doc.data()["status"]);
+            span_status.setAttribute("id","ss");
             span3.textContent = "狀態:";
             span3.setAttribute("style", "color:black;display:block;text-align:center");
             span3.setAttribute("id","s3");
@@ -130,7 +131,8 @@
             formb.textContent = "修改";
             formb.setAttribute("type", "submit");
             formb.onclick = function(){
-                 window.alert("s");
+                 var s = document.getElementById("ss").value;
+                 window.alert(s);
             }
             span4.appendChild(formb);
             span4.setAttribute("style", "display:block;text-align:center");
