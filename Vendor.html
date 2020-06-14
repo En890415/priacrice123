@@ -141,7 +141,7 @@
             
             let formb = document.createElement("button");
             formb.textContent = "修改";
-            formb.setAttribute("type", "button");
+            formb.setAttribute("type", "submit");
             formb.onclick = function(){
                 var sstatus = document.getElementById("ss").value;
                 const db = firebase.firestore();
