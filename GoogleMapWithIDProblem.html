@@ -29,6 +29,7 @@
             z-index: 999;
             display: none;
         }
+
         #fm2 {
             position: absolute;
             top: 22%;
@@ -39,6 +40,7 @@
             z-index: 999;
             display: none;
         }
+
     </style>
 
 
@@ -64,6 +66,7 @@
         <script src="https://www.w3schools.com/lib/w3.js"></script>
         <script>
             w3.includeHTML();
+
         </script>
         <!-- End of Sidebar -->
 
@@ -143,6 +146,7 @@
                                 };
                                 // Initialize Firebase
                                 firebase.initializeApp(firebaseConfig);
+
                             </script>
 
                             <script>
@@ -174,12 +178,14 @@
 
                                     }
                                 });
+
                             </script>
                             <script>
                                 function logout() {
                                     firebase.auth().signOut();
                                     setTimeout(location.href = "https://en890415.github.io/priacrice123/Login_v11/Login.html", 1500);
                                 }
+
                             </script>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -228,18 +234,18 @@
             </div>
         </div>
     </div>
-    <div id="fm" style="border:2px black solid; overflow-x:hidden ;overflow-y: scroll" >
-    <table id="ttable" border="2">
-    <thead >
-           
-           <th>圖片</th>
-            <th>商品名稱</th>
-            <th>價錢</th> 
-            <th>數量</th>
-            <th>詳細資訊</th>
-    
-    </thead>
-    </table>
+    <div id="fm" style="border:2px black solid; overflow-x:hidden ;overflow-y: scroll">
+        <table id="ttable" border="2">
+            <thead>
+
+                <th>圖片</th>
+                <th>商品名稱</th>
+                <th>價錢</th>
+                <th>數量</th>
+                <th>詳細資訊</th>
+
+            </thead>
+        </table>
 
         <button onclick="closed()" style="float:right">關閉</button>
     </div>
@@ -298,7 +304,7 @@ if (navigator.geolocation) {
                 var docRef = db.collection('VM').doc("VMData" + i);
 
                 docRef.get().then(function(doc) {
-                    
+
                     marker = new google.maps.Marker({
                         position: {
                             lat: doc.data().latitude,
@@ -311,68 +317,77 @@ if (navigator.geolocation) {
                     infowindow = new google.maps.InfoWindow();
                     google.maps.event.addListener(marker, 'click', (function() {
                         return function() {
-                            infowindow.setContent(doc.data().id + 
-                                                  "<h4 align = 'center'>販賣機</h4>"+
-                                                  "<img title='販賣機' height='100px' width='100px' src='icon/vending-machine.png'/>"+
-                                                  "<button id=\"wtf\" onclick=check(this)>"+
-                                                  "查看商品資訊"
-                                                 );
-                          console.log("123");
-                            infowindow.open(map,marker);
+                            infowindow.setContent(doc.data().id +
+                                "<h4 align = 'center'>販賣機</h4>" +
+                                "<img title='販賣機' height='100px' width='100px' src='icon/vending-machine.png'/>" +
+                                "<button id=\"wtf\" onclick=check(this)>" +
+                                "查看商品資訊"
+                            );
+                            infowindow.open(map, marker);
+                            wtf.addEventListener("click", function() {
+                                var db = firebase.firestore();
+                                var docRef = db.collection('VM').doc("VMData" + doc.data().id);
+                                docRef.get().then(function(doc) {
+                                    dataRef = doc.data()["商品"];
+                                    dataRef.get().then(doc2 => {
+                                        renderAccount(doc2);
+                                    })
+                                })
+
+                            });
                         }
-                       
+
 
                     })(marker, i));
-                    
+
                     document.getElementById("wtf").id = doc.data().id;
-                    
-                dataRef = doc.data()["商品"];
-                 dataRef.get().then(doc2 =>{
-                    renderAccount(doc2);
-                 })
+
+
 
                 }).catch(function(error) {
                     console.log("Error getting document:", error);
                 });
             }
         }
-        const TtableList = document.querySelector('#ttable') ;
-            function renderAccount(doc){
-                let tr = document.createElement('tr');
-                tr.style.textAlign="center";
-                let td_Image = document.createElement('td');
-                let td_Name = document.createElement('td');
-                let td_Price = document.createElement('td');
-                let td_Number = document.createElement('td');
-                let td_Button = document.createElement('td');
-        
-                tr.setAttribute('data-id', doc.id);
-                td_Image.textContent = doc.data()["圖片"];
-                td_Name.textContent = doc.id;
-                td_Price.textContent = doc.data()["價格"];
-                td_Number.textContent = doc.data()["數量"];
-                
-                var button = td_Button.innerHTML;
-                button = document.createElement("button");
-                button.innerHTML = "FUCKU";
-                button.onclick = function(){
-                   
-                       window.open(' http://tw.yahoo.com ', 'Yahoo', config='height=500,width=500');
-                    
-                }
-                var img = document.createElement("img");
-                img.src = td_Image.innerHTML;
-                img.height = "100";
-                img.width = "100";
-                
-                tr.appendChild(img);
-                tr.appendChild(td_Name);
-                tr.appendChild(td_Price);
-                 tr.appendChild(td_Number);
-                tr.appendChild(button);
-               
-                TtableList.appendChild(tr);
-            };
+
+        const TtableList = document.querySelector('#ttable');
+
+        function renderAccount(doc) {
+            let tr = document.createElement('tr');
+            tr.style.textAlign = "center";
+            let td_Image = document.createElement('td');
+            let td_Name = document.createElement('td');
+            let td_Price = document.createElement('td');
+            let td_Number = document.createElement('td');
+            let td_Button = document.createElement('td');
+
+            tr.setAttribute('data-id', doc.id);
+            td_Image.textContent = doc.data()["圖片"];
+            td_Name.textContent = doc.id;
+            td_Price.textContent = doc.data()["價格"];
+            td_Number.textContent = doc.data()["數量"];
+
+            var button = td_Button.innerHTML;
+            button = document.createElement("button");
+            button.innerHTML = "Buy now";
+            button.onclick = function() {
+
+                window.open(' http://tw.yahoo.com ', 'Yahoo', config = 'height=500,width=500');
+
+            }
+            var img = document.createElement("img");
+            img.src = td_Image.innerHTML;
+            img.height = "100";
+            img.width = "100";
+
+            tr.appendChild(img);
+            tr.appendChild(td_Name);
+            tr.appendChild(td_Price);
+            tr.appendChild(td_Number);
+            tr.appendChild(button);
+
+            TtableList.appendChild(tr);
+        };
         /*----
         const TtableList2 = document.querySelector('#ttable2') ;
             function vendorinfodoc.data()){ 
@@ -422,18 +437,23 @@ if (navigator.geolocation) {
           }
         }
   ------------*/
-        function check(x) {
-            VMID = x.id;
-            console.log(VMID);
+        function check() {
             document.getElementById("wrapper").style.opacity = "0.5";
             document.getElementById("fm").style.display = "block";
         }
+
         function closed() {
+            var tb = document.getElementById('ttable');
+            var rowNum = tb.rows.length;
+            for (i = 1; i < rowNum; i++) {
+                tb.deleteRow(i);
+                rowNum = rowNum - 1;
+                i = i - 1;
+            }
+
             document.getElementById("wrapper").style.opacity = "1";
             document.getElementById("fm").style.display = "none";
         }
-       
-       
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk&callback=initMap" async defer></script>
