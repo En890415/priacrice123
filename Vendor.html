@@ -145,7 +145,7 @@
                 
                 const db = firebase.firestore();
                 var ref = db.collection("VM").doc("VMData1").update({
-                    status:"yellow"
+                    status:"orange"
                 }).then(()=>{
                     console.log("update data successfully");
                 });
