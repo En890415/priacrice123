@@ -60,7 +60,7 @@ var installPromptEvent;
 // 要顯示 prompt 的延遲
 var showTime = 5 * 1000;
 
-document.addEventListener('beforeinstallprompt', function (e) {
+window.addEventListener('beforeinstallprompt', function (e) {
   e.preventDefault();
   installPromptEvent = e;
   var data = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
