@@ -109,9 +109,15 @@
             </div>
         </div>
     </div>
-
-
-
+<!--========================安裝Service Worker=======================================================-->
+     <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js', {scope: 'https://en890415.github.io/priacrice123/'})
+            .then(reg => console.log('完成 SW 設定!', reg))
+            .catch(err => console.log('Error!', err));
+        }
+    </script>
+<!--===============================================================================================-->
 
 
 
