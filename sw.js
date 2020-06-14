@@ -66,7 +66,7 @@ self.addEventListener('beforeinstallprompt', function(e) {
 
   return false;
 });
-btnSave.addEventListener('click', function() {
+self.addEventListener('click', function() {
   if(deferredPrompt !== undefined) {
     // The user has had a positive interaction with our app and Chrome
     // has tried to prompt previously, so let's show the prompt.
