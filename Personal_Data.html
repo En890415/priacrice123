@@ -117,7 +117,7 @@
     
     <div style="display:inline-block; vertical-align: top; width:90%" align="center" >
         
-    <form action="" autocomplete="off" style="width:70%;" >
+    <form action="" autocomplete="off" style="width:70%;" id="cardForm" >
         
         <input type="text" id="cardnum1" class="bankcard" maxlength="23" placeholder="卡號1" 
                style="width:90%; padding:5px 15px; border:2px black solid;
@@ -205,8 +205,9 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
     <script>
         function updateCardNum(){
 		    var user = firebase.auth().currentUser;
-	            var Num1 = document.getElementById("cardnum1");
-		    var Num2 = document.getElementById("cardnum2");
+		    const formNum = document.getElementById("cardForm");
+	            var Num1 = formNum[0].value;
+		    var Num2 = formNum[1].value;
 		    user.updateProfile({
 		      displayName: Num1
 		    }).then(function() {
