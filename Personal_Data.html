@@ -209,16 +209,15 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
 		    var Num2 = document.getElementById("cardnum2");
 		    user.updateProfile({
 		      displayName: Num1,
-		      displayName2: Num2
 		    }).then(function() {
-		      console.log("兩個卡號都更新完成")
+		      console.log("一個卡號都更新完成")
 		    }).catch(function(error) {
 		      console.log("An error happened.")// An error happened.
 		    });
 		       var cardNum1 = user.displayName;
 		       document.getElementById("user_card1").innerHTML = cardNum1;
 		       //var cardNum2 = user.displayName2;
-		       //document.getElementById("user_card2").innerHTML = cardNum2;
+		      // document.getElementById("user_card2").innerHTML = cardNum2;
 	    
         }
     </script>
