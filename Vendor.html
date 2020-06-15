@@ -109,7 +109,7 @@
             
             let span_id = document.createElement("input");
             span_id.setAttribute("type", "text");
-            span_id.setAttribute("value", doc.id);
+            span_id.setAttribute("value", doc.id + "(不能更改)");
             span_id.setAttribute("readonly",true);
             span1.textContent = "販賣機編號:";
             span1.setAttribute("style", "color:black;display:block;text-align:center");
@@ -120,7 +120,7 @@
             
             let span_address = document.createElement("input");
             span_address.setAttribute("type", "text");
-            span_address.setAttribute("placeholder", doc.data()["address"]);
+            span_address.setAttribute("value", doc.data()["address"]);
             span_address.setAttribute("id", "ss1");
             span2.textContent = "縣市:";
             span2.setAttribute("style", "color:black;display:block;text-align:center");
@@ -131,7 +131,7 @@
             
             let span_status = document.createElement("input");
             span_status.setAttribute("type", "text");
-            span_status.setAttribute("placeholder", doc.data()["status"]);
+            span_status.setAttribute("value", doc.data()["status"]);
             span_status.setAttribute("id", "ss2");
             span3.textContent = "狀態:";
             span3.setAttribute("style", "color:black;display:block;text-align:center");
