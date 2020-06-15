@@ -1,0 +1,213 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CredictCard</title>
+    <style type=text/css>
+        form{
+            margin: 0 auto;
+            width: 305px;
+            transition: all 1s ease-out 0s;
+              }
+        input{
+            font-size: 16px;
+            height: 25px;
+            width: 280px;
+            margin-top: 20px;
+            color: #333;
+            outline: none;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+          p{
+                display: inline-block;
+                font-size: 12px;
+                color: #ccc;
+                margin: 0;
+                margin-right: 6px;
+            }
+        .verify{
+                width: 280px;
+                height: 30px;
+                margin-top: 10px;
+              }
+         #verify_box{
+                width: 280px;
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+                font-size: 14px;
+                color:#fff;
+                background-color: rgba(212, 212, 212, 1);
+            }
+         #verify_xbox{
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+                font-size: 14px;
+                color:#fff;
+                position: absolute;
+                background: #7BBB55;
+            }
+        #btn2{
+            cursor: pointer;
+            width: 54px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 1);
+            border: solid 1px rgba(212, 212, 212, 1);
+            float: right;
+           }
+        .btn1{
+                width: 120px;
+                height: 37px;
+                cursor: pointer;
+                color: rgb(255, 255, 255);
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 37px;
+                text-align: center;
+                background: linear-gradient(rgb(105, 184, 86) 0%, rgb(66, 164, 43) 100%);
+                border-radius: 3px;
+                border: 1px solid  rgb(66, 164, 43);
+                position: absolute;
+                left: 50%;
+                margin-left: -60px;
+                margin-top: 25px;
+                outline: none;
+                opacity: 0.5;
+                transition: all 1s linear 0s;
+                transform-origin: right center;
+            }
+       img{
+            height: 20px;
+            position: relative;
+            top: 3px;
+        }
+        #fm {
+            position: absolute;
+            top: 22%;
+            left: 23%;
+            width: 70%;
+            height: 75%;
+            background-color: white;
+            z-index: 999;
+            display: none;
+        }
+    </style>
+    
+    
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
+</head>
+<body>
+    <div id="wrapper;" style="display:-webkit-flex;
+                              display:flex;
+                              -webkit-align-items: center;
+                                      align-items: center;
+                              -webkit-justify-content: center;
+                                      justify-content: center;
+                              opacity :1;
+                              ">
+           <!----------->
+           <div w3-include-html="SideBar_test.html" style="display:inline-block; vertical-align: top;"></div>
+       <script src="https://www.w3schools.com/lib/w3.js"></script>
+        <script>
+            w3.includeHTML();
+        </script>
+    
+    <div style="display:inline-block; vertical-align: top; width:90%" align="center" >
+        
+    <form action="" autocomplete="off" style="width:70%;" >
+        
+        <input type="text" id="mail" placeholder="郵箱" 
+               style="width:90%; padding:5px 15px; border:2px black solid;
+cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><img src="" alt=""><br>
+        <span style="font-size:1.3em;">請輸入您的</span><br>
+        
+        <input type="text" id="bankcard" class="bankcard" maxlength="23" placeholder="信用卡正面卡號" 
+               style="width:90%;padding:5px 15px; border:2px black solid;
+cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><img src="" alt=""><br>
+        <span style="font-size:1.3em;">請填寫卡號(16~19碼)</span><br>
+        
+        
+    </form>
+    <button onclick="check()" style="padding:5px 15px; background:#ccc; border:0 none;cursor:pointer;
+                         -webkit-border-radius: 5px;border-radius: 5px;">確認添加資料</button>
+    <button onclick="insertFood()" style="padding:5px 15px; background:#ccc; border:0 none;cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;">新增喜歡的食物</button>
+    <button onclick="updateFood()" style="padding:5px 15px; background:#ccc; border:0 none;cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;">更換喜歡的食物</button>
+       
+        </div>
+    </div>
+                             
+    <div id="fm" style="border: 2px solid black; display:none;" align="center"; valign="center">
+        <div style="margin-top:30% ;height:50%">                                                                                       
+        信用卡綁定成功
+        <br>
+        <a href="https://en890415.github.io/priacrice123/GoogleMap.html">返回搜尋販賣機</a>
+        <br>
+        <input type="button" onclick="closed()" style="width:10%;margin:1% ;height:15% padding:5px 15px; background:#ccc; border:0 none;
+cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
+        </div>
+
+    </div>
+                                                      
+    <script type="text/javascript" src="js/slide.js"></script>
+    <script src="js/index.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk",
+            authDomain: "sa-no3.firebaseapp.com",
+            databaseURL: "https://sa-no3.firebaseio.com",
+            projectId: "sa-no3",
+            storageBucket: "sa-no3.appspot.com",
+            messagingSenderId: "1015427284395",
+            appId: "1:1015427284395:web:008dc524a161da95bfe6ee",
+            measurementId: "G-MDP1SN9YWK"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+	firebase.auth().useDeviceLanguage();    
+    </script>
+    
+    <script>
+            if(location.href == "https://en890415.github.io/priacrice123/creditCard.html") {
+                 console.log("確認網址判斷成功" + location.href);
+               document.getElementById("Personal_Data").style.color = "#f8f9fc";
+            }
+    </script>
+    <script>
+        function check() {
+            document.getElementById("fm").style.display = "block";
+            document.getElementById("wrapper").style.opacity = "0.5";
+        }
+        function closed() {
+            document.getElementById("fm").style.display = "none";
+            document.getElementById("wrapper").style.opacity = "1";
+        }
+    </script>
+                                                                  
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" 
+                crossorigin="anonymous"></script>                                                             
+    <script>
+        function insertFood(){
+            firebase.analytics().setUserProperties({favorite_food: 'apples'});
+            console.log("新增蘋果成功");
+        }
+        function updateFood(){
+            var user = firebase.auth().currentUser;
+            user.updateProfile({
+              favorite_food: "Banananananana",
+            }).then(function() {
+              console.log("Update successful.")
+            }).catch(function(error) {
+              console.log("An error happened.")// An error happened.
+            });
+        }
+    </script>
+</body>
+</html>
