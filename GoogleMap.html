@@ -284,18 +284,23 @@
                 },
                 zoom: 15,
             });
-            /*
+            
 //Try HTML5 geolocation.
+infoWindow = new google.maps.InfoWindow();
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(function(position) {
     var pos = {
       lat: position.coords.latitude,
       lng: position.coords.longitude
     };
-
     infoWindow.setPosition(pos);
     infoWindow.setContent('Location found.');
     infoWindow.open(map);
+      marker = new google.maps.Marker({
+                      position: pos,
+                      icon:"https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+                      map: map
+            });
     map.setCenter(pos);
   }, function() {
     handleLocationError(true, infoWindow, map.getCenter());
@@ -304,7 +309,7 @@ if (navigator.geolocation) {
   // Browser doesn't support Geolocation
   handleLocationError(false, infoWindow, map.getCenter());
 }
-*/
+
         var db = firebase.firestore();
         db.collection("VM").get().then(doc => {
             for (var i = 1; i <= doc.size; i++) {
@@ -319,7 +324,7 @@ if (navigator.geolocation) {
                         map: map
                     });
                     infowindow = new google.maps.InfoWindow();
-                    google.maps.event.addListener(marker, 'click', (function(marker,i) {
+                    google.maps.event.addListener(marker, 'click', (function() {
                         return function() {
                             infowindow.setContent(doc.data().id +
                                 "<h4 align = 'center'>販賣機</h4>" +
@@ -416,7 +421,6 @@ if (navigator.geolocation) {
                 tr.appendChild(td_Calories);
                 tr.appendChild(td_Capacity);
                 tr.appendChild(td_Manufacturer);
-
                 TtableList.appendChild(tr);  
                 
             }
