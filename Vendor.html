@@ -35,7 +35,8 @@
         <div style="display:inline-block; vertical-align: top; width:90%">
 
             搜尋：<input type="search" class="light-table-filter" data-table="order-table" placeholder="請輸入關鍵字">
-
+            <button onclick="add()" style="float:inherit">新增販賣機</button>
+            <button onclick="del()" style="float:inherit">刪除販賣機</button>
             <table id="ttable" class="order-table" border="10" width="100%" height="400" cellpadding="5" style="border-collapse:collapse;background-color: #fff">
                 <thead>
                     <th style="text-align:center;color:black">販賣機編號</th>
@@ -49,13 +50,9 @@
         </div>
     </div>
     <div id="fm" style="border:2px black solid">
-
         <button onclick="closed()" style="float:right">關閉</button>
         <form id="form">
         </form>
-
-
-
     </div>
 </body></html>
 <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
@@ -106,12 +103,13 @@
             let span2 = document.createElement("span");
             let span3 = document.createElement("span");
             let span4 = document.createElement("span");
-            
+            let span5 = document.createElement("span");
+            let span6 = document.createElement("span");
             
             let span_id = document.createElement("input");
             span_id.setAttribute("type", "text");
-            span_id.setAttribute("value", doc.id + "(不能更改)");
-            span_id.setAttribute("readonly",true);
+            span_id.setAttribute("value", doc.id);
+            span_id.setAttribute("id", "ss1");
             span1.textContent = "販賣機編號:";
             span1.setAttribute("style", "color:black;display:block;text-align:center");
             span1.setAttribute("id","s1");
@@ -122,7 +120,7 @@
             let span_address = document.createElement("input");
             span_address.setAttribute("type", "text");
             span_address.setAttribute("value", doc.data()["address"]);
-            span_address.setAttribute("id", "ss1");
+            span_address.setAttribute("id", "ss2");
             span2.textContent = "縣市:";
             span2.setAttribute("style", "color:black;display:block;text-align:center");
             span2.setAttribute("id","s2");
@@ -133,12 +131,35 @@
             let span_status = document.createElement("input");
             span_status.setAttribute("type", "text");
             span_status.setAttribute("value", doc.data()["status"]);
-            span_status.setAttribute("id", "ss2");
+            span_status.setAttribute("id", "ss3");
             span3.textContent = "狀態:";
             span3.setAttribute("style", "color:black;display:block;text-align:center");
             span3.setAttribute("id","s3");
             span3.appendChild(span_status);
             fform.appendChild(span3);
+            
+            
+            let span_longitude = document.createElement("input");
+            span_longitude.setAttribute("type", "text");
+            span_longitude.setAttribute("value", doc.data()["longitude"]);
+            span_longitude.setAttribute("id", "ss4");
+            span4.textContent = "經度:";
+            span4.setAttribute("style", "color:black;display:block;text-align:center");
+            span4.setAttribute("id","s4");
+            span4.appendChild(span_longitude);
+            fform.appendChild(span4);
+            
+            
+            let span_latitude = document.createElement("input");
+            span_latitude.setAttribute("type", "text");
+            span_latitude.setAttribute("value", doc.data()["latitude"]);
+            span_latitude.setAttribute("id", "ss5");
+            span5.textContent = "緯度:";
+            span5.setAttribute("style", "color:black;display:block;text-align:center");
+            span5.setAttribute("id","s5");
+            span5.appendChild(span_latitude);
+            fform.appendChild(span5);
+            
             
             let formb = document.createElement("button");
             formb.textContent = "修改";
@@ -148,18 +169,30 @@
                 var vm = document.getElementById(doc.id).id;
                 var ss1 = document.getElementById("ss1").value;
                 var ss2 = document.getElementById("ss2").value;
-                var db2 = firebase.firestore();
-                var ref2 = db2.collection("VM").doc(vm).update({
-                    address: ss1,
-                    status:  ss2
-                }).then(()=>{
-                    console.log("update data successfully");
-                });
+                var ss3 = document.getElementById("ss3").value;
+                var ss4 = document.getElementById("ss4").value;
+                var ss5 = document.getElementById("ss5").value;
+                if(ss1!="" && ss2!="" && ss3!="" && ss4!="" && ss5!=""){
+                    var db2 = firebase.firestore();
+                    var ref1 = db2.collection("VM").doc(vm).delete()
+                    var ref2 = db2.collection("VM").doc(ss1).set({
+                        address: ss2,
+                        status:  ss3,
+                        longitude: ss4,
+                        latitude: ss5
+                    },{merge: true}).then(()=>{
+                        console.log("update data successfully");
+                    });
+                }
+                else{
+                    window.alert("未完成輸入");
+                }
+                
             }
-            span4.appendChild(formb);
-            span4.setAttribute("style", "display:block;text-align:center");
-            span4.setAttribute("id","s4");
-            fform.appendChild(span4);
+            span6.appendChild(formb);
+            span6.setAttribute("style", "display:block;text-align:center");
+            span6.setAttribute("id","s6");
+            fform.appendChild(span6);
             
             document.getElementById("wrapper;").style.opacity = "0.5";
             document.getElementById("fm").style.display = "block";
@@ -237,19 +270,134 @@
 </script>
 <script>
     function closed() {
-        var del_s1 = document.getElementById("s1");
-        var del_s2 = document.getElementById("s2");
-        var del_s3 = document.getElementById("s3");
-        var del_s4 = document.getElementById("s4");
-        del_s1.parentNode.removeChild(del_s1);
-        del_s2.parentNode.removeChild(del_s2);
-        del_s3.parentNode.removeChild(del_s3);
-        del_s4.parentNode.removeChild(del_s4);
-
         document.getElementById("wrapper;").style.opacity = "1";
         document.getElementById("fm").style.display = "none";
-        window.location.reload("https://en890415.github.io/priacrice123/Vendor.html");
+        window.location.reload("http://127.0.0.1:50727/Vendor.html");
 
+    }
+    function add(){
+        const fform = document.querySelector("#form");
+        let span1 = document.createElement("span");
+        let span2 = document.createElement("span");
+        let span3 = document.createElement("span");
+        let span4 = document.createElement("span");
+        let span5 = document.createElement("span");
+        let span6 = document.createElement("span");
+        
+        let span_id = document.createElement("input");
+        span_id.setAttribute("type", "text");
+        span_id.setAttribute("id", "sss1");
+        span1.textContent = "販賣機編號:";
+        span1.setAttribute("style", "color:black;display:block;text-align:center");
+        span1.setAttribute("id","s1");
+        span1.appendChild(span_id);
+        fform.appendChild(span1);
+        
+        let span_address = document.createElement("input");
+        span_address.setAttribute("type", "text");
+        span_address.setAttribute("id", "sss2");
+        span2.textContent = "縣市:";
+        span2.setAttribute("style", "color:black;display:block;text-align:center");
+        span2.setAttribute("id","s2");
+        span2.appendChild(span_address);
+        fform.appendChild(span2);
+        
+        let span_status = document.createElement("input");
+        span_status.setAttribute("type", "text");
+        span_status.setAttribute("id", "sss3");
+        span3.textContent = "狀態:";
+        span3.setAttribute("style", "color:black;display:block;text-align:center");
+        span3.setAttribute("id","s3");
+        span3.appendChild(span_status);
+        fform.appendChild(span3);
+        
+        let span_longitude = document.createElement("input");
+        span_longitude.setAttribute("type", "text");
+        span_longitude.setAttribute("id", "sss4");
+        span4.textContent = "經度:";
+        span4.setAttribute("style", "color:black;display:block;text-align:center");
+        span4.setAttribute("id","s4");
+        span4.appendChild(span_longitude);
+        fform.appendChild(span4);
+        
+        let span_latitude = document.createElement("input");
+        span_latitude.setAttribute("type", "text");
+        span_latitude.setAttribute("id", "sss5");
+        span5.textContent = "經度:";
+        span5.setAttribute("style", "color:black;display:block;text-align:center");
+        span5.setAttribute("id","s5");
+        span5.appendChild(span_latitude);
+        fform.appendChild(span5);
+        
+        let formb = document.createElement("button");
+        formb.textContent = "新增";
+        formb.setAttribute("type", "button");
+        formb.setAttribute("id","fbutton");
+        formb.onclick = function (){
+            var sss1 = document.getElementById("sss1").value;
+            var sss2 = document.getElementById("sss2").value;
+            var sss3 = document.getElementById("sss3").value;
+            var sss4 = document.getElementById("sss4").value;
+            var sss5 = document.getElementById("sss5").value;
+            if(sss1!="" && sss2!="" && sss3!="" && sss4!="" && sss5!=""){
+                var db3 = firebase.firestore();
+                var ref3 = db3.collection("VM").doc(sss1).set({
+                    address: sss2,
+                    status: sss3,
+                    longitude: sss4,
+                    latitude: sss5
+                },{merge: true}).then(()=>{
+                    console.log("set data successfully");
+                });
+                }
+            else{
+                window.alert("未完成輸入");
+            }
+        }
+        span6.appendChild(formb);
+        span6.setAttribute("style", "display:block;text-align:center");
+        span6.setAttribute("id","s6");
+        fform.appendChild(span6);
+        
+        document.getElementById("wrapper;").style.opacity = "0.5";
+        document.getElementById("fm").style.display = "block";
+    }
+    function del(){
+        const fform = document.querySelector("#form");
+        let span1 = document.createElement("span");
+        let span2 = document.createElement("span");
+        
+        
+        let span_id = document.createElement("input");
+        span_id.setAttribute("type", "text");
+        span_id.setAttribute("id", "ssss1");
+        span1.textContent = "販賣機編號:";
+        span1.setAttribute("style", "color:black;display:block;text-align:center");
+        span1.setAttribute("id","s1");
+        span1.appendChild(span_id);
+        fform.appendChild(span1);
+        
+        
+        let formb = document.createElement("button");
+        formb.textContent = "刪除";
+        formb.setAttribute("type", "button");
+        formb.setAttribute("id","fbutton");
+        formb.onclick = function (){
+            var ssss1 = document.getElementById("ssss1").value;
+            if(ssss1!=""){
+                var db4 = firebase.firestore();
+                var ref4 = db4.collection("VM").doc(ssss1).delete().then(()=>{
+                    console.log("delete data successfully");
+                });
+            }
+        }
+        span2.appendChild(formb);
+        span2.setAttribute("style", "display:block;text-align:center");
+        span2.setAttribute("id","s2");
+        fform.appendChild(span2);
+        
+        document.getElementById("wrapper;").style.opacity = "0.5";
+        document.getElementById("fm").style.display = "block";
     }
 
 </script>
