@@ -116,9 +116,22 @@
         </script>
     
     <div style="display:inline-block; vertical-align: top; width:90%" align="center" >
-        
+     
+	<table style="width:70%" border=0.5px>
+	<tr>
+	    <th style="text-align:center;color:black">當前信箱</th>
+	    <th style="text-align:center;color:black">顯示名稱</th>
+	    <th style="text-align:center;color:black">UID</th>
+	</tr>
+        <tr>
+            <td><p id="user_email" style="color: #291b4a"></p>        </td>
+            <td><p id="user_displayName" style="color: #291b4a"></p>  </td>
+            <td><p id="user_uid" style="color: #291b4a"></p>          </td>
+         </tr>
+		</table>    
+	    
     <form action="" autocomplete="off" style="width:70%;" id="cardForm" >
-        
+       
         <input type="text" id="cardnum1" class="bankcard" maxlength="23" placeholder="卡號1" 
                style="width:90%; padding:5px 15px; border:2px black solid;
 cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><img src="" alt=""><br>
@@ -203,6 +216,15 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
         })
     </script>
     <script>
+	var user = firebase.auth().currentUser;
+                if (user != null) {
+                    var email_id = user.email;
+		    var displayName_id = user.displayName;
+		    var uid_id = user.uid;
+                    document.getElementById("user_email").innerHTML = email_id;
+		    document.getElementById("user_displayName").innerHTML = displayName_id;
+		    document.getElementById("user_uid").innerHTML = uid_id;
+		}
         function updateCardNum(){
 		    var user = firebase.auth().currentUser;
 		    const formNum = document.getElementById("cardForm");
