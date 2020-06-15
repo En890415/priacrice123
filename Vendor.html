@@ -99,6 +99,7 @@
         td_Status.setAttribute("style","color:black");
         td_Status.style.background = td_Status.innerHTML;
         manage_Button.textContent = "管理";
+        manage_Button.setAttribute("id",doc.id);
         manage_Button.onclick = function() {
             const fform = document.querySelector("#form");
             let span1 = document.createElement("span");
@@ -144,10 +145,11 @@
             formb.setAttribute("type", "button");
             formb.setAttribute("id","fbutton");
             formb.onclick = function (){
+                var vm = document.getElementById(doc.id).id;
                 var ss1 = document.getElementById("ss1").value;
                 var ss2 = document.getElementById("ss2").value;
                 var db2 = firebase.firestore();
-                var ref2 = db2.collection("VM").doc("VMData1").update({
+                var ref2 = db2.collection("VM").doc(vm).update({
                     address: ss1,
                     status:  ss2
                 }).then(()=>{
