@@ -191,7 +191,17 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
     </script>
                                                                   
 <script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" 
-                crossorigin="anonymous"></script>                                                             
+                crossorigin="anonymous"></script>                                                          
+    <script>
+        $(function() {
+            $('#bankcard').keyup(function() {
+                var val = $(this).val();
+                val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
+                console.log(val);
+                $(this).val( val );
+            });
+        })
+    </script>
     <script>
         function updateCardNum(){
 		if (user) {
