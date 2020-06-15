@@ -120,8 +120,8 @@
 	<table style="width:70%" border=0.5px>
 	<tr>
 	    <th style="text-align:center;color:black">當前信箱</th>
-	    <th style="text-align:center;color:black">顯示名稱</th>
-	    <th style="text-align:center;color:black">UID</th>
+	    <th style="text-align:center;color:black">卡號1</th>
+	    <th style="text-align:center;color:black">卡號2</th>
 	</tr>
         <tr>
             <td><p id="user_email" style="color: #291b4a"></p>        </td>
@@ -231,9 +231,10 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
 	            var Num1 = formNum[0].value;
 		    var Num2 = formNum[1].value;
 		    user.updateProfile({
-		      displayName: Num1
+		      displayName: Num1,
+                      displayName: Num2
 		    }).then(function() {
-		      console.log("一個卡號都更新完成")
+		      console.log("2個卡號都更新完成")
 		    }).catch(function(error) {
 		      console.log("An error happened.")// An error happened.
 		    });
