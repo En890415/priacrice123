@@ -8,17 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-
-
     <title>搜尋附近的販賣機</title>
-
     <style type=text/css>
         #map {
             width: 100%;
             height: 100%;
         }
-
         #fm {
             position: absolute;
             top: 22%;
@@ -30,22 +25,16 @@
             display: none;
         }
     </style>
-
-
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
 </head>
-
 <body id="page-top">
-
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
         <div id="loggedin_div" w3-include-html="SideBar_test.html" style="vertical-align: top;"></div>
         <script src="https://www.w3schools.com/lib/w3.js"></script>
@@ -56,20 +45,16 @@
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- Main Content -->
             <div id="content">
-
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -289,6 +274,42 @@ if (navigator.geolocation) {
             });
 
         }
+        const TtableList = document.querySelector('#ttable');
+
+        function renderAccount(doc) {
+            let tr = document.createElement('tr');
+            tr.style.textAlign = "center";
+            let td_Image = document.createElement('td');
+            let td_Name = document.createElement('td');
+            let td_Price = document.createElement('td');
+            let td_Number = document.createElement('td');
+            let td_Button = document.createElement('td');
+            
+            tr.setAttribute('data-id', doc.id);
+            td_Image.textContent = doc.data()["圖片"];
+            td_Name.textContent = doc.id;
+            td_Price.textContent = doc.data()["價格"];
+            td_Number.textContent = doc.data()["數量"]
+           
+            var button = td_Button.innerHTML;
+            button = document.createElement("button");
+            button.innerHTML = "Buy now";
+            button.onclick = function() {
+                window.open(' http://tw.yahoo.com ', 'Yahoo', config = 'height=500,width=500');
+            }
+            img = document.createElement("img");
+            img.src = td_Image.innerHTML;
+            img.height = "100";
+            img.width = "100";
+
+            tr.appendChild(img);
+            tr.appendChild(td_Name);
+            tr.appendChild(td_Price);
+            tr.appendChild(td_Number);
+            tr.appendChild(button);
+
+            TtableList.appendChild(tr);
+        };
 
         /*檢測移動設備
         function detectBrowser() {
