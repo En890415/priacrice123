@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>業者/販賣機</title>
@@ -16,6 +17,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="wrapper;" style="display: -webkit-flex;
                                    display:flex;
@@ -29,8 +31,11 @@
         <script>
             w3.includeHTML();
         </script>
+
         <div style="display:inline-block; vertical-align: top; width:90%">
+
             搜尋：<input type="search" class="light-table-filter" data-table="order-table" placeholder="請輸入關鍵字">
+
             <table id="ttable" class="order-table" border="10" width="100%" height="400" cellpadding="5" style="border-collapse:collapse;">
                 <thead>
                     <th style="text-align:center;color:black">販賣機編號</th>
@@ -44,9 +49,13 @@
         </div>
     </div>
     <div id="fm" style="border:2px black solid">
+
         <button onclick="closed()" style="float:right">關閉</button>
         <form id="form">
         </form>
+
+
+
     </div>
 </body></html>
 <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
@@ -71,6 +80,7 @@
         })
     })
     const TtableList = document.querySelector('#ttbody');
+
     function renderAccount(doc) {
         let tr = document.createElement('tr');
         tr.style.textAlign = "center";
@@ -79,6 +89,8 @@
         let td_Status = document.createElement('td');
         let td_Manage = document.createElement('td');
         let manage_Button = document.createElement('button');
+
+
         td_Id.textContent = doc.id;
         td_Id.setAttribute("style","color:black");
         td_Adress.textContent = doc.data()["address"];
@@ -108,8 +120,8 @@
             
             let span_address = document.createElement("input");
             span_address.setAttribute("type", "text");
-            span_address.setAttribute("value", doc.data()["address"]);
-            span_id.setAttribute("readonly",true);
+            span_address.setAttribute("placeholder", doc.data()["address"]);
+            span_address.setAttribute("id", "ss1");
             span2.textContent = "縣市:";
             span2.setAttribute("style", "color:black;display:block;text-align:center");
             span2.setAttribute("id","s2");
@@ -120,7 +132,7 @@
             let span_status = document.createElement("input");
             span_status.setAttribute("type", "text");
             span_status.setAttribute("placeholder", doc.data()["status"]);
-            span_status.setAttribute("id","ss");
+            span_status.setAttribute("id", "ss2");
             span3.textContent = "狀態:";
             span3.setAttribute("style", "color:black;display:block;text-align:center");
             span3.setAttribute("id","s3");
@@ -129,15 +141,19 @@
             
             let formb = document.createElement("button");
             formb.textContent = "修改";
-            formb.setAttribute("type", "submit");
-            formb.onclick = function(){
-                 var s = document.getElementById("ss");
-                 const db = firebase.firestore();
-                 var ref = db.collection("VM").doc("VMData1").update({
-                    status: "red"
-                 }).then(()=>{
+            formb.setAttribute("type", "button");
+            formb.setAttribute("id","fbutton");
+            formb.onclick = function (){
+                var ss1 = document.getElementById("ss1").value;
+                var ss2 = document.getElementById("ss2").value;
+                var db2 = firebase.firestore();
+                var ref2 = db2.collection("VM").doc("VMData1").update({
+                    address: ss1,
+                    status:  ss2
+                }).then(()=>{
                     console.log("update data successfully");
-                 });
+                });
+                window.location.reload("https://en890415.github.io/priacrice123/Vendor.html");
             }
             span4.appendChild(formb);
             span4.setAttribute("style", "display:block;text-align:center");
@@ -147,21 +163,29 @@
             document.getElementById("wrapper;").style.opacity = "0.5";
             document.getElementById("fm").style.display = "block";
         }
+
         tr.appendChild(td_Id);
         tr.appendChild(td_Adress);
         tr.appendChild(td_Status);
         td_Manage.appendChild(manage_Button);
         tr.appendChild(td_Manage);
+
+
         TtableList.appendChild(tr);
     }
+
 </script>
+
 <script>
     (function(document) {
         'use strict';
+
         // 建立 LightTableFilter
         var LightTableFilter = (function(Arr) {
             console.log("建立 LightTableFilter完成");
+
             var _input;
+
             // 資料輸入事件處理函數
             function _onInputEvent(e) {
                 _input = e.target;
@@ -172,6 +196,7 @@
                     });
                 });
             }
+
             // 資料篩選函數，顯示包含關鍵字的列，其餘隱藏
             function _filter(row) {
                 var text = row.textContent.toLowerCase(),
@@ -179,6 +204,7 @@
                 row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
                 console.log("顯示關鍵字，其餘隱藏，完成");
             }
+
             return {
                 // 初始化函數
                 init: function() {
@@ -189,6 +215,7 @@
                 }
             };
         })(Array.prototype);
+
         // 網頁載入完成後，啟動 LightTableFilter
         document.addEventListener('readystatechange', function() {
             if (document.readyState === 'complete') {
@@ -196,11 +223,31 @@
                 LightTableFilter.init();
             }
         });
+
     })(document);
+
 </script>
 <script>
     if (location.href == "https://en890415.github.io/priacrice123/Vendor.html") {
         console.log("確認網址判斷成功" + location.href);
         document.getElementById("ManageBar").className = "nav-item active";
     }
+
+</script>
+<script>
+    function closed() {
+        var del_s1 = document.getElementById("s1");
+        var del_s2 = document.getElementById("s2");
+        var del_s3 = document.getElementById("s3");
+        var del_s4 = document.getElementById("s4");
+        del_s1.parentNode.removeChild(del_s1);
+        del_s2.parentNode.removeChild(del_s2);
+        del_s3.parentNode.removeChild(del_s3);
+        del_s4.parentNode.removeChild(del_s4);
+
+        document.getElementById("wrapper;").style.opacity = "1";
+        document.getElementById("fm").style.display = "none";
+
+    }
+
 </script>
