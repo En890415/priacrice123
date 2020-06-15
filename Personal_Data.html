@@ -124,9 +124,9 @@
 	    <th style="text-align:center;color:black">卡號2</th>
 	</tr>
         <tr>
-            <td><p id="user_email" style="color: #291b4a"></p>        </td>
-            <td><p id="user_displayName" style="color: #291b4a"></p>  </td>
-            <td><p id="user_uid" style="color: #291b4a"></p>          </td>
+            <td><span class="mr-2 d-none d-lg-inline text-gray-600 small" id="user_email"></span>        </td>
+            <td><span class="mr-2 d-none d-lg-inline text-gray-600 small" id="user_displayName"></span>  </td>
+            <td><span class="mr-2 d-none d-lg-inline text-gray-600 small" id="user_uid"></span>          </td>
          </tr>
 		</table>    
 	    
@@ -216,15 +216,6 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
         })
     </script>
     <script>
-	var user = firebase.auth().currentUser;
-                if (user != null) {
-                    var email_id = user.email;
-		    var displayName_id = user.displayName;
-		    var uid_id = user.uid;
-                    document.getElementById("user_email").innerHTML = email_id;
-		    document.getElementById("user_displayName").innerHTML = displayName_id;
-		    document.getElementById("user_uid").innerHTML = uid_id;
-		}
         function updateCardNum(){
 		    var user = firebase.auth().currentUser;
 		    const formNum = document.getElementById("cardForm");
@@ -245,5 +236,16 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
 	    
         }
     </script>
+	<script>
+	var user = firebase.auth().currentUser;
+                if (user != null) {
+                    var email_id = user.email;
+		    var displayName_id = user.displayName;
+		    var uid_id = user.uid;
+                    document.getElementById("user_email").innerHTML = email_id;
+		    document.getElementById("user_displayName").innerHTML = displayName_id;
+		    document.getElementById("user_uid").innerHTML = uid_id;
+		}
+	</script>
 </body>
 </html>
