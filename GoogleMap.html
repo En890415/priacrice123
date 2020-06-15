@@ -8,53 +8,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+
+
+
     <title>搜尋附近的販賣機</title>
+
     <style type=text/css>
         #map {
             width: 100%;
             height: 100%;
         }
+
         #fm {
             position: absolute;
-            top: 22%;
-            left: 23%;
+            top: 10%;
+            left: 10%;
             width: 70%;
             height: 75%;
             background-color: white;
             z-index: 999;
             display: none;
+        
         }
+
+        #ttable {
+            position: absolute;
+            
+            width:20%;
+            height: 30%;
+            background-color: white;
+            z-index: 999;
+            background-color:burlywood;
+        
+            
+        }
+
     </style>
+
+
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
+
 <body id="page-top">
+
     <!-- Page Wrapper -->
     <div id="wrapper">
+
         <!-- Sidebar -->
         <div id="loggedin_div" w3-include-html="SideBar_test.html" style="vertical-align: top;"></div>
         <script src="https://www.w3schools.com/lib/w3.js"></script>
         <script>
             w3.includeHTML();
+
         </script>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
+
             <!-- Main Content -->
             <div id="content">
+
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+
+                    <!-- Topbar Search -->
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="搜尋商品..." aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <a href="#">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
+
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -100,6 +148,7 @@
                                 };
                                 // Initialize Firebase
                                 firebase.initializeApp(firebaseConfig);
+
                             </script>
 
                             <script>
@@ -131,12 +180,14 @@
 
                                     }
                                 });
+
                             </script>
                             <script>
                                 function logout() {
                                     firebase.auth().signOut();
                                     setTimeout(location.href = "https://en890415.github.io/priacrice123/Login_v11/Login.html", 1500);
                                 }
+
                             </script>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -147,7 +198,7 @@
                                 </a>
                                 <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal" href="#">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    登出並回到登入頁面
+                                    退出登錄
                                 </a>
                             </div>
                         </li>
@@ -185,14 +236,26 @@
             </div>
         </div>
     </div>
-    <div id="fm" style="border:2px black solid">
+    <div id="fm" style:"border:2px black solid; overflow-x:hidden ;overflow-y: scroll">
+        <table id="ttable" border="2" >
+            <thead>
+
+                <th>圖片</th>
+                <th>商品名稱</th>
+                <th>價錢</th>
+                <th>數量</th>
+                <th>詳細資訊</th>
+                <th>購買數量</th>
+
+            </thead>
+        </table>
 
         <button onclick="closed()" style="float:right">關閉</button>
-
-
-
+        <button onclick="addCart()" style="float:right">新增至購物車</button>
     </div>
-
+    <script>
+    
+    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -203,6 +266,12 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
 
     <script>
         var map;
@@ -236,19 +305,11 @@ if (navigator.geolocation) {
   handleLocationError(false, infoWindow, map.getCenter());
 }
 */
-            
-            var db = firebase.firestore();
-            db.collection("VM").get().then(doc => {
+        var db = firebase.firestore();
+        db.collection("VM").get().then(doc => {
             for (var i = 1; i <= doc.size; i++) {
                 var docRef = db.collection('VM').doc("VMData" + i);
-
                 docRef.get().then(function(doc) {
-                    if (doc.exists) {
-                        console.log("Document data:", doc.data());
-                    } else {
-                        // doc.data() will be undefined in this case
-                        console.log("No such document!");
-                    }
                     marker = new google.maps.Marker({
                         position: {
                             lat: doc.data().latitude,
@@ -257,23 +318,38 @@ if (navigator.geolocation) {
                         icon: "http://maps.google.com/mapfiles/ms/icons/" + doc.data().status + "-dot.png",
                         map: map
                     });
-
                     infowindow = new google.maps.InfoWindow();
-                    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    google.maps.event.addListener(marker, 'click', (function() {
                         return function() {
-                            infowindow.setContent(doc.data().id + "<h4 align = 'center'>販賣機</h4><img title='販賣機' height='100px' width='100px'  src='icon/vending-machine.png'/><button onclick=\"check()\">查看商品資訊</button>");
-
+                            infowindow.setContent(doc.data().id +
+                                "<h4 align = 'center'>販賣機</h4>" +
+                                "<img title='販賣機' height='100px' width='100px' src='icon/vending-machine.png'/>" +
+                                "<button id=\"wtf\" onclick=check(this)>" +
+                                "查看商品資訊"
+                            );
                             infowindow.open(map, marker);
+                            wtf.addEventListener("click", function(){
+                                var db = firebase.firestore();
+                                var docRef = db.collection('VM').doc("VMData" + doc.data().id);
+                                docRef.get().then(function(doc) {
+                                    dataRef = doc.data()["商品"];
+                                    dataRef.get().then(doc2 => {
+                                        renderAccount(doc2);
+                                    })
+                                })
+                            });
                         }
-                    })(marker, i));
-
+                    })
+                    (marker, doc.data().id)
+                    );
+                    document.getElementById("wtf").id = doc.data().id;
                 }).catch(function(error) {
                     console.log("Error getting document:", error);
                 });
             }
-            });
+        });
+    }
 
-        }
         const TtableList = document.querySelector('#ttable');
 
         function renderAccount(doc) {
@@ -310,7 +386,41 @@ if (navigator.geolocation) {
 
             TtableList.appendChild(tr);
         };
+        /*----
+        const TtableList2 = document.querySelector('#ttable2') ;
+            function vendorinfodoc.data()){ 
+                 let tr = document.createElement('tr');
+                let td_Name = document.createElement('td');
+                 let td_Image = document.createElement('td');
+                let td_Content = document.createElement('td');
+                let td_Calories = document.createElement('td');
+                let td_Capacity = document.createElement('td');
+                let td_Manufacturer = document.createElement('td');
+                
+                tr.setAttribute('data-id', doc.id);
+                td_Image.textContent = doc.data()["圖片"];
+                td_Name.textContent = doc.id;
+                td_Content.textContent = doc.data()["內容物"];
+                td_Calories.textContent = doc.data()["熱量"];
+                td_Capacity.textContent = doc.data()["容量"];
+                td_Manufacturer.textContent = doc.data()["製造商"];
+                
+                var img = document.createElement("img");
+                img.src = td_Image.innerHTML;
+                img.height = "100";
+                img.width = "100";
+                 
+                tr.appendChild(img);
+                tr.appendChild(td_Name);
+                tr.appendChild(td_Content);
+                tr.appendChild(td_Calories);
+                tr.appendChild(td_Capacity);
+                tr.appendChild(td_Manufacturer);
 
+                TtableList.appendChild(tr);  
+                
+            }
+                -------*/
         /*檢測移動設備
         function detectBrowser() {
           var useragent = navigator.userAgent;
@@ -324,28 +434,31 @@ if (navigator.geolocation) {
             mapdiv.style.height = '800px';
           }
         }
-        */
-    </script>
-    <script>
+  ------------*/
         function check() {
             document.getElementById("wrapper").style.opacity = "0.5";
             document.getElementById("fm").style.display = "block";
         }
 
         function closed() {
+            var tb = document.getElementById('ttable');
+            var rowNum = tb.rows.length;
+            for (i = 1; i < rowNum; i++) {
+                tb.deleteRow(i);
+                rowNum = rowNum - 1;
+                i = i - 1;
+            }
+
             document.getElementById("wrapper").style.opacity = "1";
             document.getElementById("fm").style.display = "none";
         }
+        function addCart() {
+
+        }
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk&callback=initMap" async defer></script>
-    
-    <script>
-         if (location.href == "https://en890415.github.io/priacrice123/GoogleMap.html") {
-                 console.log("確認網址判斷成功" + location.href);
-               document.getElementById("GoogleMapHref").className = "nav-item active";
-            }
-           
-      </script>  
+
 
 </body>
 
