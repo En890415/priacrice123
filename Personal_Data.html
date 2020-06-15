@@ -201,7 +201,7 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
         function updateFood(){
             var user = firebase.auth().currentUser;
             user.updateProfile({
-              displayName: "Jane Q. User";
+              displayName: "Jane Q. User"
             }).then(function() {
               console.log("Update successful.")
             }).catch(function(error) {
