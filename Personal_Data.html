@@ -232,7 +232,6 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
 		    var Num2 = formNum[1].value;
                     var Num3 = formNum[2].value;
 		    user.updateProfile({
-		    user.updateProfile({
 		      displayName: Num1,
                       phoneNumber: Num2,
                       photoURL:Num3
@@ -257,6 +256,8 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
 		    var displayName_id = user.displayName;
 		    var phoneNumber_id = user.phoneNumber;
 	            var photoURL_id = user.photoURL;
+			console.log("拿到的phoneNumber_id為"+ phoneNumber_id);
+			console.log("拿到的photoURL_id為" +photoURL_id);
                     document.getElementById("user_email").innerHTML = email_id;
 		    document.getElementById("user_displayName").innerHTML = displayName_id;
 		    document.getElementById("user_phoneNumber").innerHTML = phoneNumber_id;
