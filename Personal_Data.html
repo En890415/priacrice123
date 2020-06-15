@@ -134,7 +134,7 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><img src="" alt="
     <button onclick="check()" style="padding:5px 15px; background:#ccc; border:0 none;cursor:pointer;
                          -webkit-border-radius: 5px;border-radius: 5px;">確認添加資料</button>
     <button onclick="insertFood()" style="padding:5px 15px; background:#ccc; border:0 none;cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;">新增喜歡的食物</button>
-    <button onclick="updateFood()" style="padding:5px 15px; background:#ccc; border:0 none;cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;">更換喜歡的食物</button>
+    <button onclick="updateFood()" style="padding:5px 15px; background:#ccc; border:0 none;cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;">更新displayName</button>
        
         </div>
     </div>
@@ -201,7 +201,7 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
         function updateFood(){
             var user = firebase.auth().currentUser;
             user.updateProfile({
-              favorite_food: "Banananananana",
+              displayName: "Jane Q. User";
             }).then(function() {
               console.log("Update successful.")
             }).catch(function(error) {
