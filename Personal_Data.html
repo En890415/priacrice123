@@ -204,11 +204,11 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
     </script>
     <script>
         function updateCardNum(){
-		if (user) {
+		if (user != null) {
 		    var user = firebase.auth().currentUser;
 		    user.updateProfile({
 		      displayName: document.getElementById("cardnum1"),
-		      displayName2: document.getElementById("cardnum2")
+		      //displayName2: document.getElementById("cardnum2")
 
 		    }).then(function() {
 		      console.log("兩個卡號都更新完成")
@@ -217,8 +217,8 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
 		    });
 		       var cardNum1 = user.displayName;
 		       document.getElementById("user_card1").innerHTML = cardNum1;
-		       var cardNum2 = user.displayName2;
-		       document.getElementById("user_card2").innerHTML = cardNum2;
+		       //var cardNum2 = user.displayName2;
+		       //document.getElementById("user_card2").innerHTML = cardNum2;
 		}
 	    
         }
