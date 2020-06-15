@@ -319,7 +319,7 @@ if (navigator.geolocation) {
                         map: map
                     });
                     infowindow = new google.maps.InfoWindow();
-                    google.maps.event.addListener(marker, 'click', (function() {
+                    google.maps.event.addListener(marker, 'click', (function(marker,i) {
                         return function() {
                             infowindow.setContent(doc.data().id +
                                 "<h4 align = 'center'>販賣機</h4>" +
