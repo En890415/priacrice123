@@ -182,7 +182,6 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
             measurementId: "G-MDP1SN9YWK"
         };
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
 	firebase.auth().useDeviceLanguage();    
     </script>
     
@@ -216,16 +215,18 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
         })
     </script>
     <script>		
-	    		var email_id, displayName_id, photoURL_id;
+	    		firebase.initializeApp(firebaseConfig);
+	    		console.log("初始化完成囉");
+	    		//var email_id, displayName_id, photoURL_id;
 	    		console.log("進來開始接user的值囉");
-			var user1 = firebase.auth().currentUser;
-			     email_id = user1.email;
-			     displayName_id = user1.displayName;
-			     photoURL_id = user1.photoURL;
+			var user = firebase.auth().currentUser;
+			  //   email_id = user1.email;
+			   //  displayName_id = user1.displayName;
+			   //  photoURL_id = user1.photoURL;
 				console.log("拿到的photoURL_id為" +photoURL_id);
-			    document.getElementById("user_email").innerHTML = email_id;
-			    document.getElementById("user_displayName").innerHTML = displayName_id;
-			    document.getElementById("user_photoURL").innerHTML = photoURL_id;
+			    document.getElementById("user_email").innerHTML = user.email;
+			    document.getElementById("user_displayName").innerHTML = user.displayName;
+			    document.getElementById("user_photoURL").innerHTML = user.photoURL;
 	</script>	
     <script>
         function updateCardNum(){
