@@ -147,7 +147,7 @@
 			cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
         <span style="font-size:1.0em;">請更改/新增填寫卡號1(16碼)</span><br>
         
-        <input type="text" id="bankcard1" class="bankcard2" maxlength="19" placeholder="卡號2"
+        <input type="text" id="bankcard2" class="bankcard2" maxlength="19" placeholder="卡號2"
                style="width:90%;padding:5px 15px; border:2px black solid;
 			cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
         <span style="font-size:1.0em;">請更改/新增填寫卡號2(16碼)</span><br>
@@ -238,16 +238,16 @@
     <script>
         $(function() {
             $('#bankcard1').keyup(function() {
-                var val1 = $(this).val1();
-                val1 = val1.replace(/(\d{4})(?=\d)/g, "$1 ");
-                console.log(val1);
-                $(this).val( val1 );
+                var val = $(this).val();
+                val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
+                console.log(val);
+                $(this).val( val );
             });
            $('#bankcard2').keyup(function() {
-                var val2 = $(this).val2();
-                val2 = val2.replace(/(\d{4})(?=\d)/g, "$1 ");
-                console.log(val2);
-                $(this).val( val2 );
+                var val = $(this).val();
+                val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
+                console.log(val);
+                $(this).val( val );
             });
         })
     </script>
