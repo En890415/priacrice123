@@ -125,7 +125,7 @@
 	</tr>
         <tr>
             <td><span class="mr-2 d-none d-lg-inline text-gray-600 small" id="user_email"></span>        </td>
-            <td><p id="user_card1" style="color: #291b4a"></p>  </td>
+            <td><span class="mr-2 d-none d-lg-inline text-gray-600 small" id="user_displayName"></span>  </td>
 	    <td><span class="mr-2 d-none d-lg-inline text-gray-600 small" id="user_photoURL"></span>     </td>
          </tr>
         </table>    
@@ -147,7 +147,9 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
 		none;cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;">
         
     </form>
-    <p id="user_card2" style="color: #291b4a"></p>
+    <p id="user_card1" style="color: #291b4a">更改後的卡號1:</p><br>  
+    <p id="user_card2" style="color: #291b4a">更改後的卡號2:</p>
+	    
         </div>
     </div>
                              
@@ -187,10 +189,7 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
 	    //-----------------------------------------------------------------------
 	    firebase.auth().onAuthStateChanged(function(user) {
 		  if (user) {
-		    console.log("進來開始接user的值囉");
 		    var user = firebase.auth().currentUser;
-	    	    console.log("currentUser的值為:" + firebase.auth().currentUser);
-	    	    console.log("user的值為:" + user);
                     var email, displayName, photoURL; 
 			    email = user.email;
 			    displayName = user.displayName;
@@ -199,7 +198,7 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
 		    console.log("拿到的displayName為" + displayName);
 		    console.log("拿到的photoURL為" + photoURL); 
 		    document.getElementById("user_email").innerHTML = email;
-		   // document.getElementById("user_displayName").innerHTML = displayName;
+		    document.getElementById("user_displayName").innerHTML = displayName;
 		    document.getElementById("user_photoURL").innerHTML = photoURL;  
 		  } else {
 		    console.log("沒成功設置觀察者");
