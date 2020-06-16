@@ -134,12 +134,12 @@
        
         <input type="text" id="bankcard" class="bankcard" maxlength="23" placeholder="卡號1" 
                style="width:90%; padding:5px 15px; border:2px black solid;
-cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><img src="" alt=""><br>
+cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
         <span style="font-size:1.3em;">請更改/新增填寫卡號1(16~19碼)</span><br>
         
         <input type="text" id="bankcard" class="bankcard" maxlength="23" placeholder="卡號2"
                style="width:90%;padding:5px 15px; border:2px black solid;
-cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><img src="" alt=""><br>
+cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
         <span style="font-size:1.3em;">請更改/新增填寫卡號2(16~19碼)</span><br>
 	    
         <input type="button" onclick="updateCardNum()" value="更新卡號"
@@ -216,6 +216,7 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
         })
     </script>
     <script>
+	    		console.log("進來開始接user的值囉");
 			var user = firebase.auth().currentUser;
 			    var email_id = user.email;
 			    var displayName_id = user.displayName;
