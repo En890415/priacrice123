@@ -101,7 +101,7 @@
                         <br />
                         <input type="text" id="input_1">
                         <br />
-                        <button onclick="go()">GO</button>
+                        <button onclick="go()" id="go_button">GO</button>
 
                         <button onclick="logout()">logout</button>
                     </li>
@@ -176,12 +176,17 @@
 
                         }
                     }
-                    if (Str == "provider") {
-                        document.getElementById("phone").style.display = "block";
-                        document.getElementById("bu_captcha").style.display = "block";
+                    if (Str == "user") {
+                        document.getElementById("button_1").style.display = "none";
+                        document.getElementById("input_1").style.display = "none";
+                        document.getElementById("go_button").style.display = "none";
+			setTimeout(location.href = "https://en890415.github.io/priacrice123/GoogleMap.html", 2000);
                     } else {
-                        setTimeout(location.href = "https://en890415.github.io/priacrice123/GoogleMap.html", 2000);
-                    };
+			var inp = document.getElementById("input_1").value;
+                        if(inp!=""){                            
+                            setTimeout(location.href = "https://en890415.github.io/priacrice123/GoogleMap.html", 2000);
+                        }
+		    };
                 }
             } else {
                 document.getElementById("loggedin_div").style.display = "none";
