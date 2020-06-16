@@ -142,12 +142,12 @@
         <div style="margin-top:20% ;height:50%">
 		
         <form action="" autocomplete="off" style="width:70%;" id="cardForm" >
-        <input type="text" id="bankcard" class="bankcard" maxlength="19" placeholder="卡號1" 
+        <input type="text" id="bankcard1" class="bankcard2" maxlength="19" placeholder="卡號1" 
                style="width:90%; padding:5px 15px; border:2px black solid;
 			cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
         <span style="font-size:1.0em;">請更改/新增填寫卡號1(16碼)</span><br>
         
-        <input type="text" id="bankcard" class="bankcard" maxlength="19" placeholder="卡號2"
+        <input type="text" id="bankcard1" class="bankcard2" maxlength="19" placeholder="卡號2"
                style="width:90%;padding:5px 15px; border:2px black solid;
 			cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
         <span style="font-size:1.0em;">請更改/新增填寫卡號2(16碼)</span><br>
@@ -231,24 +231,21 @@
                  console.log("確認網址判斷成功" + location.href);
                document.getElementById("Personal_Data").style.color = "#f8f9fc";
             }
-    </script>
-    <script>
-        function check() {
-            document.getElementById("fm").style.display = "block";
-            document.getElementById("wrapper").style.opacity = "0.5";
-        }
-        function closed() {
-            document.getElementById("fm").style.display = "none";
-            document.getElementById("wrapper").style.opacity = "1";
-            location.reload();
-        }
-    </script>
+    </script>  
                                                                   
 <script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" 
                 crossorigin="anonymous"></script>                                                          
     <script>
         $(function() {
-            $('#bankcard').keyup(function() {
+            $('#bankcard1').keyup(function() {
+                var val = $(this).val();
+                val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
+                console.log(val);
+                $(this).val( val );
+            });
+        })
+	  $(function() {
+            $('#bankcard2').keyup(function() {
                 var val = $(this).val();
                 val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
                 console.log(val);
@@ -276,6 +273,17 @@
 		      var cardNum2 = user.photoURL;
 		      document.getElementById("user_card2").innerHTML ="更改後的卡號2:" + cardNum2;
 	    
+        }
+    </script>
+	<script>
+        function check() {
+            document.getElementById("fm").style.display = "block";
+            document.getElementById("wrapper").style.opacity = "0.5";
+        }
+        function closed() {
+            document.getElementById("fm").style.display = "none";
+            document.getElementById("wrapper").style.opacity = "1";
+            location.reload();
         }
     </script>
 </body>
