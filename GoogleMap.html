@@ -316,18 +316,18 @@ if (navigator.geolocation) {
         var db = firebase.firestore();
         db.collection("VM").get().then(doc => {
             for (var i = 1; i <= doc.size; i++) {
-                var docRef = db.collection('VM').doc(doc.id);
+                var docRef = db.collection('VM').doc("VMData"+i);
                 docRef.get().then(function(doc) {
                     marker = new google.maps.Marker({
                         position: {
-                            lat: parseFloat( doc.data().latitude),
-                            lng: parseFloat(doc.data().longitude)
+                            lat: doc.data().latitude,
+                            lng: doc.data().longitude
                         },
                         icon: "http://maps.google.com/mapfiles/ms/icons/" + doc.data().status + "-dot.png",
                         map: map
                     });
                     infowindow = new google.maps.InfoWindow();
-                    google.maps.event.addListener(marker, 'click', (function(marker, doc.id) {
+                    google.maps.event.addListener(marker, 'click', (function(marker,i) {
                         return function() {
                             infowindow.setContent(doc.id +
                                 "<h4 align = 'center'>販賣機</h4>" +
@@ -348,7 +348,7 @@ if (navigator.geolocation) {
                             });
                         }
                     })
-                    (marker, doc.id)
+                    (marker, i)
                     );
                     document.getElementById("wtf").id = doc.id;
                 }).catch(function(error) {
