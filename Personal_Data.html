@@ -100,7 +100,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
 </head>
 <body>
-    <div id="wrapper;" style="display:-webkit-flex;
+    <div id="wrapper" style="display:-webkit-flex;
                               display:flex;
                               -webkit-align-items: center;
                                       align-items: center;
@@ -268,10 +268,11 @@
 		    }).catch(function(error) {
 		      console.log("An error happened.")// An error happened.
 		    });
-		      var cardNum1 = user.displayName;
-		      document.getElementById("user_card1").innerHTML ="更改後的卡號1:" + cardNum1;
-		      var cardNum2 = user.photoURL;
-		      document.getElementById("user_card2").innerHTML ="更改後的卡號2:" + cardNum2;
+		      //var cardNum1 = user.displayName;
+		    //  document.getElementById("user_card1").innerHTML ="更改後的卡號1:" + cardNum1;
+		    //  var cardNum2 = user.photoURL;
+		    //  document.getElementById("user_card2").innerHTML ="更改後的卡號2:" + cardNum2;
+			document.getElementById("user_card1").innerHTML ="更改成功~請點選關閉以整理";
 	    
         }
     </script>
