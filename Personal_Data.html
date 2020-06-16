@@ -243,8 +243,6 @@
                 console.log(val);
                 $(this).val( val );
             });
-        })
-	  $(function() {
             $('#bankcard2').keyup(function() {
                 var val = $(this).val();
                 val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
