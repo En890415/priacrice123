@@ -11,9 +11,9 @@
       
       <link href="https://en890415.github.io/priacrice123/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
-     <body onload="ComfirmURL()">
+     <body>
       <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" 
-          style="background: -webkit-linear-gradient(bottom, #0250c5, #d43f8d);">
+          style="background: -webkit-linear-gradient(bottom, #0250c5, #d43f8d);" onload="confirmURL()">
        <!-- Sidebar - Brand -->
        <a class="d-flex align-items-center justify-content-center"  id="Personal_Data"
           style="display:flex;
@@ -102,7 +102,7 @@
       }
     </script>
        <script>
-           function ComfirmURL(){
+           function confirmURL(){
                  if(location.href == "https://en890415.github.io/priacrice123/Personal_Data.html"){
                       console.log("確認網址判斷成功" + location.href);
                       document.getElementById("Personal_Data").style.color = "#f8f9fc";
