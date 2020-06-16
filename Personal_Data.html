@@ -217,13 +217,30 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
         })
     </script>
     <script>
+	    firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+			var user = firebase.auth().currentUser;
+			if (user != null) {
+			    var email_id = user.email;
+			    var displayName_id = user.displayName;
+			    var photoURL_id = user.photoURL;
+				console.log("拿到的phoneNumber_id為"+ phoneNumber_id);
+				console.log("拿到的photoURL_id為" +photoURL_id);
+			    document.getElementById("user_email").innerHTML = email_id;
+			    document.getElementById("user_displayName").innerHTML = displayName_id;
+			    document.getElementById("user_photoURL").innerHTML = photoURL_id;
+			}
+                 }
+            }
+	</script>	
+    <script>
         function updateCardNum(){
 		    var user = firebase.auth().currentUser;
 		    const formNum = document.getElementById("cardForm");
 	            var Num1 = formNum[0].value;
 		    var Num2 = formNum[1].value;
 		    user.updateProfile({
-		      displayName: Num1,
+		      displayName:Num1,
                       photoURL:Num2
 		    }).then(function() {
 		      console.log("把displayName跟URL當作卡號更新完成")
@@ -237,20 +254,5 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
 	    
         }
     </script>
-	<script>
-	var user = firebase.auth().currentUser;
-                if (user != null) {
-                    var email_id = user.email;
-		    var displayName_id = user.displayName;
-		    var phoneNumber_id = user.phoneNumber;
-	            var photoURL_id = user.photoURL;
-			console.log("拿到的phoneNumber_id為"+ phoneNumber_id);
-			console.log("拿到的photoURL_id為" +photoURL_id);
-                    document.getElementById("user_email").innerHTML = email_id;
-		    document.getElementById("user_displayName").innerHTML = displayName_id;
-		    document.getElementById("user_phoneNumber").innerHTML = phoneNumber_id;
-		    document.getElementById("user_photoURL").innerHTML = photoURL_id;
-		}
-	</script>
 </body>
 </html>
