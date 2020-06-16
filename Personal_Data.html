@@ -183,12 +183,24 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
         };
         // Initialize Firebase
 	firebase.initializeApp(firebaseConfig);
-	firebase.auth().useDeviceLanguage();    
+	firebase.auth().useDeviceLanguage();   
+	    //-----------------------------------------------------------------------
+	    firebase.auth().onAuthStateChanged(function(user) {
+		  if (user) {
+		    console.log("進來開始接user的值囉");
+		    var user = firebase.auth().currentUser;
+	    	    console.log("currentUser的值為:" + firebase.auth().currentUser);
+	    	    console.log("user的值為:" + user);	
+		  } else {
+		    console.log("沒成功設置觀察者");
+		  }
+		});
+	    
 	    		//var email_id, displayName_id, photoURL_id;
-	    		console.log("進來開始接user的值囉");
-			var user = firebase.auth().currentUser;
-	    		console.log("currentUser的值為:" + firebase.auth().currentUser);
-	    		console.log("user的值為:" + user);	
+	    		//console.log("進來開始接user的值囉");
+		//	var user = firebase.auth().currentUser;
+	    		//console.log("currentUser的值為:" + firebase.auth().currentUser);
+	    		//console.log("user的值為:" + user);	
 			  //   email_id = user1.email;
 			   //  displayName_id = user1.displayName;
 			   //  photoURL_id = user1.photoURL;
