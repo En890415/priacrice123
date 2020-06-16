@@ -171,15 +171,17 @@
                 var ss2 = document.getElementById("ss2").value;
                 var ss3 = document.getElementById("ss3").value;
                 var ss4 = document.getElementById("ss4").value;
+                var pss4 = parseFloat(ss4);
                 var ss5 = document.getElementById("ss5").value;
+                var pss5 = parseFloat(ss5);
                 if(ss1!="" && ss2!="" && ss3!="" && ss4!="" && ss5!=""){
                     var db2 = firebase.firestore();
                     var ref1 = db2.collection("VM").doc(vm).delete()
                     var ref2 = db2.collection("VM").doc(ss1).set({
                         address: ss2,
                         status:  ss3,
-                        longitude: ss4,
-                        latitude: ss5
+                        longitude: pss4,
+                        latitude: pss5
                     },{merge: true}).then(()=>{
                         console.log("update data successfully");
                     });
@@ -338,14 +340,16 @@
             var sss2 = document.getElementById("sss2").value;
             var sss3 = document.getElementById("sss3").value;
             var sss4 = document.getElementById("sss4").value;
+            var psss4 = parseFloat(sss4);
             var sss5 = document.getElementById("sss5").value;
+            var psss5 = parseFloat(sss5);
             if(sss1!="" && sss2!="" && sss3!="" && sss4!="" && sss5!=""){
                 var db3 = firebase.firestore();
                 var ref3 = db3.collection("VM").doc(sss1).set({
                     address: sss2,
                     status: sss3,
-                    longitude: sss4,
-                    latitude: sss5
+                    longitude: psss4,
+                    latitude: psss5
                 },{merge: true}).then(()=>{
                     console.log("set data successfully");
                 });
