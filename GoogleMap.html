@@ -316,7 +316,7 @@ if (navigator.geolocation) {
         var db = firebase.firestore();
         db.collection("VM").get().then(doc => {
             for (var i = 1; i <= doc.size; i++) {
-                var docRef = db.collection('VM').doc("VMData" + i);
+                var docRef = db.collection('VM').doc(doc.id);
                 docRef.get().then(function(doc) {
                     marker = new google.maps.Marker({
                         position: {
@@ -348,7 +348,7 @@ if (navigator.geolocation) {
                             });
                         }
                     })
-                    (marker, doc.data().id)
+                    (marker, doc.id)
                     );
                     document.getElementById("wtf").id = doc.id;
                 }).catch(function(error) {
