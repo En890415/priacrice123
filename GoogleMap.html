@@ -329,7 +329,7 @@ if (navigator.geolocation) {
                     infowindow = new google.maps.InfoWindow();
                     google.maps.event.addListener(marker, 'click', (function(marker,i) {
                         return function() {
-                            infowindow.setContent(doc.data().id +
+                            infowindow.setContent(doc.id +
                                 "<h4 align = 'center'>販賣機</h4>" +
                                 "<img title='販賣機' height='100px' width='100px' src='icon/vending-machine.png'/>" +
                                 "<button id=\"wtf\" onclick=check(this)>" +
@@ -338,7 +338,7 @@ if (navigator.geolocation) {
                             infowindow.open(map, marker);
                             wtf.addEventListener("click", function(){
                                 var db = firebase.firestore();
-                                var docRef = db.collection('VM').doc("VMData" + doc.data().id);
+                                var docRef = db.collection('VM').doc(doc.id);
                                 docRef.get().then(function(doc) {
                                     dataRef = doc.data()["商品"];
                                     dataRef.get().then(doc2 => {
@@ -350,7 +350,7 @@ if (navigator.geolocation) {
                     })
                     (marker, doc.data().id)
                     );
-                    document.getElementById("wtf").id = doc.data().id;
+                    document.getElementById("wtf").id = doc.id;
                 }).catch(function(error) {
                     console.log("Error getting document:", error);
                 });
