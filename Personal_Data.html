@@ -191,13 +191,16 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
 		    var user = firebase.auth().currentUser;
 	    	    console.log("currentUser的值為:" + firebase.auth().currentUser);
 	    	    console.log("user的值為:" + user);
-                    var email_id, displayName_id, photoURL_id; 
-			    email_id = user.email;
-			    displayName_id = user.displayName;
-			    photoURL_id = user.photoURL;
-		    document.getElementById("user_email").innerHTML = email_id;
-		    document.getElementById("user_displayName").innerHTML = displayName_id;
-		    document.getElementById("user_photoURL").innerHTML = photoURL_id;  
+                    var email, displayName, photoURL; 
+			    email = user.email;
+			    displayName = user.displayName;
+			    photoURL = user.photoURL;
+	            console.log("拿到的email為" + email);	  
+		    console.log("拿到的displayName為" + displayName);
+		    console.log("拿到的photoURL為" + photoURL); 
+		    document.getElementById("user_email").innerHTML = email;
+		    //document.getElementById("user_displayName").innerHTML = displayName;
+		   // document.getElementById("user_photoURL").innerHTML = photoURL;  
 		  } else {
 		    console.log("沒成功設置觀察者");
 		  }
