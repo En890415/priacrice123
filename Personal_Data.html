@@ -118,17 +118,19 @@
     <div style="display:inline-block; vertical-align: top; width:90%" align="center" >
      
 	<table style="width:70%" border=2px>
+		//d-none屬性需要刪除 否則在手機上看不到
 	<tr>
-	    <th style="text-align:center;color:black">當前信箱</th>
-	    <th style="text-align:center;color:black">卡號1</th>
-	    <th style="text-align:center;color:black">卡號2</th>
+	   <th style="text-align:center;color:black">當前信箱</th>
+           <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_email" style="font-size:1.2rem;"></span>   </td>
 	</tr>
         <tr>
-		//d-none屬性需要刪除 否則在手機上看不到
-            <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_email" style="font-size:1.2rem;"></span>        </td>
+	    <th style="text-align:center;color:black">卡號1</th>
             <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_displayName" style="font-size:1.2rem"></span>  </td>
-	    <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_photoURL" style="font-size:1.2rem"></span>     </td>
-         </tr>
+        </tr>
+	<tr>
+	    <th style="text-align:center;color:black">卡號2</th>
+            <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_photoURL" style="font-size:1.2rem"></span>     </td>
+	</tr>
         </table>
 	    
 	<button onclick="check()" style="padding:5px 15px; background:#ccc; border:0 none;cursor:pointer;
@@ -143,16 +145,16 @@
         <input type="text" id="bankcard" class="bankcard" maxlength="19" placeholder="卡號1" 
                style="width:90%; padding:5px 15px; border:2px black solid;
 			cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
-        <span style="font-size:1.3em;">請更改/新增填寫卡號1(16碼)</span><br>
+        <span style="font-size:1.0em;">請更改/新增填寫卡號1(16碼)</span><br>
         
         <input type="text" id="bankcard" class="bankcard" maxlength="19" placeholder="卡號2"
                style="width:90%;padding:5px 15px; border:2px black solid;
 			cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
-        <span style="font-size:1.3em;">請更改/新增填寫卡號2(16碼)</span><br>
+        <span style="font-size:1.0em;">請更改/新增填寫卡號2(16碼)</span><br>
 	    
-        <input type="button" onclick="updateCardNum()" value="更新卡號"
-	       style="padding:5px 15px; background:#ccc; border:0 
-		none;cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;">
+        <input type="button" onclick="updateCardNum()" value="更新卡號,若要顯示請再次點擊此處"
+	       style="background:#ccc; border:0 none;cursor:pointer;
+		      -webkit-border-radius: 5px;border-radius:5px; width:70%">
         
     </form>
         <br>
@@ -160,8 +162,8 @@
         <br>
 	<p id="user_card2" style="color: #291b4a"></p>
 	<br>
-        <input type="button" onclick="closed()" style="width:10%;margin:1% ;height:15% padding:5px 15px; background:#ccc; border:0 none;
-				cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="更新完請主動關閉此頁">
+        <input type="button" onclick="closed()" style="width:70%;margin:1% ;height:15% padding:5px 15px; background:#ccc; border:0 none;
+				cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="請主動關閉此頁">
 	<br>
 	<p id="user_card1" style="color:#291b4a;style="font-size:1rem""></p>
 	<br>  
@@ -238,6 +240,7 @@
         function closed() {
             document.getElementById("fm").style.display = "none";
             document.getElementById("wrapper").style.opacity = "1";
+            location.reload();
         }
     </script>
                                                                   
