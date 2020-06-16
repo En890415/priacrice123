@@ -216,10 +216,7 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
         })
     </script>
     <script>
-	    firebase.auth().onAuthStateChanged(function(user) {
-                if (user) {
 			var user = firebase.auth().currentUser;
-			if (user != null) {
 			    var email_id = user.email;
 			    var displayName_id = user.displayName;
 			    var photoURL_id = user.photoURL;
@@ -227,9 +224,6 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
 			    document.getElementById("user_email").innerHTML = email_id;
 			    document.getElementById("user_displayName").innerHTML = displayName_id;
 			    document.getElementById("user_photoURL").innerHTML = photoURL_id;
-			}
-                 }
-            }
 	</script>	
     <script>
         function updateCardNum(){
