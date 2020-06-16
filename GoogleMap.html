@@ -317,8 +317,8 @@ if (navigator.geolocation) {
                 docRef.get().then(function(doc) {
                     marker = new google.maps.Marker({
                         position: {
-                            lat: doc.data().latitude,
-                            lng: doc.data().longitude
+                            lat: parseFloat( doc.data().latitude),
+                            lng: parseFloat(doc.data().longitude)
                         },
                         icon: "http://maps.google.com/mapfiles/ms/icons/" + doc.data().status + "-dot.png",
                         map: map
