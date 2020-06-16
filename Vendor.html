@@ -71,7 +71,7 @@
     firebase.initializeApp(firebaseConfig);
     var db = firebase.firestore();
     var ref = db.collection("VM");
-    ref.onSnapshot(querySnapshot => {
+    ref.get().then(querySnapshot => {
         querySnapshot.forEach(doc => {
             renderAccount(doc);
         })
