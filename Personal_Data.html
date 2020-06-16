@@ -118,7 +118,7 @@
     <div style="display:inline-block; vertical-align: top; width:90%" align="center" >
      
 	<table style="width:70%" border=2px>
-		//d-none屬性需要刪除 否則在手機上看不到
+		//d-none屬性需要刪除 否則在手機上看不到  //如未更新卡號請主動重新整理
 	<tr>
 	   <th style="text-align:center;color:black">當前信箱</th>
            <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_email" style="font-size:1.2rem;"></span>   </td>
@@ -139,7 +139,7 @@
     </div>
                              
     <div id="fm" style="border: 2px solid black; display:none;" align="center"; valign="center">
-        <div style="margin-top:30% ;height:50%">
+        <div style="margin-top:20% ;height:50%">
 		
         <form action="" autocomplete="off" style="width:70%;" id="cardForm" >
         <input type="text" id="bankcard" class="bankcard" maxlength="19" placeholder="卡號1" 
@@ -152,7 +152,7 @@
 			cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
         <span style="font-size:1.0em;">請更改/新增填寫卡號2(16碼)</span><br>
 	    
-        <input type="button" onclick="updateCardNum()" value="更新卡號,若要顯示請再次點擊此處"
+        <input type="button" onclick="updateCardNum()" value="更新卡號"
 	       style="background:#ccc; border:0 none;cursor:pointer;
 		      -webkit-border-radius: 5px;border-radius:5px; width:70%">
         
