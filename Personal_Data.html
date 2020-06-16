@@ -237,18 +237,18 @@
                 crossorigin="anonymous"></script>                                                          
     <script>
         $(function() {
-            $('#bankcard1','#bankcard2').keyup(function() {
-                var val = $(this).val();
-                val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
-                console.log(val);
-                $(this).val( val );
+            $('#bankcard1').keyup(function() {
+                var val1 = $(this).val1();
+                val1 = val1.replace(/(\d{4})(?=\d)/g, "$1 ");
+                console.log(val1);
+                $(this).val( val1 );
             });
-      //      $('#bankcard2').keyup(function() {
-      //          var val = $(this).val();
-      //          val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
-       //         console.log(val);
-       //         $(this).val( val );
-       //     });
+           $('#bankcard2').keyup(function() {
+                var val2 = $(this).val2();
+                val2 = val2.replace(/(\d{4})(?=\d)/g, "$1 ");
+                console.log(val2);
+                $(this).val( val2 );
+            });
         })
     </script>
  	
