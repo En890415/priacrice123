@@ -12,7 +12,8 @@
       <link href="https://en890415.github.io/priacrice123/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
      <body>
-      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="background: -webkit-linear-gradient(bottom, #0250c5, #d43f8d);">
+      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" 
+          style="background: -webkit-linear-gradient(bottom, #0250c5, #d43f8d);" onload="ComfirmURL()">
        <!-- Sidebar - Brand -->
        <a class="d-flex align-items-center justify-content-center"  id="Personal_Data"
           style="display:flex;
@@ -101,13 +102,19 @@
       }
     </script>
        <script>
-           //console.log("現在網址是：" + location.href);
-         //  if (location.href == "https://en890415.github.io/priacrice123/GoogleMap.html") {
-         //        console.log("確認網址判斷成功" + location.href);
-         //       document.getElementById("GoogleMapHref").className = "nav-item active";
-          //  } else {
-                
-          //  }
+           function ComfirmURL(){
+                 if(location.href == "https://en890415.github.io/priacrice123/Personal_Data.html"){
+                      console.log("確認網址判斷成功" + location.href);
+                      document.getElementById("Personal_Data").style.color = "#f8f9fc";
+                   }else if(location.href == "https://en890415.github.io/priacrice123/GoogleMap.html"){
+                      console.log("確認網址判斷成功" + location.href);
+                      document.getElementById("GoogleMapHref").className = "nav-item active";
+                   }else if(location.href == "https://en890415.github.io/priacrice123/Vendor.html") {
+                      console.log("確認網址判斷成功" + location.href);
+                      document.getElementById("ManageBar").className = "nav-item active";
+                   }
+                  
+           }
            
       </script>       
 </body>
