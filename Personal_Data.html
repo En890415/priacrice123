@@ -215,12 +215,13 @@ cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="關閉">
             });
         })
     </script>
-    <script>
+    <script>		
+	    		var email_id, displayName_id, photoURL_id;
 	    		console.log("進來開始接user的值囉");
 			var user = firebase.auth().currentUser;
-			    var email_id = user.email;
-			    var displayName_id = user.displayName;
-			    var photoURL_id = user.photoURL;
+			     email_id = user.email;
+			     displayName_id = user.displayName;
+			     photoURL_id = user.photoURL;
 				console.log("拿到的photoURL_id為" +photoURL_id);
 			    document.getElementById("user_email").innerHTML = email_id;
 			    document.getElementById("user_displayName").innerHTML = displayName_id;
