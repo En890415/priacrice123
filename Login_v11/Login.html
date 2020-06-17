@@ -24,11 +24,13 @@
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--===============================================================================================-->
+	
 </head>
 
 <body>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v7.0&appId=2662310474089942&autoLogAppEvents=1" nonce="XFfLl06e"></script>
+
+	
+	
     <div class="limiter">
         <div class="container-login100">
             <div id="login_div" class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
@@ -72,7 +74,6 @@
                     </div>
 
 
-			<div class="fb-login-button" data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="true" data-width=""></div>
                     <button class="btn-google m-l-r-auto" onclick="gooleSignIn()" type="button">
                         <img src="images/icons/icon-google.png" alt="GOOGLE">
                         Google
@@ -241,6 +242,7 @@
             });
         }
     </script>
+    
     <script>
         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('button_1', {
 			'size': 'invisible',
