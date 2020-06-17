@@ -8,12 +8,11 @@
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script>
-         // $( document ).ready(confirmURL() {
-         //     console.log( "SideBar載入完成" );
-         // });
-         </script>
-            <script>
-            document.addEventListener("DOMContentLoaded", confirmURL());    
+          $( document ).ready(function() {
+                console.log("SideBar載入完成");
+                   confirmURL();
+            });
+           // document.addEventListener("DOMContentLoaded", confirmURL());    
            function confirmURL(){
                   console.log("onlaod完成，開始判斷網址");
                   if(location.href == "https://en890415.github.io/priacrice123/Personal_Data.html"){
