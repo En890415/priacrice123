@@ -73,8 +73,12 @@
                     </div>
 
                     //Facebook test
-                    <button id="facebookSignUpPopup" class="fb">使用facebook註冊(Popup)</button>
-                    <button id="facebookSignUpRedirect" class="fb">使用facebook註冊(Redirect)</button>
+                    <button id="facebookSignUpPopup" class="fb">
+                        使用facebook註冊(Popup)
+                    </button>
+                    <button id="facebookSignUpRedirect" class="fb">
+                        使用facebook註冊(Redirect)
+                    </button>
 	
                     
                     <button class="btn-google m-l-r-auto" onclick="gooleSignIn()" type="button">
@@ -233,7 +237,17 @@
         firebase.auth().signInWithPopup(providerF).then(function(result) {
             var token = result.credential.accessToken;      
             var user = result.user;
-        })
+        }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                window.alert(errorMessage);
+                // ...
+            });
         }
 
         var btnFacebookRedirect = document.getElementById('facebookSignUpRedirect');
@@ -242,7 +256,17 @@
         firebase.auth().signInWithRedirect(providerF).then(function(result) {
             var token = result.credential.accessToken;      
             var user = result.user;
-        })
+        }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                window.alert(errorMessage);
+                // ...
+            });
         }
                 
     </script>
