@@ -23,26 +23,34 @@
             position: absolute;
             top: 10%;
             left: 10%;
-            width: 70%;
-            height: 75%;
-            background-color: white;
+            width: 80%;
+            height: 80%;
+            background-color:blueviolet;
             z-index: 999;
             display: none;
-        
+
+        }
+
+        #fm2 {
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            width: 60%;
+            height: 60%;
+            background-color:rgba(180, 42, 116, 0.94);
+            z-index: 999;
+            display: none;
+
         }
 
         #ttable {
+            margin: auto;
             position: absolute;
-            
-            width:20%;
-            height: 30%;
-            background-color: white;
-            z-index: 999;
-            background-color:burlywood;
-        
-            
-        }
 
+            table-layout: fixed;
+            width: 100%;
+            background-color: burlywood;
+        }
     </style>
 
 
@@ -68,7 +76,6 @@
         <script src="https://www.w3schools.com/lib/w3.js"></script>
         <script>
             w3.includeHTML();
-
         </script>
         <!-- End of Sidebar -->
 
@@ -148,7 +155,6 @@
                                 };
                                 // Initialize Firebase
                                 firebase.initializeApp(firebaseConfig);
-
                             </script>
 
                             <script>
@@ -180,14 +186,12 @@
 
                                     }
                                 });
-
                             </script>
                             <script>
                                 function logout() {
                                     firebase.auth().signOut();
                                     setTimeout(location.href = "https://en890415.github.io/priacrice123/Login_v11/Login.html", 1500);
                                 }
-
                             </script>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -236,28 +240,26 @@
             </div>
         </div>
     </div>
-    <div id="fm" style:"border:2px black solid; overflow-x:hidden ;overflow-y: scroll">
-        <table id="ttable" border="2" >
-            <thead>
 
+    <div id="fm" align="center">
+        <button onclick="closed()">關閉</button>
+        <table id="ttable" border="2">
+            <thead>
                 <th>圖片</th>
                 <th>商品名稱</th>
                 <th>價錢</th>
                 <th>數量</th>
                 <th>詳細資訊</th>
-                <th>購買數量</th>
-
             </thead>
-            <tfoot>
-                 <button onclick="closed()" style="float:right">關閉</button>
-        <button onclick="addCart()" style="float:right">新增至購物車</button>
-            </tfoot>
         </table>
-
-       
     </div>
+    <div id="fm2" align="center">
+            <form id="form">
+            </form>
+        </div>
+
     <script>
-    
+
     </script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -287,161 +289,212 @@
                 },
                 zoom: 15,
             });
-            
-//Try HTML5 geolocation.
-infoWindow = new google.maps.InfoWindow();
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(function(position) {
-    var pos = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
-    };
-    infoWindow.setPosition(pos);
-    infoWindow.setContent('Location found.');
-    infoWindow.open(map);
-      marker = new google.maps.Marker({
-                      position: pos,
-                      icon:"https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
-                      map: map
-            });
-    map.setCenter(pos);
-  }, function() {
-    handleLocationError(true, infoWindow, map.getCenter());
-  });
-} else {
-  // Browser doesn't support Geolocation
-  handleLocationError(false, infoWindow, map.getCenter());
-}
 
-        var db = firebase.firestore();
-        db.collection("VM").get().then(doc => {
-            for (var i = 1; i <= doc.size; i++) {
-                var docRef = db.collection('VM').doc("VMData"+i);
-                docRef.get().then(function(doc) {
+            //Try HTML5 geolocation.
+            infoWindow = new google.maps.InfoWindow();
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Location found.');
+                    infoWindow.open(map);
                     marker = new google.maps.Marker({
-                        position: {
-                            lat: doc.data().latitude,
-                            lng: doc.data().longitude
-                        },
-                        icon: "http://maps.google.com/mapfiles/ms/icons/" + doc.data().status + "-dot.png",
+                        position: pos,
+                        icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
                         map: map
                     });
-                    infowindow = new google.maps.InfoWindow();
-                    google.maps.event.addListener(marker, 'click', (function(marker,i) {
-                        return function() {
-                            infowindow.setContent(doc.id +
-                                "<h4 align = 'center'>販賣機</h4>" +
-                                "<img title='販賣機' height='100px' width='100px' src='icon/vending-machine.png'/>" +
-                                "<button id=\"wtf\" onclick=check(this)>" +
-                                "查看商品資訊"
-                            );
-                            infowindow.open(map, marker);
-                            wtf.addEventListener("click", function(){
-                                var db = firebase.firestore();
-                                var docRef = db.collection('VM').doc(doc.id);
-                                docRef.get().then(function(doc) {
-                                    dataRef = doc.data()["商品"];
-                                    dataRef.get().then(doc2 => {
-                                        renderAccount(doc2);
-                                    })
-                                })
-                            });
-                        }
-                    })
-                    (marker, i)
-                    );
-                    document.getElementById("wtf").id = doc.id;
-                }).catch(function(error) {
-                    console.log("Error getting document:", error);
+                    map.setCenter(pos);
+                }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
                 });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
             }
-        });
-    }
+            var db = firebase.firestore();
+            db.collection("VM").get().then(doc => {
+                for (var i = 1; i <= doc.size; i++) {
+                    var docRef = db.collection('VM').doc("VMData" + i);
+
+                    docRef.get().then(function(doc) {
+
+                        marker = new google.maps.Marker({
+                            position: {
+                                lat: doc.data().latitude,
+                                lng: doc.data().longitude
+                            },
+                            icon: "http://maps.google.com/mapfiles/ms/icons/" + doc.data().status + "-dot.png",
+                            map: map
+                        });
+
+                        infowindow = new google.maps.InfoWindow();
+                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                return function() {
+                                    infowindow.setContent(doc.id +
+                                        "<h4 align = 'center'>販賣機</h4>" +
+                                        "<img title='販賣機' height='100px' width='100px' src='icon/vending-machine.png'/>" +
+                                        "<button id=\"wtf\" onclick=check()>" +
+                                        "查看商品資訊"
+                                    );
+                                    infowindow.open(map, marker);
+                                    wtf.addEventListener("click", function() {
+                                        var db = firebase.firestore();
+                                        var docRef = db.collection('VM').doc(doc.id);
+                                        docRef.get().then(function(doc) {
+                                            var d = doc.data()["商品"];
+                                            for (var i = 0; i < d.length; i++) {
+                                                //renderAccount(d[i]);
+                                                var dataRef = d[i];
+                                                dataRef.get().then(doc => {
+                                                    renderAccount(doc)
+                                                })
+                                            }
+                                        })
+                                    });
+                                }
+                            })
+                            (marker, i)
+                        );
+                        document.getElementById("wtf").id = doc.id;
+                    }).catch(function(error) {
+                        console.log("Error getting document:", error);
+                    });
+                }
+            });
+        }
 
         const TtableList = document.querySelector('#ttable');
 
         function renderAccount(doc) {
             let tr = document.createElement('tr');
             tr.style.textAlign = "center";
-            let td_Image = document.createElement('td');
-            let td_Name = document.createElement('td');
-            let td_Price = document.createElement('td');
-            let td_Number = document.createElement('td');
-            let td_Button = document.createElement('td');
-            
-            tr.setAttribute('data-id', doc.id);
-            td_Image.textContent = doc.data()["圖片"];
-            td_Name.textContent = doc.id;
-            td_Price.textContent = doc.data()["價格"];
-            td_Number.textContent = doc.data()["數量"]
-           
-            var button = td_Button.innerHTML;
-            button = document.createElement("button");
-            button.innerHTML = "Buy now";
-            button.onclick = function() {
-                window.open(' http://tw.yahoo.com ', 'Yahoo', config = 'height=500,width=500');
-            }
-            img = document.createElement("img");
-            img.src = td_Image.innerHTML;
-            img.height = "100";
-            img.width = "100";
+            let td1 = document.createElement('td');
+            let td2 = document.createElement('td');
+            let td3 = document.createElement('td');
+            let td4 = document.createElement('td');
+            let td5 = document.createElement('td');
 
-            tr.appendChild(img);
-            tr.appendChild(td_Name);
-            tr.appendChild(td_Price);
-            tr.appendChild(td_Number);
-            tr.appendChild(button);
+            tr.setAttribute('data-id', doc.id);
+            td2.textContent = doc.id;
+            td3.textContent = doc.data()["價格"];
+            td4.textContent = doc.data()["數量"]
+
+            let td_img = document.createElement("img");
+            td_img.src = doc.data()["圖片"];
+            td_img.style.maxHeight = "50px";
+            td_img.style.maxWidth = "50px";
+
+            td1.appendChild(td_img);
+
+            let td_Button = document.createElement('button');
+            td_Button.textContent = "點我";
+            td_Button.setAttribute("id", doc.id);
+            td_Button.onclick = function() {
+
+                document.getElementById("fm2").style.display = "block";
+                document.getElementById("fm").style.opacity = "0.5";
+
+                const fform = document.querySelector("#form");
+                let span1 = document.createElement("span");
+                let span2 = document.createElement("span");
+                let span3 = document.createElement("span");
+                let span4 = document.createElement("span");
+                let span5 = document.createElement("span");
+                let span6 = document.createElement("span");
+
+                let span_id = document.createElement("input");
+                span_id.setAttribute("type", "text");
+                span_id.setAttribute("value", doc.id);
+                span_id.setAttribute("id", "input1");
+                span1.textContent = "商品名稱:";
+                span1.setAttribute("style", "color:black;display:block;text-align:center");
+                span1.setAttribute("id", "span1");
+                span1.appendChild(span_id);
+                fform.appendChild(span1);
+                let span_capacity = document.createElement("input");
+                span_capacity.setAttribute("type", "text");
+                span_capacity.setAttribute("value", doc.data()["容量"]);
+                span_capacity.setAttribute("id", "input2");
+                span2.textContent = "容量:";
+                span2.setAttribute("style", "color:black;display:block;text-align:center");
+                span2.setAttribute("id", "span2");
+                span2.appendChild(span_capacity);
+                fform.appendChild(span2);
+                let span_calories = document.createElement("input");
+                span_calories.setAttribute("type", "text");
+                span_calories.setAttribute("value", doc.data()["熱量"]);
+                span_calories.setAttribute("id", "input3");
+                span3.textContent = "熱量:";
+                span3.setAttribute("style", "color:black;display:block;text-align:center");
+                span3.setAttribute("id", "span3");
+                span3.appendChild(span_calories);
+                fform.appendChild(span3);
+                let span_manufactureDate = document.createElement("input");
+                span_manufactureDate.setAttribute("type", "text");
+                span_manufactureDate.setAttribute("id", "input4");
+                span_manufactureDate.setAttribute("value", timeConverter(doc.data()["製造日期"]));
+                span4.textContent = "製造日期:";
+                span4.setAttribute("style", "color:black;display:block;text-align:center");
+                span4.setAttribute("id", "span4");
+                span4.appendChild(span_manufactureDate);
+                fform.appendChild(span4);
+                let span_expireDate = document.createElement("input");
+                span_expireDate.setAttribute("type", "text");
+                span_expireDate.setAttribute("id", "input5");
+                span_expireDate.setAttribute("value", timeConverter(doc.data()["保存期限"]));
+                span5.textContent = "保存期限:";
+                span5.setAttribute("style", "color:black;display:block;text-align:center");
+                span5.setAttribute("id", "span5");
+                span5.appendChild(span_expireDate);
+                fform.appendChild(span5);
+                let span_manufacturer = document.createElement("input");
+                span_manufacturer.setAttribute("type", "text");
+                span_manufacturer.setAttribute("id", "input6");
+                span_manufacturer.setAttribute("value", doc.data()["製造商"]);
+                span6.textContent = "製造商:";
+                span6.setAttribute("style", "color:black;display:block;text-align:center");
+                span6.setAttribute("id", "span6");
+                span6.appendChild(span_manufacturer);
+                fform.appendChild(span6);
+
+
+                let formbutton = document.createElement("button");
+                formbutton.textContent = "關閉商品詳細資訊";
+                formbutton.onclick = function() {
+
+                    document.getElementById("input1").value = "";
+                    document.getElementById("input2").value = "";
+                    document.getElementById("input3").value = "";
+                    document.getElementById("input4").value = "";
+                    document.getElementById("input5").value = "";
+                    document.getElementById("input6").value = "";
+                }
+                fform.appendChild(formbutton);
+
+            }
+            td5.appendChild(td_Button);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            tr.appendChild(td5);
 
             TtableList.appendChild(tr);
         };
-        /*----
-        const TtableList2 = document.querySelector('#ttable2') ;
-            function vendorinfodoc.data()){ 
-                 let tr = document.createElement('tr');
-                let td_Name = document.createElement('td');
-                 let td_Image = document.createElement('td');
-                let td_Content = document.createElement('td');
-                let td_Calories = document.createElement('td');
-                let td_Capacity = document.createElement('td');
-                let td_Manufacturer = document.createElement('td');
-                
-                tr.setAttribute('data-id', doc.id);
-                td_Image.textContent = doc.data()["圖片"];
-                td_Name.textContent = doc.id;
-                td_Content.textContent = doc.data()["內容物"];
-                td_Calories.textContent = doc.data()["熱量"];
-                td_Capacity.textContent = doc.data()["容量"];
-                td_Manufacturer.textContent = doc.data()["製造商"];
-                
-                var img = document.createElement("img");
-                img.src = td_Image.innerHTML;
-                img.height = "100";
-                img.width = "100";
-                 
-                tr.appendChild(img);
-                tr.appendChild(td_Name);
-                tr.appendChild(td_Content);
-                tr.appendChild(td_Calories);
-                tr.appendChild(td_Capacity);
-                tr.appendChild(td_Manufacturer);
-                TtableList.appendChild(tr);  
-                
-            }
-                -------*/
-        /*檢測移動設備
-        function detectBrowser() {
-          var useragent = navigator.userAgent;
-          var mapdiv = document.getElementById("map_canvas");
-         
-          if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
-            mapdiv.style.width = '100%';
-            mapdiv.style.height = '100%';
-          } else {
-            mapdiv.style.width = '600px';
-            mapdiv.style.height = '800px';
-          }
+
+        function timeConverter(UNIX_timestamp) {
+            var a = new Date(UNIX_timestamp * 1000);
+
+            var year = a.getYear() - 69;
+            var month = a.getMonth() + 1;
+            var date = a.getDate();
+            var time = year + "/" + month + "/" + date;
+            return time;
         }
-  ------------*/
+
         function check() {
             document.getElementById("wrapper").style.opacity = "0.5";
             document.getElementById("fm").style.display = "block";
@@ -459,19 +512,8 @@ if (navigator.geolocation) {
             document.getElementById("wrapper").style.opacity = "1";
             document.getElementById("fm").style.display = "none";
         }
-        function addCart() {
-
-        }
-
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk&callback=initMap" async defer></script>
-    <script>
-     //       if(location.href == "https://en890415.github.io/priacrice123/GoogleMap.html"){
-      //               console.log("確認網址判斷成功" + location.href);
-       //              document.getElementById("GoogleMapHref").className = "nav-item active";
-       //     }
-    </script>
 
-</body>
 
-</html>
+</body></html>
