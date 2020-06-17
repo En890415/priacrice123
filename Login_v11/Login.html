@@ -29,9 +29,8 @@
 
 <body>
     //Facebook test
-    <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v7.0&appId=2662310474089942&autoLogAppEvents=1" nonce="NTTzc6Eg"></script>
-
+    <button id="facebookSignUpPopup" class="fb">使用facebook註冊(Popup)</button>
+    <button id="facebookSignUpRedirect" class="fb">使用facebook註冊(Redirect)</button>
 	
 	
     <div class="limiter">
@@ -77,6 +76,7 @@
                     </div>
 
                     <div class="fb-login-button" data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="true" data-width=""></div>
+                    
                     <button class="btn-google m-l-r-auto" onclick="gooleSignIn()" type="button">
                         <img src="images/icons/icon-google.png" alt="GOOGLE">
                         Google
@@ -225,8 +225,26 @@
     </script>
 
     <script>
-        var provider = new firebase.auth.FacebookAuthProvider();
-        
+        var providerF = new firebase.auth.FacebookAuthProvider();
+
+        var btnFacebookPopup = document.getElementById('facebookSignUpPopup');
+
+        btnFacebookPopup.onclick = function() {
+        firebase.auth().signInWithPopup(providerF).then(function(result) {
+            var token = result.credential.accessToken;      
+            var user = result.user;
+        })
+        }
+
+        var btnFacebookRedirect = document.getElementById('facebookSignUpRedirect');
+
+        btnFacebookRedirect.onclick = function() {
+        firebase.auth().signInWithRedirect(providerF).then(function(result) {
+            var token = result.credential.accessToken;      
+            var user = result.user;
+        })
+        }
+                
     </script>
 
     <script>
