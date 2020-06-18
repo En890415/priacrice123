@@ -109,7 +109,7 @@
             let span_id = document.createElement("input");
             span_id.setAttribute("type", "text");
             span_id.setAttribute("value", doc.id);
-            span_id.setAttribute("id", "ss1");
+            span_id.setAttribute("id", "setSpanId");
             span1.textContent = "販賣機編號:";
             span1.setAttribute("style", "color:black;display:block;text-align:center");
             span1.setAttribute("id","s1");
@@ -120,7 +120,7 @@
             let span_address = document.createElement("input");
             span_address.setAttribute("type", "text");
             span_address.setAttribute("value", doc.data()["address"]);
-            span_address.setAttribute("id", "ss2");
+            span_address.setAttribute("id", "setSpanAddress");
             span2.textContent = "縣市:";
             span2.setAttribute("style", "color:black;display:block;text-align:center");
             span2.setAttribute("id","s2");
@@ -131,7 +131,7 @@
             let span_status = document.createElement("input");
             span_status.setAttribute("type", "text");
             span_status.setAttribute("value", doc.data()["status"]);
-            span_status.setAttribute("id", "ss3");
+            span_status.setAttribute("id", "setSpanStatus");
             span3.textContent = "狀態:";
             span3.setAttribute("style", "color:black;display:block;text-align:center");
             span3.setAttribute("id","s3");
@@ -142,7 +142,7 @@
             let span_longitude = document.createElement("input");
             span_longitude.setAttribute("type", "text");
             span_longitude.setAttribute("value", doc.data()["longitude"]);
-            span_longitude.setAttribute("id", "ss4");
+            span_longitude.setAttribute("id", "setSpanLongitude");
             span4.textContent = "經度:";
             span4.setAttribute("style", "color:black;display:block;text-align:center");
             span4.setAttribute("id","s4");
@@ -153,7 +153,7 @@
             let span_latitude = document.createElement("input");
             span_latitude.setAttribute("type", "text");
             span_latitude.setAttribute("value", doc.data()["latitude"]);
-            span_latitude.setAttribute("id", "ss5");
+            span_latitude.setAttribute("id", "setSpanLatitude");
             span5.textContent = "緯度:";
             span5.setAttribute("style", "color:black;display:block;text-align:center");
             span5.setAttribute("id","s5");
@@ -167,21 +167,21 @@
             formb.setAttribute("id","fbutton");
             formb.onclick = function (){
                 var vm = document.getElementById(doc.id).id;
-                var ss1 = document.getElementById("ss1").value;
-                var ss2 = document.getElementById("ss2").value;
-                var ss3 = document.getElementById("ss3").value;
-                var ss4 = document.getElementById("ss4").value;
-                var pss4 = parseFloat(ss4);
-                var ss5 = document.getElementById("ss5").value;
-                var pss5 = parseFloat(ss5);
-                if(ss1!="" && ss2!="" && ss3!="" && ss4!="" && ss5!=""){
+                var setSpanId = document.getElementById("setSpanId").value;
+                var setSpanAddress = document.getElementById("setSpanAddress").value;
+                var setSpanStatus = document.getElementById("setSpanStatus").value;
+                var setSpanLongitude = document.getElementById("setSpanLongitude").value;
+                var fSetSpanLongitude = parseFloat(setSpanLongitude);
+                var setSpanLatitude = document.getElementById("setSpanLatitude").value;
+                var fSetSpanLatitude = parseFloat(setSpanLatitude);
+                if(setSpanId!="" && setSpanAddress!="" && setSpanStatus!="" && setSpanLongitude!="" && setSpanLatitude!=""){
                     var db2 = firebase.firestore();
                     var ref1 = db2.collection("VM").doc(vm).delete()
-                    var ref2 = db2.collection("VM").doc(ss1).set({
-                        address: ss2,
-                        status:  ss3,
-                        longitude: pss4,
-                        latitude: pss5
+                    var ref2 = db2.collection("VM").doc(setSpanId).set({
+                        address: setSpanAddress,
+                        status:  setSpanStatus,
+                        longitude: fSetSpanLongitude,
+                        latitude: fSetSpanLatitude
                     },{merge: true}).then(()=>{
                         console.log("update data successfully");
                     });
@@ -289,7 +289,7 @@
         
         let span_id = document.createElement("input");
         span_id.setAttribute("type", "text");
-        span_id.setAttribute("id", "sss1");
+        span_id.setAttribute("id", "addSpanIid");
         span1.textContent = "販賣機編號:";
         span1.setAttribute("style", "color:black;display:block;text-align:center");
         span1.setAttribute("id","s1");
@@ -298,7 +298,7 @@
         
         let span_address = document.createElement("input");
         span_address.setAttribute("type", "text");
-        span_address.setAttribute("id", "sss2");
+        span_address.setAttribute("id", "addSpanAddress");
         span2.textContent = "縣市:";
         span2.setAttribute("style", "color:black;display:block;text-align:center");
         span2.setAttribute("id","s2");
@@ -307,7 +307,7 @@
         
         let span_status = document.createElement("input");
         span_status.setAttribute("type", "text");
-        span_status.setAttribute("id", "sss3");
+        span_status.setAttribute("id", "addSpanStatus");
         span3.textContent = "狀態:";
         span3.setAttribute("style", "color:black;display:block;text-align:center");
         span3.setAttribute("id","s3");
@@ -316,7 +316,7 @@
         
         let span_longitude = document.createElement("input");
         span_longitude.setAttribute("type", "text");
-        span_longitude.setAttribute("id", "sss4");
+        span_longitude.setAttribute("id", "addSpanLongitude");
         span4.textContent = "經度:";
         span4.setAttribute("style", "color:black;display:block;text-align:center");
         span4.setAttribute("id","s4");
@@ -325,7 +325,7 @@
         
         let span_latitude = document.createElement("input");
         span_latitude.setAttribute("type", "text");
-        span_latitude.setAttribute("id", "sss5");
+        span_latitude.setAttribute("id", "addSpanLatitude");
         span5.textContent = "經度:";
         span5.setAttribute("style", "color:black;display:block;text-align:center");
         span5.setAttribute("id","s5");
@@ -334,7 +334,7 @@
         
         let span_good = document.createElement("input");
         span_good.setAttribute("type", "text");
-        span_good.setAttribute("id", "sss6");
+        span_good.setAttribute("id", "addSpanGood");
         span_good.setAttribute("placeholder", "商品間要有空格");
         span6.textContent = "商品:";
         span6.setAttribute("style", "color:black;display:block;text-align:center");
@@ -348,29 +348,31 @@
         formb.setAttribute("type", "button");
         formb.setAttribute("id","fbutton");
         formb.onclick = function (){
-            var sss1 = document.getElementById("sss1").value;
-            var sss2 = document.getElementById("sss2").value;
-            var sss3 = document.getElementById("sss3").value;
-            var sss4 = document.getElementById("sss4").value;
-            var psss4 = parseFloat(sss4);
-            var sss5 = document.getElementById("sss5").value;
-            var psss5 = parseFloat(sss5);
-            var sss6 = document.getElementById("sss6").value;
-            var t6 = sss6.split(" ");
+            var addSpanIid = document.getElementById("addSpanIid").value;
+            var addSpanAddress = document.getElementById("addSpanAddress").value;
+            var addSpanStatus = document.getElementById("addSpanStatus").value;
+            var addSpanLongitude = document.getElementById("addSpanLongitude").value;
+            var fAddSpanLongitude = parseFloat(addSpanLongitude);
+            var addSpanLatitude = document.getElementById("addSpanLatitude").value;
+            var fAddSpanLatitude = parseFloat(addSpanLatitude);
+            var addSpanGood = document.getElementById("addSpanGood").value;
+            var spAddSpanGood = addSpanGood.split(" ");
             var arr = []
-            if(sss1!="" && sss2!="" && sss3!="" && sss4!="" && sss5!="" && sss6!=""){
+            if(addSpanIid!="" && addSpanAddress!="" && addSpanStatus!="" && addSpanLongitude!="" && addSpanLatitude!="" && addSpanGood!=""){
                 var db3 = firebase.firestore();
-                for(var i=0;i<t6.length;i++){
-                    let at6 = db.collection("商品").doc(t6[i]);
-                    arr.push(at6)
+                for(var i=0;i<spAddSpanGood.length;i++){
+                    let arrAddSpanGood = db.collection("商品").doc(spAddSpanGood[i]);
+                    arr.push(arrAddSpanGood)
                 }
-                var ref3 = db3.collection("VM").doc(sss1).set({
-                    address: sss2,
-                    status: sss3,
-                    longitude: psss4,
-                    latitude: psss5,
+                var ref3 = db3.collection("VM").doc(addSpanIid).set({
+                    address: addSpanAddress,
+                    status: addSpanStatus,
+                    longitude: fAddSpanLongitude,
+                    latitude: fAddSpanLatitude,
                     商品: arr
-                },{merge: true})
+                },{merge: true}).then(()=>{
+                    console.log("Add successfully!")
+                })
                 
             }
             
@@ -392,7 +394,7 @@
         
         let span_id = document.createElement("input");
         span_id.setAttribute("type", "text");
-        span_id.setAttribute("id", "ssss1");
+        span_id.setAttribute("id", "delSpanId");
         span1.textContent = "販賣機編號:";
         span1.setAttribute("style", "color:black;display:block;text-align:center");
         span1.setAttribute("id","s1");
@@ -405,10 +407,10 @@
         formb.setAttribute("type", "button");
         formb.setAttribute("id","fbutton");
         formb.onclick = function (){
-            var ssss1 = document.getElementById("ssss1").value;
-            if(ssss1!=""){
+            var delSpanId = document.getElementById("delSpanId").value;
+            if(delSpanId!=""){
                 var db4 = firebase.firestore();
-                var ref4 = db4.collection("VM").doc(ssss1).delete().then(()=>{
+                var ref4 = db4.collection("VM").doc(delSpanId).delete().then(()=>{
                     console.log("delete data successfully");
                 });
             }
