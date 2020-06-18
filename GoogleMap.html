@@ -406,10 +406,11 @@
                 let span6 = document.createElement("span");
 
                 let span_id = document.createElement("input");
+               
                 span_id.setAttribute("type", "text");
                 span_id.setAttribute("value", doc.id);
                 span_id.setAttribute("id", "input1");
-                span1.textContent = "商品名稱:<br>";
+                span1.textContent = "商品名稱:";
                 span1.setAttribute("style", "color:black;display:block;text-align:center");
                 span1.setAttribute("id", "span1");
                 span1.appendChild(span_id);
@@ -418,7 +419,7 @@
                 span_capacity.setAttribute("type", "text");
                 span_capacity.setAttribute("value", doc.data()["容量"]);
                 span_capacity.setAttribute("id", "input2");
-                span2.textContent = "容量:<br>";
+                span2.textContent = "容量:   ";
                 span2.setAttribute("style", "color:black;display:block;text-align:center");
                 span2.setAttribute("id", "span2");
                 span2.appendChild(span_capacity);
@@ -427,7 +428,7 @@
                 span_calories.setAttribute("type", "text");
                 span_calories.setAttribute("value", doc.data()["熱量"]);
                 span_calories.setAttribute("id", "input3");
-                span3.textContent = "熱量:<br>";
+                span3.textContent = "熱量:   ";
                 span3.setAttribute("style", "color:black;display:block;text-align:center");
                 span3.setAttribute("id", "span3");
                 span3.appendChild(span_calories);
@@ -436,7 +437,7 @@
                 span_manufactureDate.setAttribute("type", "text");
                 span_manufactureDate.setAttribute("id", "input4");
                 span_manufactureDate.setAttribute("value", timeConverter(doc.data()["製造日期"]));
-                span4.textContent = "製造日期:<br>";
+                span4.textContent = "製造日期:   ";
                 span4.setAttribute("style", "color:black;display:block;text-align:center");
                 span4.setAttribute("id", "span4");
                 span4.appendChild(span_manufactureDate);
@@ -445,7 +446,7 @@
                 span_expireDate.setAttribute("type", "text");
                 span_expireDate.setAttribute("id", "input5");
                 span_expireDate.setAttribute("value", timeConverter(doc.data()["保存期限"]));
-                span5.textContent = "保存期限:<br>";
+                span5.textContent = "保存期限:   ";
                 span5.setAttribute("style", "color:black;display:block;text-align:center");
                 span5.setAttribute("id", "span5");
                 span5.appendChild(span_expireDate);
@@ -454,7 +455,7 @@
                 span_manufacturer.setAttribute("type", "text");
                 span_manufacturer.setAttribute("id", "input6");
                 span_manufacturer.setAttribute("value", doc.data()["製造商"]);
-                span6.textContent = "製造商:<br>";
+                span6.textContent = "製造商:   ";
                 span6.setAttribute("style", "color:black;display:block;text-align:center");
                 span6.setAttribute("id", "span6");
                 span6.appendChild(span_manufacturer);
