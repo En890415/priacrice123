@@ -58,14 +58,7 @@
                         <button class="login100-form-btn" onclick="login()" type="button">
                             Login
                         </button>
-                    </div>
-                    <div class="text-center w-full p-t-55">
-                        <span class="txt3">
-                            <input type="radio" name="radio" value="user" checked>User
-                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <input type="radio" name="radio" value="provider">Provider
-                        </span>
-                    </div>
+			</div>
                     <div class="text-center w-full p-t-42 p-b-22">
                         <span class="txt1">
                             Or login with
@@ -169,29 +162,11 @@
                 if (user != null) {
                     var email_id = user.email;
                     document.getElementById("user_para").innerHTML = email_id;
-                    var what = document.getElementsByName("radio");
-                    var Str = "";
-                    for (var i = 0; i < what.length; i++) {
-                        if (what[i].checked) {
-                            if (Str == "") {
-                                Str = what[i].value;
-                            } else {
-                                Str = what[i].value;
-                            }
-
-                        }
-                    }
-                    if (Str == "user") {
-                        document.getElementById("button_1").style.display = "none";
-                        document.getElementById("input_1").style.display = "none";
-                        document.getElementById("go_button").style.display = "none";
-			setTimeout(location.href = "https://en890415.github.io/priacrice123/GoogleMap.html", 2000);
-                    } else {
-			var inp = document.getElementById("input_1").value;
-                        if(inp!=""){                            
-                            setTimeout(location.href = "https://en890415.github.io/priacrice123/GoogleMap.html", 2000);
-                        }
-		    };
+                    document.getElementById("button_1").style.display = "none";
+                    document.getElementById("input_1").style.display = "none";
+                    document.getElementById("go_button").style.display = "none";
+	            setTimeout(location.href = "https://en890415.github.io/priacrice123/GoogleMap.html", 2000);
+                    
                 }
             } else {
                 document.getElementById("loggedin_div").style.display = "none";
