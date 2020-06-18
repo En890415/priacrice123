@@ -54,9 +54,7 @@
         <form id="form">
         </form>
     </div>
-    <script src="./confirmURL.js"></script>
-</body>
-</html>
+</body></html>
 <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
 <script>
@@ -177,9 +175,9 @@
                 var setSpanLatitude = document.getElementById("setSpanLatitude").value;
                 var fSetSpanLatitude = parseFloat(setSpanLatitude);
                 if(setSpanId!="" && setSpanAddress!="" && setSpanStatus!="" && setSpanLongitude!="" && setSpanLatitude!=""){
-                    var db2 = firebase.firestore();
-                    var ref1 = db2.collection("VM").doc(vm).delete()
-                    var ref2 = db2.collection("VM").doc(setSpanId).set({
+                    let db = firebase.firestore();
+                    let ref1 = db.collection("VM").doc(vm).delete()
+                    let ref2 = db.collection("VM").doc(setSpanId).set({
                         address: setSpanAddress,
                         status:  setSpanStatus,
                         longitude: fSetSpanLongitude,
@@ -361,12 +359,12 @@
             var spAddSpanGood = addSpanGood.split(" ");
             var arr = []
             if(addSpanIid!="" && addSpanAddress!="" && addSpanStatus!="" && addSpanLongitude!="" && addSpanLatitude!="" && addSpanGood!=""){
-                var db3 = firebase.firestore();
+                let db = firebase.firestore();
                 for(var i=0;i<spAddSpanGood.length;i++){
                     let arrAddSpanGood = db.collection("商品").doc(spAddSpanGood[i]);
                     arr.push(arrAddSpanGood)
                 }
-                var ref3 = db3.collection("VM").doc(addSpanIid).set({
+                let ref = db.collection("VM").doc(addSpanIid).set({
                     address: addSpanAddress,
                     status: addSpanStatus,
                     longitude: fAddSpanLongitude,
@@ -411,8 +409,8 @@
         formb.onclick = function (){
             var delSpanId = document.getElementById("delSpanId").value;
             if(delSpanId!=""){
-                var db4 = firebase.firestore();
-                var ref4 = db4.collection("VM").doc(delSpanId).delete().then(()=>{
+                let db = firebase.firestore();
+                let ref = db.collection("VM").doc(delSpanId).delete().then(()=>{
                     console.log("delete data successfully");
                 });
             }
