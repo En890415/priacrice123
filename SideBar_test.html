@@ -8,7 +8,6 @@
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script>
-              console.log("現在網址為" + location.href);
           $( document ).ready(function() {
                 console.log("SideBar載入完成");
                    confirmURL();
@@ -122,6 +121,7 @@
         firebase.initializeApp(firebaseConfig);
     </script>
     <script>
+      console.log("現在網址為" + location.href); 
       function logout(){
         firebase.auth().signOut();
       }
