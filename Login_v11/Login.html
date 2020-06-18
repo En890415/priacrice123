@@ -95,11 +95,7 @@
                         <p id="user_para" style="color: #291b4a"></p>
                     </li>
                     <li>
-                        <button id="button_1" onclick="send()">發送</button>
-                        <br />
-                        <input type="text" id="input_1">
-                        <br />
-                        <button onclick="go()" id="go_button">GO</button>
+                        
 
                         <button onclick="logout()">logout</button>
                     </li>
@@ -253,34 +249,6 @@
 				onSignInSubmit();
 			}
 		});
-
-		function send() {
-			var phoneNumber = '+886988847637';
-			var appVerifier = window.recaptchaVerifier;
-
-			firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier).then(function (confirmationResult) {
-				/* 發送成功 */
-				window.confirmationResult = confirmationResult;
-			}).catch(function (error) {
-				/* 發送失敗 */
-				console.log(error);
-				/* 重置驗證 */
-				grecaptcha.reset(window.recaptchaWidgetId);
-			});
-		}
-
-		function go() {
-			var code = document.getElementById('input_1').value;
-			/* 檢查驗證碼 */
-			confirmationResult.confirm(code).then(function (result) {
-				/* 驗證成功 */
-				var user = result.user;
-				console.log(user);
-			}).catch(function (error) {
-				/* 驗證失敗 */
-				console.log(error);
-			});
-		}
-    </script>
+ 	</script>
 
 </body></html>
