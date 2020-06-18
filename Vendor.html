@@ -54,9 +54,7 @@
         <form id="form">
         </form>
     </div>
-    <script src="./confirmURL.js"></script>
-</body>
-</html>
+</body></html>
 <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
 <script>
@@ -266,10 +264,10 @@
 
 </script>
 <script>
-   // if (location.href == "https://en890415.github.io/priacrice123/Vendor.html") {
-     //   console.log("確認網址判斷成功" + location.href);
-    //   document.getElementById("ManageBar").className = "nav-item active";
-  //  }
+    if (location.href == "https://en890415.github.io/priacrice123/Vendor.html") {
+        console.log("確認網址判斷成功" + location.href);
+        document.getElementById("ManageBar").className = "nav-item active";
+    }
 
 </script>
 <script>
@@ -287,6 +285,7 @@
         let span4 = document.createElement("span");
         let span5 = document.createElement("span");
         let span6 = document.createElement("span");
+        let span7 = document.createElement("span");
         
         let span_id = document.createElement("input");
         span_id.setAttribute("type", "text");
@@ -327,11 +326,22 @@
         let span_latitude = document.createElement("input");
         span_latitude.setAttribute("type", "text");
         span_latitude.setAttribute("id", "sss5");
-        span5.textContent = "緯度:";
+        span5.textContent = "經度:";
         span5.setAttribute("style", "color:black;display:block;text-align:center");
         span5.setAttribute("id","s5");
         span5.appendChild(span_latitude);
         fform.appendChild(span5);
+        
+        let span_good = document.createElement("input");
+        span_good.setAttribute("type", "text");
+        span_good.setAttribute("id", "sss6");
+        span_good.setAttribute("placeholder", "商品間要有空格");
+        span6.textContent = "商品:";
+        span6.setAttribute("style", "color:black;display:block;text-align:center");
+        span6.setAttribute("id","s6");
+        span6.appendChild(span_good);
+        fform.appendChild(span6);
+        
         
         let formb = document.createElement("button");
         formb.textContent = "新增";
@@ -345,25 +355,31 @@
             var psss4 = parseFloat(sss4);
             var sss5 = document.getElementById("sss5").value;
             var psss5 = parseFloat(sss5);
-            if(sss1!="" && sss2!="" && sss3!="" && sss4!="" && sss5!=""){
+            var sss6 = document.getElementById("sss6").value;
+            var t6 = sss6.split(" ");
+            var arr = []
+            if(sss1!="" && sss2!="" && sss3!="" && sss4!="" && sss5!="" && sss6!=""){
                 var db3 = firebase.firestore();
+                for(var i=0;i<t6.length;i++){
+                    let at6 = db.collection("商品").doc(t6[i]);
+                    arr.push(at6)
+                }
                 var ref3 = db3.collection("VM").doc(sss1).set({
                     address: sss2,
                     status: sss3,
                     longitude: psss4,
-                    latitude: psss5
-                },{merge: true}).then(()=>{
-                    console.log("set data successfully");
-                });
-                }
-            else{
-                window.alert("未完成輸入");
+                    latitude: psss5,
+                    商品: arr
+                },{merge: true})
+                
             }
+            
+            
         }
-        span6.appendChild(formb);
-        span6.setAttribute("style", "display:block;text-align:center");
-        span6.setAttribute("id","s6");
-        fform.appendChild(span6);
+        span7.appendChild(formb);
+        span7.setAttribute("style", "display:block;text-align:center");
+        span7.setAttribute("id","s7");
+        fform.appendChild(span7);
         
         document.getElementById("wrapper;").style.opacity = "0.5";
         document.getElementById("fm").style.display = "block";
