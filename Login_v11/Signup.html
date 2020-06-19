@@ -103,10 +103,6 @@
             // 透過 auth().createUserWithEmailAndPassword 建立使用者
             firebase.auth().createUserWithEmailAndPassword(user.email, user.pwd)
                 .then(u => {
-                    // 取得註冊當下的時間
-                    let date = new Date();
-                    let now = date.getTime();
-
                     // 記錄相關資訊到 firebase realtime database
                     database.ref(u.uid).set({
                         email: user.email
