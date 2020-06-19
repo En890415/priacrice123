@@ -109,7 +109,6 @@
 
                     // 記錄相關資訊到 firebase realtime database
                     database.ref(u.uid).set({
-                        signup: now,
                         email: user.email
                     }).then(() => {
                         // 儲存成功後顯示訊息
