@@ -116,7 +116,22 @@
     
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
-
+	<script>
+        $(function() {
+            $('#bankcard1').keyup(function() {
+                var val = $(this).val();
+                val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
+                console.log(val);
+                $(this).val( val );
+            });
+           $('#bankcard2').keyup(function() {
+                var val = $(this).val();
+                val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
+                console.log(val);
+                $(this).val( val );
+            });
+        })
+    </script>
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
