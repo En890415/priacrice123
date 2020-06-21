@@ -66,15 +66,15 @@
 	<table style="width:70%;background-color: #fff;" border=2px >
 	<tr>
 	   <th style="text-align:center;color:black">當前信箱</th>
-           <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="email" style="font-size:1.2rem;"></span>   </td>
+           <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_email" style="font-size:1.2rem;"></span>   </td>
 	</tr>
         <tr>
 	    <th style="text-align:center;color:black">卡號1</th>
-            <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="bankcard1" style="font-size:1.2rem"></span>  </td>
+            <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_card1" style="font-size:1.2rem"></span>  </td>
         </tr>
 	<tr>
 	    <th style="text-align:center;color:black">卡號2</th>
-            <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="bankcard2" style="font-size:1.2rem"></span>     </td>
+            <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_card2" style="font-size:1.2rem"></span>     </td>
 	</tr>
         </table>
 	    
@@ -97,7 +97,7 @@
 			cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
         <span style="font-size:1.0em;">請更改/新增填寫卡號2(16碼)</span><br>
 	    
-        <input type="button" id="btn" value="更新卡號"
+        <input type="button" id="test" value="更新卡號"
 	       style="background:#ccc; border:0 none;cursor:pointer;
 		      -webkit-border-radius: 5px;border-radius:5px; width:70%">
         
@@ -138,31 +138,36 @@
         const config = {
             apiKey: "AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk",
             authDomain: "sa-no3.firebaseapp.com",
-            databaseURL: "https://sa-no3.firebaseio.com"
+            databaseURL: "https://sa-no3.firebaseio.com",
+            projectId: "sa-no3",
+            storageBucket: "sa-no3.appspot.com",
+            messagingSenderId: "1015427284395",
+            appId: "1:1015427284395:web:008dc524a161da95bfe6ee",
+            measurementId: "G-MDP1SN9YWK"
         };
         firebase.initializeApp(config);
         const database = firebase.database();
 	firebase.auth().useDeviceLanguage();
-	firebase.database().ref('users/').once('value', function(snapshot) {
-              console.log(snapshot.val())
-              display_data(snapshot.val());
-            }); 
-	var user = firebase.auth().currentUser;
-	var btn = document.getElementById('btn');
-	btn.onclick = function() 
-	{
-                email: user.email;
-                bankcard1: $('#bankcard1').val();
-		bankcard2: $('#bankcard2').val();
+	
+	user = firebase.auth().currentUser;
+	function writeUserCC(card1, card2) {
+	var email = user.email;
+          firebase.database().ref('users/' + email).set({
+		email: email,
+		bankcard1 = card1,
+		bankcard2 = card2
+          });
+        }
+        
+        $(document).ready(function(){
+            $("#test").click(function(){
+                var card1       = $('#bankcard1').val();
+                var card2       = $('#bankcard2').val(); 
+                writeUserCC(card1,card2);
+            });
 		
-  		firebase.database().ref('users/').set({
-		    email: email,
-		    bankcard1: bankcard1,
-		    bankcard2: bankcard2
-		  });
 		
         });
-	}
 		  
 			
 	
