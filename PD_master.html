@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Personal_Data</title>
+    <title>RealtimeCC</title>
     <script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" 
                 crossorigin="anonymous"></script> 
     <style type=text/css>
@@ -61,14 +61,7 @@
             w3.includeHTML();
         </script>
     
-    /*<div style="display:inline-block; vertical-align: top; width:90%" align="center" >
-     
-	
-	    
-	<button onclick="check()" style="padding:5px 15px; background:#ccc; border:0 none;cursor:pointer;
-                         -webkit-border-radius: 5px;border-radius: 5px;">修改/新增卡號</button>   	    
-        </div>
-    </div>*/
+    
                              
     <div id="fm" style="border: 2px solid black; display:block;" align="center"; valign="center">
         <div style="margin-top:20% ;height:50%">
@@ -91,8 +84,7 @@
         <br>
 	<p id="user_card2" style="color: #291b4a"></p>
 	<br>
-        //<input type="button" onclick="closed()" style="width:70%;margin:1% ;height:15% padding:5px 15px; background:#ccc; border:0 none;
-				cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="請點此關閉此頁">
+        
         </div>
 
     </div>
@@ -143,6 +135,12 @@
 	    });
 	  
 	var user = firebase.auth().currentUser;
+	var ree = firebase.database().ref('UserCards/'+uid);
+ 	ree.on('value', function(snapshot)
+	{
+		$('#bankcard1').val(bankcard1);
+		$('#bankcard2').val(bankcard2);
+	};
 	function writeUserCC(uid, email, card1, card2) {
 	  
           firebase.database().ref('UserCards/'+uid).set({
@@ -155,12 +153,7 @@
 		alert("伺服器發生錯誤，請稍後再試");
 		});
         }
-        var ree = firebase.database().ref('UserCards/'+uid);
- 	ree.on('value', function(snapshot)
-	{
-		$('#bankcard1').val() = bankcard1;
-		$('#bankcard2').val() = bankcard2;
-	};
+        
         $(document).ready(function(){
             $("#test").click(function(){
 		var uid = user.uid;
@@ -178,17 +171,5 @@
 	    //-----------------------------------------------------------------------
 	 </script> 
     
- 	
-	<script>
-        /*function check() {
-            document.getElementById("fm").style.display = "block";
-            document.getElementById("wrapper").style.opacity = "0.5";
-        }
-        function closed() {
-           // document.getElementById("fm").style.display = "none";
-           // document.getElementById("wrapper").style.opacity = "1";
-           // window.location.reload();
-        }*/
-    </script>
 </body>
 </html>
