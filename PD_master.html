@@ -147,20 +147,33 @@
         // Initialize Firebase
 	firebase.initializeApp(firebaseConfig);
 	firebase.auth().useDeviceLanguage();
-	    var database = firebase.database();
-	    var user = firebase.auth().currentUser;
-	var btn = document.getElementById('btn');
-	btn.onclick = function() {
-  	var mail = document.getElementById('mail').value;
-  	var bankcard1 = document.getElementById('bankcard1').value;
-  	var bankcard2 = document.getElementById('bankcard2').value;
-  	firebase.database().ref('users/').push({
-    email: mail,
-    bankcard1: bankcard1,
-    bankcard2: bankcard2
-}
-	    
-        }
+			var database = firebase.database();
+			 firebase.auth().onAuthStateChanged(function(user) {
+			if (user) {
+				var user = firebase.auth().currentUser;
+				var btn = document.getElementById('btn');
+                    var email, bankcard1, bankcard2; 
+			    email = user.email;
+			    bankcard1 = user.bankcard1;
+			    bankcard2 = user.bankcard2;
+	            console.log("拿到的email為" + email);	  
+		    console.log("拿到的bankcard1為" + bankcard1);
+		    console.log("拿到的bankcard2為" + bankcard2); 
+		    document.getElementById("user_email").innerHTML = email;
+		    document.getElementById("user_card1").innerHTML = bankcard1;
+		    document.getElementById("user_card2").innerHTML = bankcard2;
+			btn.onclick = function() {
+			var bankcard1 = document.getElementById('bankcard1').value;
+			var bankcard2 = document.getElementById('bankcard2').value;
+			firebase.database().ref('users/').push({
+		    bankcard1: bankcard1,
+		    bankcard2: bankcard2
+		}}
+		  } else {
+		    console.log("沒成功設置觀察者");
+		  }
+		});
+	
 	    //-----------------------------------------------------------------------
 	 </script> 
     
