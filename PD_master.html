@@ -139,7 +139,8 @@
 	firebase.auth().useDeviceLanguage();
 	
 	var user = firebase.auth().currentUser;
-	console.log(user);
+	if (firebase.auth().currentUser !== null) 
+        console.log("user id: " + firebase.auth().currentUser.uid);
 	function writeUserCC(phone, card1, card2) {
 	  
           firebase.database().ref('UserCards/'+phone).set({
