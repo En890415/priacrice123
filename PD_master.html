@@ -135,13 +135,7 @@
 	    });
 	  
 	var user = firebase.auth().currentUser;
-	var uid = user.uid;
-	var ree = firebase.database().ref('UserCards/'+uid);
- 	ree.on('value', function(snapshot)
-	{
-		$('#bankcard1').val(bankcard1);
-		$('#bankcard2').val(bankcard2);
-	});
+	
 	function writeUserCC(uid, email, card1, card2) {
 	  
           firebase.database().ref('UserCards/'+uid).set({
@@ -154,7 +148,13 @@
 		alert("伺服器發生錯誤，請稍後再試");
 		});
         }
-        
+        var uid = user.uid;
+	var ree = firebase.database().ref('UserCards/'+uid);
+ 	ree.on('value', function(snapshot)
+	{
+		$('#bankcard1').val(bankcard1);
+		$('#bankcard2').val(bankcard2);
+	});
         $(document).ready(function(){
             $("#test").click(function(){
 		var email = user.email;
