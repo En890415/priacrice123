@@ -130,7 +130,11 @@
 	    });
 	  
 	var user = firebase.auth().currentUser;
-	    
+	var starCountRef = firebase.database().ref('UserCards');
+	// Add ref of child if any
+	starCountRef.on('value', function(snapshot) {
+	    console.log(snapshot.val());
+	});
 	function writeUserCC(uid, email, card1, card2) {
 	  
           firebase.database().ref('UserCards/'+uid).set({
@@ -145,8 +149,6 @@
         }
         
         $(document).ready(function(){
-		var ree = firebase.database().ref('UserCards/'+user.uid);
- 	ree.on('value', function(snapshot)
 	{
 		$('#bankcard1').val(bankcard1);
 		$('#bankcard2').val(bankcard2);
