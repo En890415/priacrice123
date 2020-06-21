@@ -140,7 +140,7 @@
 	{
 		$('#bankcard1').val(bankcard1);
 		$('#bankcard2').val(bankcard2);
-	};
+	}
 	function writeUserCC(uid, email, card1, card2) {
 	  
           firebase.database().ref('UserCards/'+uid).set({
