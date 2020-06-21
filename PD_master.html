@@ -72,8 +72,7 @@
                              
     <div id="fm" style="border: 2px solid black; display:none;" align="center"; valign="center">
         <div style="margin-top:20% ;height:50%">
-		
-        <form action="" autocomplete="off" style="width:70%;" id="cardForm" >
+	
         <input type="text" id="bankcard1" class="bankcard1" maxlength="19" placeholder="卡號1" 
                style="width:90%; padding:5px 15px; border:2px black solid;
 			cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
@@ -87,13 +86,12 @@
 	<button id="test" style="background:#ccc; border:0 none;cursor:pointer;
 		      -webkit-border-radius: 5px;border-radius:5px; width:70%">測試</button> 
         
-    </form>
         <br>
 	<p id="user_card1" style="color: #291b4a"></p>	
         <br>
 	<p id="user_card2" style="color: #291b4a"></p>
 	<br>
-        <input type="button" onclick="closed()" style="width:70%;margin:1% ;height:15% padding:5px 15px; background:#ccc; border:0 none;
+        //<input type="button" onclick="closed()" style="width:70%;margin:1% ;height:15% padding:5px 15px; background:#ccc; border:0 none;
 				cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;" value="請點此關閉此頁">
         </div>
 
@@ -173,7 +171,7 @@
         function closed() {
            // document.getElementById("fm").style.display = "none";
            // document.getElementById("wrapper").style.opacity = "1";
-           window.location.reload();
+           // window.location.reload();
         }
     </script>
 </body>
