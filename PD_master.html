@@ -70,11 +70,11 @@
 	</tr>
         <tr>
 	    <th style="text-align:center;color:black">卡號1</th>
-            <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_displayName" style="font-size:1.2rem"></span>  </td>
+            <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_card1" style="font-size:1.2rem"></span>  </td>
         </tr>
 	<tr>
 	    <th style="text-align:center;color:black">卡號2</th>
-            <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_photoURL" style="font-size:1.2rem"></span>     </td>
+            <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_card2" style="font-size:1.2rem"></span>     </td>
 	</tr>
         </table>
 	    
@@ -87,17 +87,17 @@
         <div style="margin-top:20% ;height:50%">
 		
         <form action="" autocomplete="off" style="width:70%;" id="cardForm" >
-        <input type="text" id="bankcard1" class="bankcard2" maxlength="19" placeholder="卡號1" 
+        <input type="text" id="usercard1" class="bankcard1" maxlength="19" placeholder="卡號1" 
                style="width:90%; padding:5px 15px; border:2px black solid;
 			cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
         <span style="font-size:1.0em;">請更改/新增填寫卡號1(16碼)</span><br>
         
-        <input type="text" id="bankcard2" class="bankcard2" maxlength="19" placeholder="卡號2"
+        <input type="text" id="usercard2" class="bankcard2" maxlength="19" placeholder="卡號2"
                style="width:90%;padding:5px 15px; border:2px black solid;
 			cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
         <span style="font-size:1.0em;">請更改/新增填寫卡號2(16碼)</span><br>
 	    
-        <input type="button" onclick="updateCardNum()" value="更新卡號"
+        <input type="button" id="btn" value="更新卡號"
 	       style="background:#ccc; border:0 none;cursor:pointer;
 		      -webkit-border-radius: 5px;border-radius:5px; width:70%">
         
@@ -131,83 +131,40 @@
         };
         // Initialize Firebase
 	firebase.initializeApp(firebaseConfig);
-	firebase.auth().useDeviceLanguage();   
+	firebase.auth().useDeviceLanguage();
+	    var database = firebase.database();
 	    //-----------------------------------------------------------------------
-	    firebase.auth().onAuthStateChanged(function(user) {
+	 </script> 
+    
+ 	<script>
+		firebase.auth().onAuthStateChanged(function(user) {
 		  if (user) {
 		    var user = firebase.auth().currentUser;
-                    var email, displayName, photoURL; 
+                    var email, bankcard1, bankcard2; 
 			    email = user.email;
-			    displayName = user.displayName;
-			    photoURL = user.photoURL;
-	            console.log("拿到的email為" + email);	  
-		    console.log("拿到的displayName為" + displayName);
-		    console.log("拿到的photoURL為" + photoURL); 
+			    bankcard1 = user.bankcard1;
+			    bankcard2 = user.bankcard2;
 		    document.getElementById("user_email").innerHTML = email;
-		    document.getElementById("user_displayName").innerHTML = displayName;
-		    document.getElementById("user_photoURL").innerHTML = photoURL;  
+		    document.getElementById("user_card1").innerHTML = bankcard1;
+		    document.getElementById("user_card2").innerHTML = bankcard2;  
 		  } else {
 		    console.log("沒成功設置觀察者");
 		  }
 		});
-	    
-	    		//var email_id, displayName_id, photoURL_id;
-	    		//console.log("進來開始接user的值囉");
-			//var user = firebase.auth().currentUser;
-	    		//console.log("currentUser的值為:" + firebase.auth().currentUser);
-	    		//console.log("user的值為:" + user);	
-			 //   email_id = user1.email;
-			 //   displayName_id = user1.displayName;
-			 //    photoURL_id = user1.photoURL;
-			// console.log("拿到的photoURL_id為" +photoURL_id);
-			 //  document.getElementById("user_email").innerHTML = user.email;
-			//  document.getElementById("user_displayName").innerHTML = user.displayName;
-			//   document.getElementById("user_photoURL").innerHTML = user.photoURL;
-    </script>
+	</script>
     
-    <script>
-          //  if(location.href == "https://en890415.github.io/priacrice123/Personal_Data.html") {
-         //        console.log("確認網址判斷成功" + location.href);
-           //   document.getElementById("Personal_Data").style.color = "#f8f9fc";
-         //  }
-    </script>  
-                           
-    <script>
-        $(function() {
-            $('#bankcard1').keyup(function() {
-                var val = $(this).val();
-                val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
-                console.log(val);
-                $(this).val( val );
-            });
-           $('#bankcard2').keyup(function() {
-                var val = $(this).val();
-                val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
-                console.log(val);
-                $(this).val( val );
-            });
-        })
-    </script>
- 	
-    <script>
-        function updateCardNum(){
-		    var user = firebase.auth().currentUser;
-		    const formNum = document.getElementById("cardForm");
-	            var Num1 = formNum[0].value;
-		    var Num2 = formNum[1].value;
-		    user.updateProfile({
-		      displayName:Num1,
-                      photoURL:Num2
-		    }).then(function() {
-		      console.log("把displayName跟URL當作卡號更新完成")
-		    }).catch(function(error) {
-		      console.log("An error happened.")// An error happened.
-		    });
-		      //var cardNum1 = user.displayName;
-		    //  document.getElementById("user_card1").innerHTML ="更改後的卡號1:" + cardNum1;
-		    //  var cardNum2 = user.photoURL;
-		    //  document.getElementById("user_card2").innerHTML ="更改後的卡號2:" + cardNum2;
-			document.getElementById("user_card1").innerHTML ="更改成功~請點選關閉以整理";
+	<script>
+	var user = firebase.auth().currentUser;
+	var btn = document.getElementById('btn');
+	btn.onclick = function() {
+  	var mail = document.getElementById('mail').value;
+  	var bankcard1 = document.getElementById('bankcard1').value;
+  	var bankcard2 = document.getElementById('bankcard2').value;
+  	firebase.database().ref('users/').push({
+    email: mail,
+    bankcard1: bankcard1,
+    bankcard2: bankcard2
+}
 	    
         }
     </script>
