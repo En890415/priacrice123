@@ -134,6 +134,9 @@
 	// Add ref of child if any
 	starCountRef.on('value', function(snapshot) {
 	    console.log(snapshot.val());
+		$('#bankcard1').val(bankcard1);
+		$('#bankcard2').val(bankcard2);
+	
 	});
 	function writeUserCC(uid, email, card1, card2) {
 	  
@@ -150,9 +153,6 @@
         
         $(document).ready(function(){
 	{
-		$('#bankcard1').val(bankcard1);
-		$('#bankcard2').val(bankcard2);
-	});
             $("#test").click(function(){
 		var email = user.email;
                 var card1 = $('#bankcard1').val();
