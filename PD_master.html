@@ -63,20 +63,7 @@
     
     <div style="display:inline-block; vertical-align: top; width:90%" align="center" >
      
-	<table style="width:70%;background-color: #fff;" border=2px >
-	<tr>
-	   <th style="text-align:center;color:black">當前信箱</th>
-           <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_email" style="font-size:1.2rem;"></span>   </td>
-	</tr>
-        <tr>
-	    <th style="text-align:center;color:black">卡號1</th>
-            <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_card1" style="font-size:1.2rem"></span>  </td>
-        </tr>
-	<tr>
-	    <th style="text-align:center;color:black">卡號2</th>
-            <td style="text-align:center"><span class="mr-2 d-lg-inline text-gray-600 small" id="user_card2" style="font-size:1.2rem"></span>     </td>
-	</tr>
-        </table>
+	
 	    
 	<button onclick="check()" style="padding:5px 15px; background:#ccc; border:0 none;cursor:pointer;
                          -webkit-border-radius: 5px;border-radius: 5px;">修改/新增卡號</button>   	    
@@ -97,11 +84,8 @@
 			cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
         <span style="font-size:1.0em;">請更改/新增填寫卡號2(16碼)</span><br>
 	    
-        <input type="button" id="notttest" value="更新卡號"
-	       style="background:#ccc; border:0 none;cursor:pointer;
-		      -webkit-border-radius: 5px;border-radius:5px; width:70%">
 	<button id="test" style="background:#ccc; border:0 none;cursor:pointer;
-		      -webkit-border-radius: 5px;border-radius:5px; width:70%">建立</button> 
+		      -webkit-border-radius: 5px;border-radius:5px; width:70%">測試</button> 
         
     </form>
         <br>
@@ -154,7 +138,7 @@
 	user = firebase.auth().currentUser;
 	function writeUserCC(card1, card2) {
 	var email = user.email;
-          firebase.database().ref('users/' + email).set({
+          firebase.database().ref(email).set({
 		email: email,
 		bankcard1 = card1,
 		bankcard2 = card2
@@ -166,7 +150,11 @@
                 var card1       = $('#bankcard1').val();
                 var card2       = $('#bankcard2').val(); 
                 writeUserCC(card1,card2);
-            });
+            }).then(function () {
+		alert("建立成功");
+	}).catch(function () {
+		alert("伺服器發生錯誤，請稍後再試");
+		});
 		
 		
         });
