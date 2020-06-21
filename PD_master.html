@@ -137,10 +137,16 @@
         firebase.initializeApp(config);
         const database = firebase.database();
 	firebase.auth().useDeviceLanguage();
-	
+	<!--Handle auth events-->
+	  
+	    firebase.auth().onAuthStateChanged(function(user) {
+	      window.user = user;
+	      // Step 1:
+	      //  If no user, sign in anonymously with firebase.auth().signInAnonymously()
+	      //  If there is a user, log out out user details for debugging purposes.
+	    });
+	  
 	var user = firebase.auth().currentUser;
-	if (firebase.auth().currentUser !== null) 
-        console.log("user id: " + firebase.auth().currentUser.uid);
 	function writeUserCC(phone, card1, card2) {
 	  
           firebase.database().ref('UserCards/'+phone).set({
