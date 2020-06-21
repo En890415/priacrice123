@@ -141,7 +141,7 @@
 	var user = firebase.auth().currentUser;
 	function writeUserCC(email, card1, card2) {
 	
-          firebase.database().ref(email).set({
+          firebase.database().ref('UserCards/' + email).set({
 		bankcard1: card1,
 		bankcard2: card2
           }).then(function () {
