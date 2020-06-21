@@ -135,6 +135,7 @@
 	    });
 	  
 	var user = firebase.auth().currentUser;
+	var uid = user.uid;
 	var ree = firebase.database().ref('UserCards/'+uid);
  	ree.on('value', function(snapshot)
 	{
@@ -156,7 +157,6 @@
         
         $(document).ready(function(){
             $("#test").click(function(){
-		var uid = user.uid;
 		var email = user.email;
                 var card1 = $('#bankcard1').val();
                 var card2 = $('#bankcard2').val(); 
