@@ -130,12 +130,6 @@
 	    });
 	  
 	var user = firebase.auth().currentUser;
-	var ree = firebase.database().ref('UserCards/'+user.uid);
- 	ree.on('value', function(snapshot)
-	{
-		$('#bankcard1').val(bankcard1);
-		$('#bankcard2').val(bankcard2);
-	});
 	    
 	function writeUserCC(uid, email, card1, card2) {
 	  
@@ -151,7 +145,12 @@
         }
         
         $(document).ready(function(){
-		
+		var ree = firebase.database().ref('UserCards/'+user.uid);
+ 	ree.on('value', function(snapshot)
+	{
+		$('#bankcard1').val(bankcard1);
+		$('#bankcard2').val(bankcard2);
+	});
             $("#test").click(function(){
 		var email = user.email;
                 var card1 = $('#bankcard1').val();
