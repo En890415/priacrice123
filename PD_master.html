@@ -140,9 +140,13 @@
 	var email = user.email;
           firebase.database().ref(email).set({
 		email: email,
-		bankcard1 = card1,
-		bankcard2 = card2
-          });
+		card1 = card1,
+		card2 = card2
+          }).then(function () {
+		alert("建立成功");
+	}).catch(function () {
+		alert("伺服器發生錯誤，請稍後再試");
+		});
         }
         
         $(document).ready(function(){
@@ -150,11 +154,7 @@
                 var card1       = $('#bankcard1').val();
                 var card2       = $('#bankcard2').val(); 
                 writeUserCC(card1,card2);
-            }).then(function () {
-		alert("建立成功");
-	}).catch(function () {
-		alert("伺服器發生錯誤，請稍後再試");
-		});
+            });
 		
 		
         });
