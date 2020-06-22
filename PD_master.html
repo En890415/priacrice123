@@ -115,14 +115,11 @@
 	firebase.auth().useDeviceLanguage();
 	<!--Handle auth events-->
 	  
-	    firebase.auth().onAuthStateChanged(function(user) {
-	      window.user = user;
-	      // Step 1:
-	      //  If no user, sign in anonymously with firebase.auth().signInAnonymously()
-	      //  If there is a user, log out out user details for debugging purposes.
-	    });
+	    firebase.auth().onAuthStateChanged( user =>; {
+		  if (user) { this.userId = user.uid }
+		});
 	  
-	user = firebase.auth().currentUser;
+	//user = firebase.auth().currentUser;
 	function writeUserCC(uid, email, card1, card2) {
 	  
           firebase.database().ref('UserCards/'+uid).set({
