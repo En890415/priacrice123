@@ -31,7 +31,7 @@
         #fm {
             //position: absolute;
             top: 22%;
-            //left: 23%;
+            left: 23%;
             width: 70%;
             height: 75%;
             background-color: white;
@@ -130,22 +130,7 @@
 	    });
 	  
 	var user = firebase.auth().currentUser;
-	if(user)
-	{ 
-		uid = user.uid;
-		var CardCountRef1 = firebase.database().ref('UserCards/'+uid+'/bankcard1');
-		// Add ref of child if any
-		CardCountRef1.on('value', function(snapshot) {
-			console.log(snapshot.val());
-			document.getElementById('card1').value = "1";
-		});
-		var CardCountRef2 = firebase.database().ref('UserCards/'+uid+'/bankcard2');
-		// Add ref of child if any
-		CardCountRef2.on('value', function(snapshot) {
-			console.log(snapshot.val());
-			document.getElementById('card1').value = "2";
-		});
-	}    
+	
 	
 	    
 	function writeUserCC(uid, email, card1, card2) {
@@ -162,7 +147,22 @@
         }
         
         $(document).ready(function(){
-		
+	if(user)
+	{ 
+		uid = user.uid;
+		var CardCountRef1 = firebase.database().ref('UserCards/'+uid+'/bankcard1');
+		// Add ref of child if any
+		CardCountRef1.on('value', function(snapshot) {
+			console.log(snapshot.val());
+			document.getElementById('card1').value = "1";
+		});
+		var CardCountRef2 = firebase.database().ref('UserCards/'+uid+'/bankcard2');
+		// Add ref of child if any
+		CardCountRef2.on('value', function(snapshot) {
+			console.log(snapshot.val());
+			document.getElementById('card1').value = "2";
+		});
+	}    	
 		$("#test").click(function(){
 		
 		var email = user.email;
