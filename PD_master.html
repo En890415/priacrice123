@@ -59,7 +59,7 @@
         </script>
 	    <!----------->
                              
-    <div style="border: 2px solid black; display:block;" align="center"; valign="center">
+    <div id="fm" style="border: 2px solid black; display:block;" align="center"; valign="center">
         <div style="margin-top:20% ;height:50%">
 	
         <input type="text" id="card1" class="bankcard1" maxlength="19" placeholder="卡號1" 
@@ -131,12 +131,11 @@
 	  
 	var user = firebase.auth().currentUser;
 	if(user) var uid = user.uid;
-	var starCountRef = firebase.database().ref('UserCards/'+uid);
+	var starCountRef = firebase.database().ref('UserCards/'+uid+'/bankcard1');
 	// Add ref of child if any
 	starCountRef.on('value', function(snapshot) {
-		console.log(snapshot.val().bankcard1);
+		console.log(snapshot.val());
 		document.getElementById('card1').value = "1";
-		document.getElementById('card2').value = "2";
 	});
 	function writeUserCC(uid, email, card1, card2) {
 	  
