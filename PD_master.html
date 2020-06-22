@@ -116,7 +116,10 @@
 	<!--Handle auth events-->
 	  
 	    firebase.auth().onAuthStateChanged( user => {
-		  if (user) { this.userId = user.uid }
+		  if (user) { this.userId = user.uid,
+			      window.user = user
+			    }
+		
 		});
 	  
 	user = firebase.auth().currentUser;
