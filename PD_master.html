@@ -115,7 +115,7 @@
 	firebase.auth().useDeviceLanguage();
 	<!--Handle auth events-->
 	  
-	    firebase.auth().onAuthStateChanged( user =>; {
+	    firebase.auth().onAuthStateChanged( user => {
 		  if (user) { this.userId = user.uid }
 		});
 	  
