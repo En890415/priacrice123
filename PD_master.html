@@ -131,12 +131,20 @@
 	  
 	var user = firebase.auth().currentUser;
 	if(user) var uid = user.uid;
-	var starCountRef = firebase.database().ref('UserCards/'+uid+'/bankcard1');
+	    
+	var CardCountRef1 = firebase.database().ref('UserCards/'+uid+'/bankcard1');
 	// Add ref of child if any
 	starCountRef.on('value', function(snapshot) {
 		console.log(snapshot.val());
 		document.getElementById('card1').value = "1";
 	});
+	var CardCountRef2 = firebase.database().ref('UserCards/'+uid+'/bankcard2');
+	// Add ref of child if any
+	starCountRef.on('value', function(snapshot) {
+		console.log(snapshot.val());
+		document.getElementById('card1').value = "2";
+	});
+	    
 	function writeUserCC(uid, email, card1, card2) {
 	  
           firebase.database().ref('UserCards/'+uid).set({
