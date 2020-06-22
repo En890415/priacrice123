@@ -115,18 +115,27 @@
 	firebase.auth().useDeviceLanguage();
 	<!--Handle auth events-->
 	  
-	    firebase.auth().onAuthStateChanged( user => {
-		window.user = user;	   
-	})
-	    var i = 1;
-	  while(i==1)
-		{  
-		
-		user = firebase.auth().currentUser;
-			console.log("shit");
-		if(user) i--;
-		}
-		if (user) uid = user.uid;
+	    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+
+      var user = firebase.auth().currentUser;
+
+
+      if(user != null){ 
+        var uid=user.uid;
+        window.alert("success "+io);
+
+
+
+
+      }
+
+    } else {
+      // No user is signed in.
+      Window.reload();
+
+    }
+  });
 	
 	function writeUserCC(uid, email, card1, card2) {
 	  
