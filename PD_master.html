@@ -119,7 +119,7 @@
 		  
 		window.user = user;
 		user = firebase.auth().currentUser;
-		uid = user.uid;
+		if (user) uid = user.uid;
 			   
 		
 	})
