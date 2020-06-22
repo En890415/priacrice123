@@ -130,10 +130,11 @@
 	    });
 	  
 	var user = firebase.auth().currentUser;
+	var uid = user.uid;
 	var starCountRef = firebase.database().ref('UserCards');
 	// Add ref of child if any
 	starCountRef.on('value', function(snapshot) {
-		console.log(snapshot.key);
+		console.log(snapshot.child(uid).val());
 		document.getElementById('bankcard1').value = "1";
 		document.getElementById('bankcard2').value = "2";
 	});
@@ -152,6 +153,7 @@
         
         $(document).ready(function(){
 		$("#test").click(function(){
+		
 		var email = user.email;
                 var card1 = $('#bankcard1').val();
                 var card2 = $('#bankcard2').val(); 
