@@ -139,14 +139,16 @@
 		var CardCountRef1 = firebase.database().ref('UserCards/'+uid+'/bankcard1');
 		// Add ref of child if any
 		CardCountRef1.on('value', function(snapshot) {
-			console.log(snapshot.val());
-			document.getElementById('card1').value = "1";
+			var data1 = snapshot.val();
+			console.log(data1);
+			document.getElementById('card1').value = data1;
 		});
 		var CardCountRef2 = firebase.database().ref('UserCards/'+uid+'/bankcard2');
 		// Add ref of child if any
 		CardCountRef2.on('value', function(snapshot) {
-			console.log(snapshot.val());
-			document.getElementById('card1').value = "2";
+			var data2 = snapshot.val();
+			console.log(data2);
+			document.getElementById('card2').value = data2;
 		});
 	    	
 		$("#test").click(function(){
