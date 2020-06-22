@@ -4,6 +4,33 @@
     <title>RealtimeCC</title>
     <script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" 
                 crossorigin="anonymous"></script> 
+<script>
+	// Your web app's Firebase configuration
+        // 初始化
+        const config = {
+            apiKey: "AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk",
+            authDomain: "sa-no3.firebaseapp.com",
+            databaseURL: "https://sa-no3.firebaseio.com",
+            projectId: "sa-no3",
+            storageBucket: "sa-no3.appspot.com",
+            messagingSenderId: "1015427284395",
+            appId: "1:1015427284395:web:008dc524a161da95bfe6ee",
+            measurementId: "G-MDP1SN9YWK"
+        };
+        firebase.initializeApp(config);
+        const database = firebase.database();
+	firebase.auth().useDeviceLanguage();
+	<!--Handle auth events-->
+	  
+	    firebase.auth().onAuthStateChanged(function(user) {
+	      window.user = user;
+	      // Step 1:
+	      //  If no user, sign in anonymously with firebase.auth().signInAnonymously()
+	      //  If there is a user, log out out user details for debugging purposes.
+	    });
+	  
+	user = firebase.auth().currentUser;	
+</script>
     <style type=text/css>
         form{
             margin: 0 auto;
@@ -105,34 +132,7 @@
         })
     </script>
     <script>
-        // Your web app's Firebase configuration
-        // 初始化
-        const config = {
-            apiKey: "AIzaSyCnI0sknT-WrZwcvZHKGpPiioz66vp6Okk",
-            authDomain: "sa-no3.firebaseapp.com",
-            databaseURL: "https://sa-no3.firebaseio.com",
-            projectId: "sa-no3",
-            storageBucket: "sa-no3.appspot.com",
-            messagingSenderId: "1015427284395",
-            appId: "1:1015427284395:web:008dc524a161da95bfe6ee",
-            measurementId: "G-MDP1SN9YWK"
-        };
-        firebase.initializeApp(config);
-        const database = firebase.database();
-	firebase.auth().useDeviceLanguage();
-	<!--Handle auth events-->
-	  
-	    firebase.auth().onAuthStateChanged(function(user) {
-	      window.user = user;
-	      // Step 1:
-	      //  If no user, sign in anonymously with firebase.auth().signInAnonymously()
-	      //  If there is a user, log out out user details for debugging purposes.
-	    });
-	  
-	var user = firebase.auth().currentUser;
-	
-	
-	    
+        
 	function writeUserCC(uid, email, card1, card2) {
 	  
           firebase.database().ref('UserCards/'+uid).set({
