@@ -123,7 +123,7 @@
 
       if(user != null){ 
         uid=user.uid;
-        window.alert("success "+uid);
+        console.log(uid);
 	      function writeUserCC(email, card1, card2) {
 	  
           firebase.database().ref('UserCards/'+uid).set({
