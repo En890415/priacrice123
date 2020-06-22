@@ -116,9 +116,11 @@
 	<!--Handle auth events-->
 	  
 	    firebase.auth().onAuthStateChanged( user => {
-		  
+		while(!user)
+		{  
 		window.user = user;
 		user = firebase.auth().currentUser;
+		}
 		if (user) uid = user.uid;
 			   
 		
