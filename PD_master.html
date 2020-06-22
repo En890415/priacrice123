@@ -130,17 +130,17 @@
 	    });
 	  
 	var user = firebase.auth().currentUser;
-	if(user) var uid = user.uid;
+	if(user) uid = user.uid;
 	    
 	var CardCountRef1 = firebase.database().ref('UserCards/'+uid+'/bankcard1');
 	// Add ref of child if any
-	starCountRef.on('value', function(snapshot) {
+	CardCountRef1.on('value', function(snapshot) {
 		console.log(snapshot.val());
 		document.getElementById('card1').value = "1";
 	});
 	var CardCountRef2 = firebase.database().ref('UserCards/'+uid+'/bankcard2');
 	// Add ref of child if any
-	starCountRef.on('value', function(snapshot) {
+	CardCountRef2.on('value', function(snapshot) {
 		console.log(snapshot.val());
 		document.getElementById('card1').value = "2";
 	});
