@@ -134,7 +134,7 @@
 	var starCountRef = firebase.database().ref('UserCards');
 	// Add ref of child if any
 	starCountRef.on('value', function(snapshot) {
-		console.log(snapshot.child(uid).val());
+		console.log(snapshot.child(uid+"/bankcard1").val());
 		document.getElementById('bankcard1').value = "1";
 		document.getElementById('bankcard2').value = "2";
 	});
