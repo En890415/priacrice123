@@ -130,7 +130,7 @@
 	    });
 	  
 	var user = firebase.auth().currentUser;
-	
+	if(user) var uid = user.uid;
 	var starCountRef = firebase.database().ref('UserCards');
 	// Add ref of child if any
 	starCountRef.on('value', function(snapshot) {
@@ -152,7 +152,7 @@
         }
         
         $(document).ready(function(){
-		var uid = user.uid;
+		
 		$("#test").click(function(){
 		
 		var email = user.email;
