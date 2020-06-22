@@ -62,12 +62,12 @@
     <div style="display:inline-block; vertical-align: top; width:90%" align="center">
         <div style="margin-top:20% ;height:50%">
 	
-        <input type="text" id="bankcard1" class="bankcard1" maxlength="19" placeholder="卡號1" 
+        <input type="text" id="card1" class="bankcard1" maxlength="19" placeholder="卡號1" 
                style="width:90%; padding:5px 15px; border:2px black solid;
 			cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
         <span style="font-size:1.0em;">請更改/新增填寫卡號1(16碼)</span><br>
         
-        <input type="text" id="bankcard2" class="bankcard2" maxlength="19" placeholder="卡號2"
+        <input type="text" id="card2" class="bankcard2" maxlength="19" placeholder="卡號2"
                style="width:90%;padding:5px 15px; border:2px black solid;
 			cursor:pointer;-webkit-border-radius: 5px;border-radius: 5px;"><br>
         <span style="font-size:1.0em;">請更改/新增填寫卡號2(16碼)</span><br>
@@ -135,8 +135,8 @@
 	// Add ref of child if any
 	starCountRef.on('value', function(snapshot) {
 		console.log(snapshot.val().bankcard1);
-		document.getElementById('bankcard1').value = "1";
-		document.getElementById('bankcard2').value = "2";
+		document.getElementById('card1').value = "1";
+		document.getElementById('card2').value = "2";
 	});
 	function writeUserCC(uid, email, card1, card2) {
 	  
@@ -156,8 +156,8 @@
 		$("#test").click(function(){
 		
 		var email = user.email;
-                var card1 = $('#bankcard1').val();
-                var card2 = $('#bankcard2').val(); 
+                var card1 = $('#card1').val();
+                var card2 = $('#card2').val(); 
                 writeUserCC(uid,email,card1,card2);
             });
         })
