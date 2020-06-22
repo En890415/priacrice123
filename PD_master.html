@@ -131,10 +131,10 @@
 	  
 	var user = firebase.auth().currentUser;
 	if(user) var uid = user.uid;
-	var starCountRef = firebase.database().ref('UserCards');
+	var starCountRef = firebase.database().ref('UserCards/'+uid);
 	// Add ref of child if any
 	starCountRef.on('value', function(snapshot) {
-		console.log(snapshot.child("UserCards").val());
+		console.log(snapshot.val().bankcard1);
 		document.getElementById('bankcard1').value = "1";
 		document.getElementById('bankcard2').value = "2";
 	});
