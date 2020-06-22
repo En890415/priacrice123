@@ -83,13 +83,13 @@
 	
 	<script>
         $(function() {
-            $('#bankcard1').keyup(function() {
+            $('#card1').keyup(function() {
                 var val = $(this).val();
                 val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
                 console.log(val);
                 $(this).val( val );
             });
-           $('#bankcard2').keyup(function() {
+           $('#card2').keyup(function() {
                 var val = $(this).val();
                 val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
                 console.log(val);
