@@ -119,7 +119,7 @@
 		  if (user) { this.userId = user.uid }
 		});
 	  
-	//user = firebase.auth().currentUser;
+	user = firebase.auth().currentUser;
 	function writeUserCC(uid, email, card1, card2) {
 	  
           firebase.database().ref('UserCards/'+uid).set({
