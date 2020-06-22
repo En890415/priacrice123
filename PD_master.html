@@ -125,9 +125,6 @@
         uid=user.uid;
         window.alert("success "+uid);
 
-
-
-
       }
 
     } else {
@@ -137,7 +134,7 @@
     }
   });
 	
-	function writeUserCC(uid, email, card1, card2) {
+	function writeUserCC(email, card1, card2) {
 	  
           firebase.database().ref('UserCards/'+uid).set({
 		email: email,
@@ -152,14 +149,14 @@
         
         $(document).ready(function(){
 		
-		var CardCountRef1 = firebase.database().ref('UserCards/'+this.userId+'/bankcard1');
+		var CardCountRef1 = firebase.database().ref('UserCards/'+uid+'/bankcard1');
 		// Add ref of child if any
 		CardCountRef1.on('value', function(snapshot) {
 			var data1 = snapshot.val();
 			console.log(data1);
 			document.getElementById('card1').value = data1;
 		});
-		var CardCountRef2 = firebase.database().ref('UserCards/'+this.userId+'/bankcard2');
+		var CardCountRef2 = firebase.database().ref('UserCards/'+uid+'/bankcard2');
 		// Add ref of child if any
 		CardCountRef2.on('value', function(snapshot) {
 			var data2 = snapshot.val();
@@ -172,7 +169,7 @@
 		var email = user.email;
                 var card1 = $('#card1').val();
                 var card2 = $('#card2').val(); 
-                writeUserCC(this.userId,email,card1,card2);
+                writeUserCC(email,card1,card2);
             });
         })
 		  
