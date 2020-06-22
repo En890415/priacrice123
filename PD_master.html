@@ -147,7 +147,7 @@
 		});
         }
         
-        $(document).ready(function(){
+        //$(document).ready(function(){
 		
 		var CardCountRef1 = firebase.database().ref('UserCards/'+uid+'/bankcard1');
 		// Add ref of child if any
@@ -171,7 +171,7 @@
                 var card2 = $('#card2').val(); 
                 writeUserCC(email,card1,card2);
             });
-        })
+        //})
 		  
 	 </script> 
     
