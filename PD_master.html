@@ -116,13 +116,13 @@
 	<!--Handle auth events-->
 	  
 	    firebase.auth().onAuthStateChanged( user => {
-		  if (user) { this.userId = user.uid,
-			      window.user = user
-			    }
+		  
+			      window.user = user;
+			   
 		
-		});
+	})
 	  
-	user = firebase.auth().currentUser;
+	
 	function writeUserCC(uid, email, card1, card2) {
 	  
           firebase.database().ref('UserCards/'+uid).set({
@@ -137,8 +137,8 @@
         }
         
         $(document).ready(function(){
-	
-		//uid = this.userId;
+		user = firebase.auth().currentUser;
+		uid = user.uid;
 		var CardCountRef1 = firebase.database().ref('UserCards/'+this.userId+'/bankcard1');
 		// Add ref of child if any
 		CardCountRef1.on('value', function(snapshot) {
