@@ -118,11 +118,13 @@
 	    firebase.auth().onAuthStateChanged( user => {
 		window.user = user;	   
 	})
-	  while(!user)
+	    var i = 1;
+	  while(i==1)
 		{  
 		
 		user = firebase.auth().currentUser;
 			console.log(shit);
+		if(user) i--;
 		}
 		if (user) uid = user.uid;
 	
