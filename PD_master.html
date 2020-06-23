@@ -86,13 +86,11 @@
             $('#card1').keyup(function() {
                 var val = $(this).val();
                 val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
-                console.log(val);
                 $(this).val( val );
             });
            $('#card2').keyup(function() {
                 var val = $(this).val();
                 val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
-                console.log(val);
                 $(this).val( val );
             });
         })
@@ -114,13 +112,9 @@
         const database = firebase.database();
 	firebase.auth().useDeviceLanguage();
 	<!--Handle auth events-->
-	  
 	    firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-
       var user = firebase.auth().currentUser;
-
-
       if(user != null){ 
         uid=user.uid;
         console.log(uid);
@@ -138,14 +132,14 @@
         }
 	var CardCountRef1 = firebase.database().ref('UserCards/'+uid+'/bankcard1');
 		// Add ref of child if any
-		CardCountRef1.on('value', function(snapshot) {
+		CardCountRef1.once('value', function(snapshot) {
 			var data1 = snapshot.val();
 			console.log(data1);
 			document.getElementById('card1').value = data1;
 		});
 		var CardCountRef2 = firebase.database().ref('UserCards/'+uid+'/bankcard2');
 		// Add ref of child if any
-		CardCountRef2.on('value', function(snapshot) {
+		CardCountRef2.once('value', function(snapshot) {
 			var data2 = snapshot.val();
 			console.log(data2);
 			document.getElementById('card2').value = data2;
@@ -159,22 +153,11 @@
                 writeUserCC(email,card1,card2);
             });
       }
-
     } else {
       // No user is signed in.
       Window.reload();
-
     }
   });
-	
-	
-        
-        //$(document).ready(function(){
-		
-		
-        //})
-		  
-	 </script> 
-    
+	 </script>
 </body>
 </html>
