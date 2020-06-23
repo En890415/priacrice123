@@ -108,19 +108,13 @@
             appId: "1:1015427284395:web:008dc524a161da95bfe6ee",
             measurementId: "G-MDP1SN9YWK"
         };
+	    
         firebase.initializeApp(config);
         const database = firebase.database();
 	firebase.auth().useDeviceLanguage();
-	<!--Handle auth events-->
-	    firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      var user = firebase.auth().currentUser;
-      if(user != null){ 
-        uid=user.uid;
-        console.log(uid);
-	      function writeUserCC(email, card1, card2) {
-	  
-          firebase.database().ref('UserCards/'+uid).set({
+	
+	function writeUserCC(email, card1, card2) {
+        	firebase.database().ref('UserCards/'+uid).set({
 		email: email,
 		bankcard1: card1,
 		bankcard2: card2
@@ -130,19 +124,29 @@
 		alert("伺服器發生錯誤，請稍後再試");
 		});
         }
-	var CardCountRef1 = firebase.database().ref('UserCards/'+uid+'/bankcard1');
-		// Add ref of child if any
-		CardCountRef1.once('value', function(snapshot) {
-			var data1 = snapshot.val();
-			console.log(data1);
-			document.getElementById('card1').value = data1;
-		});
-		var CardCountRef2 = firebase.database().ref('UserCards/'+uid+'/bankcard2');
-		// Add ref of child if any
-		CardCountRef2.once('value', function(snapshot) {
-			var data2 = snapshot.val();
-			console.log(data2);
-			document.getElementById('card2').value = data2;
+	    
+	<!--Handle auth events-->
+	firebase.auth().onAuthStateChanged(function(user) {
+    		
+		if (user) {
+      		var user = firebase.auth().currentUser;
+      		if(user != null){ 
+        		uid=user.uid;
+        		console.log(uid);
+	      
+			var CardCountRef1 = firebase.database().ref('UserCards/'+uid+'/bankcard1');
+			// Add ref of child if any
+			CardCountRef1.once('value', function(snapshot) {
+				var data1 = snapshot.val();
+				console.log(data1);
+				document.getElementById('card1').value = data1;
+			});
+			var CardCountRef2 = firebase.database().ref('UserCards/'+uid+'/bankcard2');
+			// Add ref of child if any
+			CardCountRef2.once('value', function(snapshot) {
+				var data2 = snapshot.val();
+				console.log(data2);
+				document.getElementById('card2').value = data2;
 		});
 	    	
 		$("#test").click(function(){
