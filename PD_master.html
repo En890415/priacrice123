@@ -96,6 +96,19 @@
         })
     </script>
     <script>
+	
+	function writeUserCC(email, card1, card2) {
+        	firebase.database().ref('UserCards/'+uid).set({
+		email: email,
+		bankcard1: card1,
+		bankcard2: card2
+        }).then(function () {
+		alert("建立/更新資料成功");
+	}).catch(function () {
+		alert("伺服器發生錯誤，請稍後再試");
+		});
+        }
+	
         // Your web app's Firebase configuration
         // 初始化
         const config = {
@@ -112,19 +125,6 @@
         firebase.initializeApp(config);
         const database = firebase.database();
 	firebase.auth().useDeviceLanguage();
-	
-	function writeUserCC(email, card1, card2) {
-        	firebase.database().ref('UserCards/'+uid).set({
-		email: email,
-		bankcard1: card1,
-		bankcard2: card2
-          }).then(function () {
-		alert("建立/更新資料成功");
-	}).catch(function () {
-		alert("伺服器發生錯誤，請稍後再試");
-		});
-        }
-	    
 	<!--Handle auth events-->
 	firebase.auth().onAuthStateChanged(function(user) {
     		
